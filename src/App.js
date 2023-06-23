@@ -1,6 +1,7 @@
 import React from'react';
 //rotas
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+
 //pages
 import Home from './pages/Home';
 import About from './pages/About';
@@ -15,14 +16,14 @@ import Sobre from './pages/sobre';
 //componentes
 import Navbar from './components/Navbar';
 import Footer from './components/Footer/Footer';
-
-
+import { ButtonColorProvider } from './components/buttoncolorcontext';
 function App() {
   return (
     <>
        
       <BrowserRouter basename={process.env.PUBLIC_URL} > 
-      <Navbar/>
+      <ButtonColorProvider>
+        <Navbar />
         <Routes>
           <Route path='/contact' element={<Contact />} />
           <Route path='/' element={<Home />} />
@@ -37,6 +38,7 @@ function App() {
           
           
         </Routes>
+        </ButtonColorProvider>
         
       </BrowserRouter>
       <Footer />

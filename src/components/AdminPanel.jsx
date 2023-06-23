@@ -1,15 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { collection, addDoc, onSnapshot } from 'firebase/firestore';
 import { getFirestore } from 'firebase/firestore';
 import { Box, Button, Card, Grid, TextField, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import GetStarted from './GetStarted';
 import { Link } from 'react-router-dom';
+import ButtonColorContext from './buttoncolorcontext';
 
-const AdminPanel = () => {
+
+
+const AdminPanel = ({ setFormularioData }) => {
+  const { updateButtonColor } = useContext(ButtonColorContext);
+  const [color, setColor] = useState('');
+  const [inputValue, setInputValue] = useState('');
+  
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setFormularioData(inputValue);
+
+    setInputValue('');
+
+   
+    updateButtonColor(color);
+    setColor('');
+  };
   const [courseData, setCourseData] = useState({ title: '', description: '', image: null });
   const [trackData, setTrackData] = useState({ title: '', video: '', content: '', summary: '', pdf: '', downloadVideo: false });
   const [courses, setCourses] = useState([]);
+  const [cor, setCor] = useState('');
+
+  const trocarCor = (event) => {
+    event.preventDefault();
+    const corEscolhida = document.getElementById('bgcolor').value;
+    setCor(corEscolhida);
+  };
 
   useEffect(() => {
     const db = getFirestore();
@@ -61,7 +86,7 @@ const AdminPanel = () => {
     const content = e.target.value;
     setTrackData({ ...trackData, content });
   };
-
+ 
   // Estilo personalizado para diminuir o tamanho do título
   const CustomTypography = styled(Typography)({
     fontSize: '1.2rem',
@@ -102,6 +127,31 @@ const AdminPanel = () => {
           <div>
             <Button variant="contained" type="submit" style={{ backgroundColor: 'purple' }}>
               Adicionar Curso
+            </Button>
+          </div>
+        </form>
+      </Card>
+
+      <CustomTypography variant="h2">Alterar conteúdo da página sobre</CustomTypography>
+
+      <Card sx={{ p: 2, mt: 2 }}>
+        <form onSubmit={handleSubmit}>
+         
+          <TextField
+            label="Conteúdo"
+            variant="outlined"
+           
+           value={inputValue}
+           onChange={(e) => setInputValue(e.target.value)}
+            
+            margin="normal"
+            fullWidth
+            required
+          />
+          
+          <div>
+            <Button variant="contained" type="submit" style={{ backgroundColor: 'purple' }}>
+              Adicionar
             </Button>
           </div>
         </form>
@@ -167,13 +217,153 @@ const AdminPanel = () => {
         </Card>
       </Box>
 
+      <Box sx={{mt:4}}>
+      <CustomTypography variant="h2">Alterar cor dos botões do menu </CustomTypography>
+      <Card sx={{ p: 2 }}>
+      <form onSubmit={handleSubmit}>
+      <TextField
+              label="Digite a cor desejada"
+              variant="outlined"
+              value={color}
+              onChange={(e) => setColor(e.target.value)}
+              margin="normal"
+              fullWidth
+              
+            />
+        
+        <div>
+         <Button variant="contained" type="submit" style={{ backgroundColor: 'purple' }}>
+              Alterar cor
+            </Button>
+        </div>
+       
+      </form>
+      </Card>
+       
+      <CustomTypography variant="h2">Alterar conteúdo da landing page</CustomTypography>
+
+<Card sx={{ p: 2, mt: 2 }}>
+  <form onSubmit={handleSubmit}>
+   
+    <TextField
+      label="Conteúdo 1"
+      variant="outlined"
+     
+     value={inputValue}
+     onChange={(e) => setInputValue(e.target.value)}
+      
+      margin="normal"
+      fullWidth
+      required
+    />
+    
+    <div>
+      <Button variant="contained" type="submit" style={{ backgroundColor: 'purple' }}>
+        Alterar
+      </Button>
+    </div>
+  </form>
+
+  <form onSubmit={handleSubmit}>
+   
+    <TextField
+      label="Conteúdo "
+      variant="outlined"
+     
+     value={inputValue}
+     onChange={(e) => setInputValue(e.target.value)}
+      
+      margin="normal"
+      fullWidth
+      required
+    />
+    
+    <div>
+      <Button variant="contained" type="submit" style={{ backgroundColor: 'purple' }}>
+        Alterar
+      </Button>
+    </div>
+  </form>
+</Card>
+
+      <CustomTypography variant="h2">Alterar conteúdo da página soluções</CustomTypography>
+
+      <Card sx={{ p: 2, mt: 2 }}>
+        <form onSubmit={handleSubmit}>
+         
+          <TextField
+            label="Conteúdo"
+            variant="outlined"
+           
+           value={inputValue}
+           onChange={(e) => setInputValue(e.target.value)}
+            
+            margin="normal"
+            fullWidth
+            required
+          />
+          
+          <div>
+            <Button variant="contained" type="submit" style={{ backgroundColor: 'purple' }}>
+              Adicionar
+            </Button>
+          </div>
+        </form>
+      </Card>
+      </Box>
+      <Box sx={{mt:4}}>
+      <CustomTypography variant="h2">Alterar cor do plano de fundo do menu </CustomTypography>
+      <Card sx={{ p: 2 }}>
+      <form onSubmit={handleSubmit}>
+      <TextField
+              label="Digite a cor desejada"
+              variant="outlined"
+              value={color}
+              onChange={(e) => setColor(e.target.value)}
+              margin="normal"
+              fullWidth
+              
+            />
+        
+        <div>
+         <Button variant="contained" type="submit" style={{ backgroundColor: 'purple' }}>
+              Alterar cor
+            </Button>
+        </div>
+       
+      </form>
+      </Card>
+      </Box>
+      <Box sx={{mt:4}}>
+      <CustomTypography variant="h2">Alterar cor dos demais botões(todos) </CustomTypography>
+      <Card sx={{ p: 2 }}>
+      <form onSubmit={handleSubmit}>
+      <TextField
+              label="Digite a cor desejada"
+              variant="outlined"
+              value={color}
+              onChange={(e) => setColor(e.target.value)}
+              margin="normal"
+              fullWidth
+              
+            />
+        
+        <div>
+         <Button variant="contained" type="submit" style={{ backgroundColor: 'purple' }}>
+              Alterar cor
+            </Button>
+        </div>
+       
+      </form>
+      </Card>
+      </Box>
+
       <GetStarted courses={courses} />
     </Box>
   );
 };
 
 export default AdminPanel;
-
 
 
 

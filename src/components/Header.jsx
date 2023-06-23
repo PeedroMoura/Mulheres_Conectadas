@@ -122,7 +122,7 @@ const Header = () => {
               }
             }}
           >
-            Explore
+            Adquira o nosso selo
           </Button>
         </Box>
       </BoxText>

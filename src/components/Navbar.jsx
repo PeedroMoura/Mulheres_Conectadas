@@ -1,4 +1,4 @@
-import React from 'react'
+import {useContext, React} from 'react'
 import {
     AppBar,
     Toolbar,
@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom';
 
 import navImg1 from '../assets/mulhere.png';
 import navImg2 from '../assets/weher.png';
+import ButtonColorContext from './buttoncolorcontext';
 
 // personalizacao
 const StyledToolbar = styled(Toolbar) ({
@@ -61,6 +62,8 @@ const itemList = [
 
 
 const Navbar = () => {
+  const { buttonColor } = useContext(ButtonColorContext);
+  const {buttonColor2} = useContext(ButtonColorContext);
     
     return (
         <AppBar component="nav" position="sticky" sx={{ backgroundColor: 'white' }} elevation={0} style={{ width: '100%', height: '80px' }}>
@@ -75,7 +78,7 @@ const Navbar = () => {
             const { text, to } = item;
             return (
               <ListItem key={text} sx={{ color: '#ab4f9d' }}>
-                <ListItemButton component={Link} to={to} sx={{ color: '#ab4f9d', "&:hover": { backgroundColor: 'transparent', color: 'purple' } }}>
+                <ListItemButton component={Link} to={to} sx={{ color: buttonColor, "&:hover": { backgroundColor: 'transparent', color: 'purple' } }}>
                   <ListItemText primary={text} />
                 </ListItemButton>
               </ListItem>
