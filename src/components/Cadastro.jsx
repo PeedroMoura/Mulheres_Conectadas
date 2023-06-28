@@ -96,7 +96,6 @@ const Cadastro = () => {
         />
         <TextField
           margin="normal"
-          required
           fullWidth
           id="matricula"
           label="Matrícula"

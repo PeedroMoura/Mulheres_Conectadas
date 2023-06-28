@@ -22,7 +22,7 @@ const GetInTouch = () => {
         >
             <Title 
             text={
-                'Gostou de nossos projetos? '
+                'Gostou de nossas soluções? '
                 } 
             textAlign={'center'}
             />

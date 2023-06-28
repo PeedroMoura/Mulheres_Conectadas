@@ -2,17 +2,7 @@ import React, { useState } from 'react';
 import { Box, Button, Stack, TextField, Snackbar } from '@mui/material';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
-
-// Configurar o Firebase
-const firebaseConfig = {
-  apiKey: 'AIzaSyAC_T-k6r-1LQCqroyaSXAy2bMwYL_LxQI',
-  authDomain: 'mulheres-conectadas-4da2a.firebaseapp.com',
-  projectId: 'mulheres-conectadas-4da2a',
-  // ...
-};
-// Inicializar o app do Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+import emailjs from 'emailjs-com';
 
 const ContatoForm = () => {
   const [email, setEmail] = useState('');
@@ -24,12 +14,22 @@ const ContatoForm = () => {
 
     try {
       // Enviar o formulário para o Firebase Firestore
-      const docRef = await addDoc(collection(db, 'mensagens'), {
+      const docRef = await addDoc(messagesCollection, {
         email,
         message,
       });
 
       console.log('Mensagem enviada com sucesso. ID do documento:', docRef.id);
+
+      // Enviar o formulário por email
+      emailjs
+        .sendForm('service_1ux5abv', 'template_xf8yc1a', event.target, 'mulheresconectadas')
+        .then((result) => {
+          console.log(result.text);
+        })
+        .catch((error) => {
+          console.log(error.text);
+        });
 
       // Exibir mensagem de sucesso
       setShowSuccessMessage(true);
@@ -45,10 +45,22 @@ const ContatoForm = () => {
     setShowSuccessMessage(false);
   };
 
+  // Configurar o Firebase
+  const firebaseConfig = {
+    apiKey: 'AIzaSyAC_T-k6r-1LQCqroyaSXAy2bMwYL_LxQI',
+    authDomain: 'mulheres-conectadas-4da2a.firebaseapp.com',
+    projectId: 'mulheres-conectadas-4da2a',
+    // ...
+  };
+
+  // Inicializar o app do Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const messagesCollection = collection(db, 'mensagens');
+
+
   return (
-    
     <Stack
-    
       component="section"
       direction="column"
       justifyContent="center"
@@ -58,7 +70,7 @@ const ContatoForm = () => {
         px: 2,
       }}
     >
-        <h2 style={{color: 'purple'}}>Deixe aqui sua mensagem :D</h2>
+      <h2 style={{ color: 'purple' }}>Deixe aqui sua mensagem :D</h2>
       <Box
         component="form"
         noValidate

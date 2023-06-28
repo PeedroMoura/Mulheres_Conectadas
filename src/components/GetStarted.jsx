@@ -1,66 +1,47 @@
 import React, { useEffect, useState } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import { getFirestore } from 'firebase/firestore';
-import { Box, Grid, styled, Typography } from '@mui/material';
-import Title from './Title';
-import AdminPanel from './AdminPanel';
+import { getFirestore, collection, onSnapshot } from 'firebase/firestore';
+import { initializeApp } from 'firebase/app';
+import { Box, Typography } from '@mui/material';
 
 const GetStarted = () => {
-  const [courses, setCourses] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        const db = getFirestore();
-        const querySnapshot = await getDocs(collection(db, 'cursos'));
-        const coursesData = [];
-        querySnapshot.forEach((doc) => {
-          coursesData.push({ id: doc.id, ...doc.data() });
-        });
-        setCourses(coursesData);
-      } catch (error) {
-        console.error('Erro ao buscar os cursos: ', error);
-      }
+    const firebaseConfig = {
+      apiKey: 'AIzaSyAC_T-k6r-1LQCqroyaSXAy2bMwYL_LxQI',
+      authDomain: 'mulheres-conectadas-4da2a.firebaseapp.com',
+      projectId: 'mulheres-conectadas-4da2a',
+      // ...
     };
 
-    fetchCourses();
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const messagesCollection = collection(db, 'getstarted');
+
+    const unsubscribe = onSnapshot(messagesCollection, (snapshot) => {
+      const data = [];
+      snapshot.forEach((doc) => {
+        data.push({ id: doc.id, ...doc.data() });
+      });
+      setData(data);
+    });
+
+    return () => unsubscribe();
   }, []);
 
-  const CustomGridItem = styled(Grid)({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-  });
-
-  const CustomTypography = styled(Typography)({
-    fontSize: '1.1rem',
-    textAlign: 'start',
-    lineHeight: '1.5',
-    color: '#515151',
-    marginTop: '1.5rem',
-  });
-
   return (
-    <Grid
-      container
-      spacing={{ xs: 4, sm: 4, md: 0 }}
-      sx={{
-        py: 10,
-        px: 2,
-      }}
-    >
-      {courses.map((course) => (
-        <CustomGridItem item xs={12} sm={8} md={6} component="section" key={course.id}>
-          <Box component="article" sx={{ px: 4 }}>
-            <Title text={course.title} textAlign="start" />
-            <CustomTypography>{course.description}</CustomTypography>
+    <Box>
+      {data.map((item) => (
+        <Box key={item.id} sx={{ mt: 4 }}>
+          <Typography variant="h2" sx={{ color: 'purple', fontSize: '1.5rem', marginBottom: '0.5rem' }}>{item.titulo}</Typography>
+          <Typography variant="body1" sx={{ color: 'purple', fontSize: '1rem', marginBottom: '1.5rem' }}>{item.descricao}</Typography>
+          <Box sx={{ marginBottom: '2rem' }}>
+            <img src={item.img} alt={item.titulo} style={{ width: '100%', height: 'auto' }} />
           </Box>
-        </CustomGridItem>
+        </Box>
       ))}
-    </Grid>
+    </Box>
   );
 };
 
 export default GetStarted;
-
-

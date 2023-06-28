@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { client } from './services/prismic.ts';
+
 
 ReactDOM.render(
   <React.StrictMode>

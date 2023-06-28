@@ -2,6 +2,7 @@ import React from'react';
 //rotas
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
+
 //pages
 import Home from './pages/Home';
 import About from './pages/About';
@@ -10,9 +11,11 @@ import Quiz from './pages/quiz';
 import Progresso from './pages/progresso';
 import Forgot from './pages/forgot';
 import Admin from './pages/Admin';
+//import Admin from './adminpanel/pages/adminpanel';
 import Cadastro from './pages/cadastro';
 import Mensagem from './pages/mensagem';
 import Sobre from './pages/sobre';
+import Lgpd from './components/lgpd';
 //componentes
 import Navbar from './components/Navbar';
 import Footer from './components/Footer/Footer';
@@ -23,7 +26,8 @@ function App() {
        
       <BrowserRouter basename={process.env.PUBLIC_URL} > 
       <ButtonColorProvider>
-        <Navbar />
+        
+        <Navbar/>
         <Routes>
           <Route path='/contact' element={<Contact />} />
           <Route path='/' element={<Home />} />
@@ -35,10 +39,14 @@ function App() {
           <Route path='/cadastro' element={<Cadastro />} />
           <Route path='/mensagem' element={<Mensagem />} />
           <Route path='/sobre' element={<Sobre />} />
+          <Route path='/lgpd' element={<Lgpd />} />
           
           
         </Routes>
+       
+        
         </ButtonColorProvider>
+       
         
       </BrowserRouter>
       <Footer />
