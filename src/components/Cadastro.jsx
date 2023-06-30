@@ -1,14 +1,14 @@
-
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import {
+  Alert,
   Box,
   Button,
   Stack,
-  TextField,
   Snackbar,
+  TextField,
   FormControl,
   InputLabel,
   Select,
@@ -45,19 +45,33 @@ const Cadastro = () => {
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Cadastro bem-sucedido, você pode redirecionar ou executar outras ações aqui
         console.log('Usuário cadastrado:', userCredential.user);
-        setShowSuccessMessage(true); // Exibe a mensagem de sucesso
-        navigate('/'); // Redirecionar para a página inicial após o cadastro
+        setShowSuccessMessage(true);
+        setName('');
+        setMatricula('');
+        setEmail('');
+        setPassword('');
+        setEtnia('');
+        setGenero('');
+
+     
+
+        const user = userCredential.user;
+        sendEmailVerification(user)
+          .then(() => {
+            console.log('E-mail de verificação enviado.');
+          })
+          .catch((error) => {
+            console.log('Erro no envio do e-mail de verificação:', error);
+          });
+          setShowSuccessMessage(true);
       })
       .catch((error) => {
-        // Ocorreu um erro durante o cadastro
         console.log('Erro de cadastro:', error);
       });
   };
-
   const handleSnackbarClose = () => {
-    setShowSuccessMessage(false); // Fecha a mensagem de sucesso
+    setShowSuccessMessage(false);
   };
 
   return (
@@ -179,12 +193,11 @@ const Cadastro = () => {
           Cadastrar
         </Button>
 
-        {/* Mensagem de sucesso */}
         <Snackbar
           open={showSuccessMessage}
           autoHideDuration={3000}
           onClose={handleSnackbarClose}
-          message="Cadastro realizado com sucesso!"
+          message="Mensagem enviada com sucesso!"
         />
       </Box>
     </Stack>
@@ -192,3 +205,4 @@ const Cadastro = () => {
 };
 
 export default Cadastro;
+

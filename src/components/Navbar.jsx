@@ -56,7 +56,7 @@ itemList = itemList.map((item) => {
     case 'Cursos':
       return { ...item, text: 'Cursos' };
     case 'Login':
-      return { ...item, text: 'Entrar' };
+      return { ...item, text: 'Login' };
     case 'Soluções':
       return { ...item, text: 'Soluções' };
     case 'Sobre':

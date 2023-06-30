@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, Stack, TextField, Snackbar } from '@mui/material';
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, addDoc } from 'firebase/firestore/lite';
 import emailjs from 'emailjs-com';
 
 const ContatoForm = () => {
@@ -22,8 +22,7 @@ const ContatoForm = () => {
       console.log('Mensagem enviada com sucesso. ID do documento:', docRef.id);
 
       // Enviar o formulário por email
-      emailjs
-        .sendForm('service_1ux5abv', 'template_xf8yc1a', event.target, 'mulheresconectadas')
+      emailjs.sendForm('service_fmlrf6p', 'template_b4pvnyr', event.target, 'VUjfigMB1Q4qsb3CF')
         .then((result) => {
           console.log(result.text);
         })
@@ -70,7 +69,7 @@ const ContatoForm = () => {
         px: 2,
       }}
     >
-      <h2 style={{ color: 'purple' }}>Deixe aqui sua mensagem :D</h2>
+      <h2 style={{ color: 'purple' }}>Deixe aqui sua mensagem</h2>
       <Box
         component="form"
         noValidate
