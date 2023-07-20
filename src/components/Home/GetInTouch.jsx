@@ -3,8 +3,8 @@ import {
     Button,
     Stack,
 } from '@mui/material'
-import Title from './Title'
-import Paragraph from './Paragraph'
+import Title from '../Title'
+import Paragraph from '../Paragraph'
 import { Link } from 'react-router-dom'
 
 const GetInTouch = () => {

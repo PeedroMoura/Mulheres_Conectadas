@@ -2,49 +2,52 @@ import React, { useEffect, useState, useContext } from 'react';
 import firebase from 'firebase/compat/app';
 import { Box, Button, Card, TextField, Snackbar, Typography } from '@mui/material';
 import { styled } from '@mui/system';
-import ButtonColorContext from './buttoncolorcontext';
+import { initializeApp } from 'firebase/app';
+import ButtonColorContext from '../buttoncolorcontext';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
-const AdminPanel = ({ setFormularioData }) => {
-  const { updateButtonColor } = useContext(ButtonColorContext);
-  const [sobre, setSobre] = useState('');
+const GetinTouchAdmin = () => {
+  const [button, setButton] = useState('');
   const [titulo, setTitulo] = useState('');
+  const [sobre, setSobre] = useState('');
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
- 
-    const firebaseConfig = {
-      apiKey: 'AIzaSyAC_T-k6r-1LQCqroyaSXAy2bMwYL_LxQI',
-      authDomain: 'mulheres-conectadas-4da2a.firebaseapp.com',
-      projectId: 'mulheres-conectadas-4da2a',
-      // ...
-    };
-    const handleSnackbarClose = () => {
-      setShowSuccessMessage(false);
-    };
-    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const firebaseConfig = {
+    apiKey: 'AIzaSyAC_T-k6r-1LQCqroyaSXAy2bMwYL_LxQI',
+    authDomain: 'mulheres-conectadas-4da2a.firebaseapp.com',
+    projectId: 'mulheres-conectadas-4da2a',
+    // ...
+  };
 
-    // Inicializar o app do Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const messagesCollection = collection(db, 'sobre');
+  const handleSnackbarClose = () => {
+    setShowSuccessMessage(false);
+  };
 
-   
+  // Inicializar o app do Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const messagesCollection = collection(db, 'getintouch');
 
-  const handleSubmit1 = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       const docRef = await addDoc(messagesCollection, {
+        button:button,
         sobre: sobre,
         titulo: titulo,
       });
 
       console.log('Mensagem enviada com sucesso. ID do documento:', docRef.id);
+      setShowSuccessMessage(true);
     } catch (error) {
       console.error('Erro ao enviar mensagem:', error);
     }
 
+    setButton('');
     setSobre('');
     setTitulo('');
+    
   };
 
   // Estilo personalizado para diminuir o tamanho do título
@@ -54,12 +57,20 @@ const AdminPanel = ({ setFormularioData }) => {
 
   return (
     <Box component="div" sx={{ width: '600px', margin: '0 auto' }}>
-      <h2 style={{ textAlign: 'right', color: 'purple' }}>Cadastre aqui o que você quer exibir para o seu usuário!</h2>
-
-      <CustomTypography variant="h2">Alterar conteúdo da página sobre</CustomTypography>
+      <CustomTypography variant="h2">Inserir texto e alterar *texto* do botão da landing page</CustomTypography>
 
       <Card sx={{ p: 2, mt: 2 }}>
-        <form onSubmit={handleSubmit1}>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            label="Texto do botão"
+            variant="outlined"
+            value={titulo}
+            onChange={(e) => setButton(e.target.value)}
+            margin="normal"
+            fullWidth
+            required
+          />
+
           <TextField
             label="Sobre"
             variant="outlined"
@@ -82,14 +93,14 @@ const AdminPanel = ({ setFormularioData }) => {
 
           <div>
             <Button variant="contained" type="submit" style={{ backgroundColor: 'purple' }}>
-              Alterar
+              Inserir
             </Button>
             <Snackbar
-          open={showSuccessMessage}
-          autoHideDuration={3000}
-          onClose={handleSnackbarClose}
-          message="Mensagem enviada com sucesso!"
-        />
+              open={showSuccessMessage}
+              autoHideDuration={3000}
+              onClose={handleSnackbarClose}
+              message="Mensagem enviada com sucesso!"
+            />
           </div>
         </form>
       </Card>
@@ -97,4 +108,4 @@ const AdminPanel = ({ setFormularioData }) => {
   );
 };
 
-export default AdminPanel;
+export default GetinTouchAdmin;

@@ -29,11 +29,11 @@ import ClassIcon from '@mui/icons-material/Class';
 import DownloadIcon from '@mui/icons-material/Download';
 
 // components
-import Title from './Title'
-import Paragraph from './Paragraph'
+import Title from '../../components/Title';
+import Paragraph from '../../components/Paragraph';
 
 
-const Content = () => {
+const About = () => {
   const [expanded, setExpanded] = useState(false);
   const [expanded2, setExpanded2] = useState(false);
   const [selectedAula, setSelectedAula] = useState(null);
@@ -289,4 +289,4 @@ const Content = () => {
   );
 };
 
-export default Content;
+export default About;

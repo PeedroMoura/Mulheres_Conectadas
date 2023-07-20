@@ -1,7 +1,7 @@
 import React from 'react'
-import GetInTouch from '../components/GetInTouch';
-import GetStarted from '../components/GetStarted';
-import Header from '../components/Header';
+import Header from '../components/Home/Header';
+import GetStarted from '../components/Home/GetStarted'
+import GetInTouch from '../components/Home/GetInTouch';
 
 
 const Home = () => {

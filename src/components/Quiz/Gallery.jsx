@@ -2,44 +2,28 @@ import React, { useState } from 'react';
 import { Typography, Box, Stack } from '@mui/material';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
-import Title from './Title';
-import Paragraph from './Paragraph';
-import primeira from '../assets/uma.png';
-import segunda from '../assets/duas.png';
-import terceira from '../assets/tres.png';
-import quarta from '../assets/quatro.png';
-import quinta from '../assets/cinco.png';
-import sexta from '../assets/seis.png';
+import Title from '../Title';
+import Paragraph from '../Paragraph';
+import im1 from '../../assets/imagem1.PNG';
+import im2 from '../../assets/imagem2.PNG';
+import im3 from '../../assets/imagem3.PNG';
 
-const Carroussel1 = () => {
+const Gallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const imageData = [
     {
       alt: 'image1',
-      src: primeira,
+      src: im3,
     },
     {
       alt: 'image2',
-      src: segunda,
+      src: im2,
     },
     {
       alt: 'image3',
-      src: terceira,
+      src: im1,
     },
-    {
-        alt: 'image4',
-        src: quarta,
-    },
-    {
-        alt: 'image5',
-        src: quinta,
-    },
-    {
-        alt: 'image6',
-        src: sexta,
-    },
-
   ];
 
   const renderSlides = imageData.map((image) => (
@@ -80,7 +64,7 @@ const Carroussel1 = () => {
             marginTop: 3,
           }}
         >
-          Conheça um pouco da gente!
+          Conheça as nossas soluções!
         </Typography>
       </Box>
 
@@ -104,4 +88,4 @@ const Carroussel1 = () => {
   );
 };
 
-export default Carroussel1;
+export default Gallery;

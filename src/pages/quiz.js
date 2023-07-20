@@ -1,6 +1,6 @@
 import React from 'react';
-import Game from '../components/Game';
-import Gallery from '../components/Gallery';
+import Gallery from '../components/Quiz/Gallery';
+import Game from '../components/Quiz/Game';
 
 
 const quiz = () => {

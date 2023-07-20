@@ -9,8 +9,8 @@ import {
   Stack,
   TextField
 } from '@mui/material';
-import Title from './Title';
-import Paragraph from './Paragraph';
+import Title from '../../components/Title';
+import Paragraph from '../../components/Paragraph';
 
 // Configurar o Firebase
 const firebaseConfig = {
@@ -22,7 +22,7 @@ const firebaseConfig = {
 // Inicializar o app do Firebase
 const app = initializeApp(firebaseConfig);
 
-const Details = () => {
+const Contact = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -121,5 +121,5 @@ const Details = () => {
   );
 };
 
-export default Details;
+export default Contact;
 

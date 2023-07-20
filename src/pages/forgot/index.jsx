@@ -7,11 +7,11 @@ import {
   TextField,
   Collapse
 } from '@mui/material';
-import Title from './Title';
-import Paragraph from './Paragraph';
+import Title from '../../components/Title';
+import Paragraph from '../../components/Paragraph';
 import { purple } from '@mui/material/colors';
-import forgotImg from '../assets/menina.png'
-const Password = () => {
+import forgotImg from '../../assets/menina.png'
+const Forgot = () => {
   const [email, setEmail] = useState('');
   const [resetSent, setResetSent] = useState(false);
 
@@ -97,4 +97,4 @@ const Password = () => {
   );
 };
 
-export default Password;
+export default Forgot;

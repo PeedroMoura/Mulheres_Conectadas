@@ -14,8 +14,8 @@ import {
   Select,
   MenuItem
 } from '@mui/material';
-import Title from './Title';
-import Paragraph from './Paragraph';
+import Title from '../../components/Title';
+import Paragraph from '../../components/Paragraph';
 
 // Configurar o Firebase
 const firebaseConfig = {
@@ -42,10 +42,10 @@ const Cadastro = () => {
     event.preventDefault();
 
     const auth = getAuth(app);
-
+    
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log('Usuário cadastrado:', userCredential.user);
+        // console.log('Usuário cadastrado:', userCredential.user);
         setShowSuccessMessage(true);
         setName('');
         setMatricula('');
@@ -54,20 +54,18 @@ const Cadastro = () => {
         setEtnia('');
         setGenero('');
 
-     
-
         const user = userCredential.user;
         sendEmailVerification(user)
           .then(() => {
-            console.log('E-mail de verificação enviado.');
+            // console.log('E-mail de verificação enviado.');
           })
           .catch((error) => {
-            console.log('Erro no envio do e-mail de verificação:', error);
+            // console.log('Erro no envio do e-mail de verificação:', error);
           });
           setShowSuccessMessage(true);
       })
       .catch((error) => {
-        console.log('Erro de cadastro:', error);
+        // console.log('Erro de cadastro:', error);
       });
   };
   const handleSnackbarClose = () => {

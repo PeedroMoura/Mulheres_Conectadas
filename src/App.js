@@ -2,31 +2,30 @@ import React from'react';
 //rotas
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
-
 //pages
 import Home from './pages/Home';
-import About from './pages/About';
-import Contact from './pages/Contact';
 import Quiz from './pages/quiz';
-import Progresso from './pages/progresso';
-import Forgot from './pages/forgot';
 import Admin from './pages/Admin';
 //import Admin from './adminpanel/pages/adminpanel';
-import Cadastro from './pages/cadastro';
-import Mensagem from './pages/mensagem';
 import Sobre from './pages/sobre';
 import Lgpd from './components/lgpd';
 //componentes
 import Navbar from './components/Navbar';
 import Footer from './components/Footer/Footer';
 import { ButtonColorProvider } from './components/buttoncolorcontext';
+import Cadastro from './pages/cadastro';
+import About from './pages/about'
+import Contact from './pages/contact'
+import Mensagem from './pages/mensagem'
+import Progresso from './pages/progresso'
+import Forgot from './pages/forgot'
+
 function App() {
   return (
-    <>
-       
-      <BrowserRouter basename={process.env.PUBLIC_URL} > 
+    <> 
+      {/* <BrowserRouter basename={"process.env.PUBLIC_URL"} >  */}
+      <BrowserRouter basename={""} > 
       <ButtonColorProvider>
-        
         <Navbar/>
         <Routes>
           <Route path='/contact' element={<Contact />} />
@@ -38,16 +37,10 @@ function App() {
           <Route path='/adminpanel' element={<Admin />} />
           <Route path='/cadastro' element={<Cadastro />} />
           <Route path='/mensagem' element={<Mensagem />} />
-          <Route path='/sobre' element={<Sobre />} />
-          <Route path='/lgpd' element={<Lgpd />} />
-          
-          
+          {/* <Route path='/sobre' element={<Sobre />} /> */}
+          {/* <Route path='/lgpd' element={<Lgpd />} /> */}
         </Routes>
-       
-        
         </ButtonColorProvider>
-       
-        
       </BrowserRouter>
       <Footer />
     </>

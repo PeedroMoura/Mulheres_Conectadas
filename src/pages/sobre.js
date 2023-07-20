@@ -1,6 +1,6 @@
 import React from 'react';
-import Carroussel from '../components/carrousel1';
-import Conteudo from '../components/contenttext';
+import Carroussel from '../components/Sobre/carrousel1';
+import Conteudo from '../components/Sobre/contenttext';
 
 
 

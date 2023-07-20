@@ -1,16 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card, Typography, Button, CardMedia, CardContent, CardActions, Grid } from "@mui/material";
-import site from '../assets/site.PNG';
-import programacao from '../assets/programacao.jpg';
+import site from '../../assets/site.PNG';
+import programacao from '../../assets/programacao.jpg';
 
 const Game = ({ text }) => {
-  const handleLinkClick = () => {
-    window.open("https://mulheresconectadasgame.web.app/", "_blank");
-  };
-  const handleLinkClick1 = () => {
-    window.open("https://mulheresconectadas.com.br/", "_blank");
-  }
+  
 
   return (
     <div>
@@ -32,7 +27,7 @@ const Game = ({ text }) => {
               <Button
                 size="small"
                 color="secondary"
-                onClick={handleLinkClick}
+                onClick={()=>console.log("teste")}//handleLinkClick}
                 style={{ textDecoration: 'underline', cursor: 'pointer', color: '#ab4f9d' }}
               >
                 Aprendendo programação básica com o jogo Mulheres Conectadas
@@ -57,7 +52,7 @@ const Game = ({ text }) => {
               <Button
                 size="small"
                 color="secondary"
-                onClick={handleLinkClick1}
+                onClick={()=>console.log("teste")}//handleLinkClick1}
                 style={{ textDecoration: 'underline', cursor: 'pointer', color: '#ab4f9d' }}
               >
                 Conheça o nosso site

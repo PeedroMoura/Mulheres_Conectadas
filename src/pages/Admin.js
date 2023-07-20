@@ -1,9 +1,9 @@
 import React from 'react'
-import Tst from '../components/AdminPanel';
-import Teste from '../components/Adminpanelp';
-import Teste2 from '../components/getintouchadmin';
-import Teste3  from '../components/adicionaatrilha';
-import Teste4 from '../components/adicionaaula';
+import Tst from '../components/AdminPanel/AdminPanel';
+import Teste from '../components/AdminPanel/Adminpanelp';
+import Teste2 from '../components/AdminPanel/getintouchadmin';
+import Teste3  from '../components/AdminPanel/adicionaatrilha';
+import Teste4 from '../components/AdminPanel/adicionaaula';
 import ReactDOM from 'react-dom';
 import { AlignHorizontalCenter } from '@mui/icons-material';
 
