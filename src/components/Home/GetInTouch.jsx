@@ -28,7 +28,7 @@ const GetInTouch = () => {
             />
             <Paragraph 
             text={
-                'texto texto texto'
+                'Caso tenha alguma duvida, entre em contato conosco!'
             }
             maxWidth = {'sm'}
             mx={0}

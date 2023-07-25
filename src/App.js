@@ -19,6 +19,7 @@ import Contact from './pages/contact'
 import Mensagem from './pages/mensagem'
 import Progresso from './pages/progresso'
 import Forgot from './pages/forgot'
+import Selos from './pages/selos';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path='/adminpanel' element={<Admin />} />
           <Route path='/cadastro' element={<Cadastro />} />
           <Route path='/mensagem' element={<Mensagem />} />
+          <Route path='/selos' element={<Selos />} />
           {/* <Route path='/sobre' element={<Sobre />} /> */}
           {/* <Route path='/lgpd' element={<Lgpd />} /> */}
         </Routes>

@@ -26,7 +26,7 @@ const Footer = () => {
   const BoxRow = styled(Box) (({ theme }) => ({
     display: 'flex',
     flexDirection: 'row',
-    backgroundColor: '#ab4f9d',
+    backgroundColor: '#990099',
     flex: 1,
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
@@ -59,7 +59,7 @@ const Footer = () => {
       </StackColumn>
 
       <StackColumn>
-        <FooterTitle text={'Mulheres conectadas'} style={{color:'white'}} />
+        <FooterTitle text={'Redes sociais'} style={{color:'white'}} />
         <Stack 
         direction='row' 
         width= '70px'
@@ -68,7 +68,7 @@ const Footer = () => {
         
         >
           
-          <Link href="https://www.facebook.com/mulheresconnectadas/" variant="body2" 
+          <Link href="https://www.instagram.com/mulheresconnectadasoficial/?hl=pt-br" variant="body2" 
           sx={{
             color: 'white',
             "&:hover": {
@@ -78,7 +78,7 @@ const Footer = () => {
           >
             <InstagramIcon />  
           </Link> 
-          <Link href="https://www.instagram.com/mulheresconnectadas/"variant="body2" 
+          <Link href="https://www.facebook.com/mulheresconnectadas/"variant="body2" 
           sx={{
             color: 'white',
             "&:hover": {
@@ -88,7 +88,12 @@ const Footer = () => {
           >
             <FacebookIcon />
           </Link> 
-          <Link href="https://www.linkedin.com/company/mulheresconnectadas/" variant="body2" sx={{color:'white'}}>
+          <Link href="https://www.linkedin.com/in/mulheres-connectadas-7748b2203/" variant="body2"    sx={{
+            color: 'white',
+            "&:hover": {
+              color: '#1c2859',
+            }
+          }}>
             <LinkedInIcon />
           </Link>
         </Stack>

@@ -65,7 +65,7 @@ const Carroussel = () => {
           sx={{
             fontWeight: '700',
             textAlign: 'center',
-            color: '#ab4f9d',
+            color: 'white',
             marginTop: 3,
           }}
         >

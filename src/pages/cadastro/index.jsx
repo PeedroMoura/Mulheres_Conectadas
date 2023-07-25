@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import {
   Alert,
@@ -15,17 +14,10 @@ import {
   MenuItem
 } from '@mui/material';
 import Title from '../../components/Title';
+import { getFirestore, setDoc, setIndexConfiguration,doc } from "firebase/firestore";
 import Paragraph from '../../components/Paragraph';
+import db from '../../config/firebase';
 
-// Configurar o Firebase
-const firebaseConfig = {
-  apiKey: 'AIzaSyAC_T-k6r-1LQCqroyaSXAy2bMwYL_LxQI',
-  authDomain: 'mulheres-conectadas-4da2a.firebaseapp.com',
-  projectId: 'mulheres-conectadas-4da2a',
-  // ...
-};
-// Inicializar o app do Firebase
-const app = initializeApp(firebaseConfig);
 
 const Cadastro = () => {
   const [name, setName] = useState('');
@@ -35,44 +27,57 @@ const Cadastro = () => {
   const [etnia, setEtnia] = useState('');
   const [genero, setGenero] = useState('');
 
+  
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const auth = getAuth(app);
+    const auth = getAuth();
     
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // console.log('Usuário cadastrado:', userCredential.user);
-        setShowSuccessMessage(true);
-        setName('');
-        setMatricula('');
-        setEmail('');
-        setPassword('');
-        setEtnia('');
-        setGenero('');
+    
+    
+    try{
+      //Cria o usuário
+      await createUserWithEmailAndPassword(auth, email, password);
+      // console.log('Usuário cadastrado:', userCredential.user);
+      setShowSuccessMessage(true);
+      setName('');
+      setMatricula('');
+      setEmail('');
+      setPassword('');
+      setEtnia('');
+      setGenero('');
+ 
+      const user = getAuth().currentUser; 
 
-        const user = userCredential.user;
-        sendEmailVerification(user)
-          .then(() => {
-            // console.log('E-mail de verificação enviado.');
-          })
-          .catch((error) => {
-            // console.log('Erro no envio do e-mail de verificação:', error);
-          });
-          setShowSuccessMessage(true);
-      })
-      .catch((error) => {
-        // console.log('Erro de cadastro:', error);
-      });
+      //Envia o e-mail de verificação
+      sendEmailVerification(user)
+        .then(() => {
+          <Alert severity="success">Email de verificação enviado com sucesso!</Alert>
+        })
+        .catch((error) => {
+          <Alert severity="error">Falha ao enviar o email de verificação!</Alert>
+        });
+        setShowSuccessMessage(true);
+  
+      // Cadastra o restante dos dados do usuário no firestore 
+      const docUsuarios = doc(db, "usuarios", user.uid)
+      await setDoc(docUsuarios, {
+        name, matricula, email, password, genero, etnia, id:  user.uid
+      })  
+    }catch(erro){
+      alert(erro);
+    }
+
   };
   const handleSnackbarClose = () => {
     setShowSuccessMessage(false);
   };
 
   return (
+    //Stack organiza os objetos na horizontal ou vertical
     <Stack
       component="section"
       direction="column"
@@ -195,7 +200,7 @@ const Cadastro = () => {
           open={showSuccessMessage}
           autoHideDuration={3000}
           onClose={handleSnackbarClose}
-          message="Mensagem enviada com sucesso!"
+          message="Cadastro feito com sucesso"
         />
       </Box>
     </Stack>

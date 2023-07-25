@@ -12,10 +12,10 @@ const Header = () => {
     display: "flex",
     justifyContent: "center",
     // tamanhos
-    gap: theme.spacing(2),
-    paddingTop: theme.spacing(10),
+    gap: theme.spacing(5),
+    paddingTop: theme.spacing(0),
     // cor de fundo
-    backgroundColor: "#ab4f9d",
+    backgroundColor: "#990099",
     [theme.breakpoints.down("md")]: {
       flexDirection: "column",
       alignItems: "center",
@@ -68,9 +68,16 @@ const Header = () => {
             py: 3,
             lineHeight: 1.6,
             color: "#fff",
+            textAlign:'justify'
           }}
         >
-          Texto texto texto
+          A Mulheres Connectadas, uma startup de tecnologia social genuinamente
+          alagoana, tem como compromisso primordial promover a igualdade de
+          gênero e capacitar mulheres para assumirem posições de liderança,
+          contribuindo para a construção de um mundo mais diversos e inclusivo.
+          Nossa abordagem única é baseada em uma metodologia própria,
+          cuidadosamente desenvolvida para estar em sintonia com os princípios
+          do ESG (Ambiental, Social e Governança) e agenda 2030 da ONU.
         </Typography>
 
         <Box>
