@@ -14,7 +14,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer/Footer';
 import { ButtonColorProvider } from './components/buttoncolorcontext';
 import Cadastro from './pages/cadastro';
-import About from './pages/about'
+import Cursos from './pages/cursos'
 import Contact from './pages/contact'
 import Mensagem from './pages/mensagem'
 import Progresso from './pages/progresso'
@@ -31,7 +31,7 @@ function App() {
         <Routes>
           <Route path='/contact' element={<Contact />} />
           <Route path='/' element={<Home />} />
-          <Route path='/about' element={<About />} />
+          <Route path='/cursos' element={<Cursos />} />
           <Route path='/quiz' element={<Quiz />} />
           <Route path='/forgot' element={<Forgot />} />
           <Route path='/progresso' element={<Progresso />} />

@@ -64,7 +64,7 @@ useEffect(() => {
     //Adicionar um novo elemento na lista para ter um novo botão no Nav
     newItemList.push({
       text: 'Cursos',
-      to: '/about',
+      to: '/cursos',
     });
 
     newItemList.push({
