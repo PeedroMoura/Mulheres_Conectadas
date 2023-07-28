@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Card, Typography, Button, CardMedia, CardContent, CardActions, Grid } from "@mui/material";
 import site from '../../assets/site.PNG';
-import programacao from '../../assets/programacao.jpg';
+
 
 const Game = ({ text }) => {
   

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import {
   Alert,
@@ -14,8 +14,7 @@ import {
   MenuItem
 } from '@mui/material';
 import Title from '../../components/Title';
-import { getFirestore, setDoc, setIndexConfiguration,doc } from "firebase/firestore";
-import Paragraph from '../../components/Paragraph';
+import {setDoc,doc } from "firebase/firestore";
 import db from '../../config/firebase';
 
 

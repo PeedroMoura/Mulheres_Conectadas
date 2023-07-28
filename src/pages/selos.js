@@ -1,10 +1,6 @@
 import React from "react";
-import Carroussel from "../components/Sobre/carrousel1";
-import Conteudo from "../components/Sobre/contenttext";
 
-import { Box, Button, styled, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
-import Carroussel1 from "../components/Sobre/carrousel1";
+import { Box, styled, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const Selos = () => {
@@ -80,9 +76,9 @@ const Selos = () => {
       </BoxText>
       <Box
         sx={{
-          display: "flex",
-          flex: 2,
-          justifyContent: "space-between",
+          display: "-moz-initial",
+          flex: 1,
+          justifyContent: "center",
           gap: "10px",
           marginRight: 10,
           marginTop: 5,
@@ -100,16 +96,17 @@ const Selos = () => {
           component="section"
         >
           <img
+            onClick={()=>navigate("/formulario")}
             src="https://gifs.eco.br/wp-content/uploads/2023/06/imagens-de-selo-png-0.png"
             alt="selo"
-            style={{ maxHeight: 200, maxWidth: 200 }}
+            style={{ maxHeight: 200, maxWidth: 200, cursor:'pointer' }}
           ></img>
           <Typography variant="h5" sx={{ fontWeight: 200, color: "#fff" }}>
-            Selo 1
+            Selo de interesse
           </Typography>
         </Box>
 
-        <Box
+        {/* <Box
           sx={{
             display: "flex",
             alignItems: "center",
@@ -127,10 +124,9 @@ const Selos = () => {
           <Typography variant="h5" sx={{ fontWeight: 200, color: "#fff" }}>
             Selo 2
           </Typography>
-        </Box>
+        </Box> */}
       </Box>
     </CustomBox>
-    <div>aaa</div>
     </>
   );
 };

@@ -1,9 +1,7 @@
-import React, { useEffect, useState, useContext } from 'react';
-import firebase from 'firebase/compat/app';
+import React, { useState } from 'react';
 import { Box, Button, Card, TextField, Snackbar, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import { initializeApp } from 'firebase/app';
-import ButtonColorContext from '../buttoncolorcontext';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
 const AdminPanelP = () => {

@@ -5,12 +5,10 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import {
   Box,
   Button,
-  Card,
   Stack,
   TextField
 } from '@mui/material';
 import Title from '../../components/Title';
-import Paragraph from '../../components/Paragraph';
 
 // Configurar o Firebase
 const firebaseConfig = {

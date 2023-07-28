@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Typography, Box, Stack } from '@mui/material';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
-import Title from '../Title';
-import Paragraph from '../Paragraph';
 import primeira from '../../assets/uma.png';
 import segunda from '../../assets/duas.png';
 import terceira from '../../assets/tres.png';

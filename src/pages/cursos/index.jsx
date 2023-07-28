@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import {
   Grid,
   Typography,
@@ -29,7 +28,6 @@ import { useEffect } from "react";
 
 const Cursos = () => {
   const [expanded, setExpanded] = useState(false);
-  const [expanded2, setExpanded2] = useState(false);
   const [infoAulas, setInfoAulas] = useState()
   const [rating, setRating] = useState(0);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);

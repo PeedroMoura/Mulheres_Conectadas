@@ -2,9 +2,6 @@ import React from "react";
 import { Box, Button, styled, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import Carroussel from "../carrousel";
-//img
-import headerImg from "../../assets/mulheres.png";
-import testImg from "../../assets/oook.jpg";
 
 const Header = () => {
   const CustomBox = styled(Box)(({ theme }) => ({

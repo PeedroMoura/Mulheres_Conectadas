@@ -15,13 +15,6 @@ import {
 } from "firebase/firestore";
 import db from "../config/firebase";
 
-import inputAdmPanel from "../components/AdminPanel/inputAdmPanel";
-import Tst from "../components/AdminPanel/AdminPanel";
-import Teste from "../components/AdminPanel/Adminpanelp";
-import Teste2 from "../components/AdminPanel/getintouchadmin";
-import ReactDOM from "react-dom";
-import { AlignHorizontalCenter } from "@mui/icons-material";
-
 const Admin = () => {
   const [nmrTrilha, setNmrTrilha] = useState("");
   const [linkpdf, setLinkPdf] = useState("");
