@@ -4,12 +4,10 @@ import { Link } from 'react-router-dom';
 import navImg1 from '../assets/mulhere.png';
 import navImg2 from '../assets/weher.png';
 import ButtonColorContext from './buttoncolorcontext';
-import { Selos } from '../pages/selos';
 import { useEffect } from 'react';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { useState } from 'react';
 import {useNavigate} from "react-router-dom";
-import { Opacity } from '@mui/icons-material';
 
 const StyledToolbar = styled(Toolbar)({
   display: 'flex',
@@ -22,9 +20,6 @@ const ListMenu = styled(List)(({ theme }) => ({
     display: 'flex',
   },
 }));
-
-
-
 
 const Navbar = () => {
 

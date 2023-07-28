@@ -8,13 +8,11 @@ import {
   Typography,
 } from "@mui/material";
 import {
-  getFirestore,
   setDoc,
-  setIndexConfiguration,
+  getDoc,
   doc,
   updateDoc,
 } from "firebase/firestore";
-import { initializeApp } from "firebase/app";
 import db from "../config/firebase";
 
 import inputAdmPanel from "../components/AdminPanel/inputAdmPanel";
@@ -32,35 +30,45 @@ const Admin = () => {
   const [resumoAula, setResumoAula] = useState("");
   const [videoUrl, setVideoUrl] = useState("");
 
+  //Criando uma trilha e salvando um objeto "aulas" com os valores inseridos
+  const createTrilha = async (docCursos, nmrAula, linkpdf, titulo, videoUrl, resumoAula) => {
+    await setDoc(docCursos, {
+      id: nmrTrilha,
+      aulas: {
+        [nmrAula]: {
+          linkpdf,
+          nmrAula: nmrAula,
+          titulo,
+          videoUrl,
+          resumoAula,
+        }
+      }
+    });
+  }
+  //Fazendo upload e adicionando novas trilhas/aulas
+  const updateTrilha = async (docCursos, nmrAula, linkpdf, titulo, videoUrl, resumoAula) => {
+    await updateDoc(docCursos, {
+      [`aulas.${nmrAula}`]: {
+        linkpdf,
+        nmrAula: nmrAula,
+        titulo,
+        videoUrl,
+        resumoAula,
+      }
+    });
+  }
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    
+    const docCursos = doc(db, "trilhas", nmrTrilha);
+    const docSnapshot = await getDoc(docCursos);
+    
     try{
-      const docCursos = doc( db, "trilhas", "trilha"+nmrTrilha);
-      //Caso a trilha ja esteja cadastrada uma aula será adicionada
-      try{
-        await updateDoc(docCursos, {
-          id: "trilha"+nmrTrilha,
-          [nmrAula]:{
-          linkpdf,
-          nmrAula: "aula"+nmrAula,
-          titulo,
-          videoUrl,
-          resumoAula,
-        }
-        });
-      //Se a trilha não estiver cadastrada ela será criada
-      }catch(e){
-        await setDoc(docCursos, {
-          id: "trilha"+nmrTrilha,
-          [nmrAula]:{
-          linkpdf,
-          nmrAula: "aula"+nmrAula,
-          titulo,
-          videoUrl,
-          resumoAula,
-        }
-        });
+      if (docSnapshot.exists()) {
+        await updateTrilha(docCursos, nmrAula, linkpdf, titulo, videoUrl, resumoAula);
+      } else {
+        await createTrilha(docCursos, nmrAula, linkpdf, titulo, videoUrl, resumoAula);
       }
       
       setNmrTrilha('');
@@ -69,12 +77,12 @@ const Admin = () => {
       setVideoUrl('');
       setTitulo('');
       setResumoAula('');
-
+  
     }catch(erro){
-      alert(erro)
+      console.error("Error updating/creating document: ", erro);
+      alert(erro);
     }
   }
-
     return (
       <>
         <h2 style={{ marginTop: "20px", textAlign: "center", color: "purple" }}>
@@ -84,7 +92,7 @@ const Admin = () => {
         <Box sx={{ maxWidth: 600, margin: "0 auto" }}>
           <Card sx={{ p: 2, mt: 2 }}>
             <CardContent>
-            <Typography>Adicionar o numero da trilha</Typography>
+            <Typography variant="h6">Insira abaixo o numero da trilha que será adicionada ou alterada:</Typography>
             <TextField
                   label="Numero da trilha"
                   variant="outlined"
@@ -93,7 +101,7 @@ const Admin = () => {
                   fullWidth
                   margin="normal"
                 />
-              <Typography>Adicionar numero da aula</Typography>
+              <Typography variant="h6">Insira abaixo o número da aula que será adicionada ou alterada:</Typography>
               <form onSubmit={handleSubmit}>
                 <TextField
                   label="Insira o numero da aula"
@@ -165,12 +173,6 @@ const Admin = () => {
             </CardContent>
           </Card>
         </Box>
-
-        {/* <Tst />
-    <Teste />
-    <Teste2 />
-    <Teste3 />
-    <Teste4 /> */}
       </>
     );
   };

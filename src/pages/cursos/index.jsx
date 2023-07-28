@@ -4,51 +4,44 @@ import {
   Grid,
   Typography,
   Button,
-  IconButton,
-  Card,
-  CardContent,
   CardMedia,
-  Class,
   List,
   ListItemButton,
-  Box,
   ListItemIcon,
   ListItemText,
   Collapse,
   Rating,
   Snackbar,
 } from "@mui/material";
+
+import {
+  collection,
+  getDocs,
+} from "firebase/firestore";
+import db from "../../config/firebase";
+
 // icons
-import SportsGymnasticsIcon from "@mui/icons-material/SportsGymnastics";
-import LocalParkingIcon from "@mui/icons-material/LocalParking";
-import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
-import FastfoodOutlinedIcon from "@mui/icons-material/FastfoodOutlined";
-import PoolOutlinedIcon from "@mui/icons-material/PoolOutlined";
-import WifiPasswordIcon from "@mui/icons-material/WifiPassword";
 import ClassIcon from "@mui/icons-material/Class";
-import DownloadIcon from "@mui/icons-material/Download";
 
 // components
-import Title from "../../components/Title";
 import Paragraph from "../../components/Paragraph";
+import { useEffect } from "react";
 
 const Cursos = () => {
   const [expanded, setExpanded] = useState(false);
   const [expanded2, setExpanded2] = useState(false);
-  const [selectedAula, setSelectedAula] = useState(null);
+  const [infoAulas, setInfoAulas] = useState()
   const [rating, setRating] = useState(0);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [trilhaList, setTrilhaList] = useState([]);
 
   const handleExpand = () => {
     setExpanded(!expanded);
   };
 
-  const handleExpand2 = () => {
-    setExpanded2(!expanded2);
-  };
 
-  const handleAulaClick = (aula) => {
-    setSelectedAula(aula);
+  const handleAulaClick = (infoAulas) => {
+    setInfoAulas(infoAulas);
   };
 
   const handleRatingChange = (event, newValue) => {
@@ -63,19 +56,21 @@ const Cursos = () => {
     setShowSuccessMessage(true);
   };
 
-  const getVideoUrl = (aula) => {
-    // Logic to return the video URL based on the selected lesson
-    // Replace this logic with your actual implementation
-    if (aula === "Aula 1") {
-      return "https://www.youtube.com/embed/sXPYZeDEutY";
-    } else if (aula === "Aula 2") {
-      return "https://www.youtube.com/embed/zgn6X3XWsEg";
-    } else if (aula === "Aula 3") {
-      return "https://www.youtube.com/embed/oQtWrbmwTTc";
-    } else if (aula === "Aula 4") {
-      return "https://www.youtube.com/embed/ySDH94bExv4";
-    } else {
-      return "";
+  useEffect(() => {
+    getFirestoreData();
+  }, []);
+
+  const getFirestoreData = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "trilhas"));
+      const retorno = [];
+      querySnapshot.forEach((item) => {
+        const dados = { ...item.data(), id: item.id };
+        retorno.push(dados);
+      });
+      setTrilhaList(retorno);
+    } catch (erro) {
+      alert(erro);
     }
   };
 
@@ -86,65 +81,60 @@ const Cursos = () => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} sm={6} md={6}>
-        <List component="nav" aria-labelledby="nested-list-subheader">
-          <ListItemButton onClick={handleExpand} style={{ display: "flex" }}>
-            <ListItemIcon style={{ color: "purple" }}>
-              <ClassIcon />
-            </ListItemIcon>
-            Trilha 1
-          </ListItemButton>
-          <Collapse in={expanded}>
-            <List component="ul" disablePadding>
-              <ListItemButton
-                style={{ display: "flex" }}
-                onClick={() => handleAulaClick("Aula 1")}
-              >
-                <ListItemText primary="Aula 1" />
-              </ListItemButton>
-
-              <ListItemButton>
-                <Typography variant="h8">Noções comportamentais</Typography>
-              </ListItemButton>
-              <ListItemButton style={{ display: "flex" }}>
-                <Box>
-                  <IconButton style={{ color: "purple", fontSize: "15px" }}>
-                    Download <DownloadIcon />
-                  </IconButton>
-                  <IconButton style={{ color: "purple", fontSize: "15px" }}>
-                    Pdf da aula <ClassIcon />
-                  </IconButton>
-                </Box>
-              </ListItemButton>
-            </List>
-          </Collapse>
-        </List>
+        {trilhaList.map((trilha) => (
+          <List component="nav" aria-labelledby="nested-list-subheader">
+            <ListItemButton onClick={handleExpand} style={{ display: "flex" }}>
+              <ListItemIcon style={{ color: "purple" }}>
+                <ClassIcon />
+              </ListItemIcon>
+              {"Trilha " + trilha.id}
+            </ListItemButton>
+            <Collapse in={expanded}>
+              <List component="ul" disablePadding>
+                {trilha.aulas && Object.values(trilha.aulas).map((aula) => (
+                <>
+                  <ListItemButton
+                    style={{ display: "flex" }}
+                    onClick={() => handleAulaClick(aula)}
+                  >
+                    <ListItemText primary={"Aula " + aula.nmrAula} />
+                  </ListItemButton>
+                    <ListItemButton>
+                    <Typography variant="h8">{aula.titulo}</Typography>
+                    </ListItemButton>
+                </>
+                ))}
+              </List>
+            </Collapse>
+          </List>
+        ))}
       </Grid>
       <Grid item xs={12} sm={6} md={6}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <div style={{ marginBottom: "40px", marginTop: "60px" }}>
-              {selectedAula && (
+              {infoAulas?.nmrAula && (
                 <CardMedia
                   component="iframe"
                   width="100%"
                   height="500"
-                  image={getVideoUrl(selectedAula)}
+                  image={infoAulas?.videoUrl}
                 />
               )}
             </div>
           </Grid>
           <Grid item xs={12}>
-            {selectedAula && (
+            {infoAulas?.nmrAula && (
               <div>
-                <Typography variant="h5">Resumo da {selectedAula}</Typography>
+                <Typography variant="h5">Resumo da Aula {infoAulas.nmrAula}</Typography>
                 <Paragraph
-                  text={`"Em um tranquilo jardim de primavera, onde as flores desabrocham com graciosidade, e o perfume doce preenche o ar, dois pássaros dançam no céu azul claro. Suas asas coloridas brilham sob o sol radiante, enquanto eles entoam uma melodia suave. No chão, as formigas trabalham diligentemente para construir seu formigueiro, indo e vindo com minúsculas migalhas de comida. O cenário é pacífico e harmonioso, uma sinfonia da natureza."`}
+                  text={infoAulas?.resumoAula}
                 />
               </div>
             )}
           </Grid>
           <Grid item xs={12}>
-            {selectedAula && (
+            {infoAulas?.nmrAula && (
               <div>
                 <Typography variant="h5">Avalie a aula</Typography>
                 <Rating
