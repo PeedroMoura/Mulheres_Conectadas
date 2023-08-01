@@ -25,6 +25,13 @@ const Formulario = () => {
     setShowSuccessMessage(false);
   };
 
+  //Função que joga o scroll para o topo da tela
+  window.onload = function() {
+    document.documentElement.scrollTop = 0; 
+    document.body.scrollTop = 0;
+  };
+  
+
   return (
     <div>
       <Stack
@@ -37,6 +44,7 @@ const Formulario = () => {
           px: 2,
         }}
       >
+        
         <img src={fotoTopo} alt="a" style={{width:1500, height:250}}></img>
         <Typography
           variant="h4"

@@ -90,7 +90,26 @@ const Admin = () => {
                   label="Numero da trilha"
                   variant="outlined"
                   value={nmrTrilha}
-                  onChange={(e) => setNmrTrilha(e.target.value)}
+                  onChange={(e) => {
+                    if(
+                        //impede que o usuario digite qualquer valor que seja dierente de numeros
+                        e.target.value === "" ||
+                        e.target.value[e.target.value.length-1].includes("0") ||
+                        e.target.value[e.target.value.length-1].includes("1") || 
+                        e.target.value[e.target.value.length-1].includes("2") ||
+                        e.target.value[e.target.value.length-1].includes("3") ||
+                        e.target.value[e.target.value.length-1].includes("4") ||
+                        e.target.value[e.target.value.length-1].includes("5") ||
+                        e.target.value[e.target.value.length-1].includes("6") || 
+                        e.target.value[e.target.value.length-1].includes("7") ||
+                        e.target.value[e.target.value.length-1].includes("8") ||
+                        e.target.value[e.target.value.length-1].includes("9")
+                        
+                      ){
+                        setNmrTrilha(e.target.value)
+                      }
+                    }
+                  }
                   fullWidth
                   margin="normal"
                 />
@@ -103,7 +122,7 @@ const Admin = () => {
                   onChange={(e) => {
                     if(
                         //impede que o usuario digite qualquer valor que seja dierente de numeros
-                        e.target.value == "" ||
+                        e.target.value === "" ||
                         e.target.value[e.target.value.length-1].includes("0") ||
                         e.target.value[e.target.value.length-1].includes("1") || 
                         e.target.value[e.target.value.length-1].includes("2") ||

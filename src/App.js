@@ -6,9 +6,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Home from './pages/Home';
 import Quiz from './pages/quiz';
 import Admin from './pages/Admin';
-//import Admin from './adminpanel/pages/adminpanel';
-import Sobre from './pages/sobre';
-import Lgpd from './components/lgpd';
+
 //componentes
 import Navbar from './components/Navbar';
 import Footer from './components/Footer/Footer';
