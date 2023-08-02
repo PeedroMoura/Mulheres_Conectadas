@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import fotoTopo from "../assets/formularioTop.png"
+import { useEffect } from "react";
 
 const Formulario = () => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
@@ -25,12 +26,14 @@ const Formulario = () => {
     setShowSuccessMessage(false);
   };
 
+  useEffect(()=>{
+    carregarPagina();
+  },[])
   //Função que joga o scroll para o topo da tela
-  window.onload = function() {
+  const carregarPagina = () => {
     document.documentElement.scrollTop = 0; 
     document.body.scrollTop = 0;
   };
-  
 
   return (
     <div>

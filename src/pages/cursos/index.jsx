@@ -37,7 +37,6 @@ const Cursos = () => {
     setExpanded(!expanded);
   };
 
-
   const handleAulaClick = (infoAulas) => {
     setInfoAulas(infoAulas);
   };
@@ -99,6 +98,9 @@ const Cursos = () => {
                   </ListItemButton>
                     <ListItemButton>
                     <Typography variant="h8">{aula.titulo}</Typography>
+                    </ListItemButton>
+                    <ListItemButton>
+                      <Button onClick={()=>window.open(aula.linkpdf)} style={{backgroundColor:'purple', borderRadius:10, color:'whitesmoke'}}>PDF</Button>
                     </ListItemButton>
                 </>
                 ))}
