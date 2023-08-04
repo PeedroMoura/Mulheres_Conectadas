@@ -29,7 +29,7 @@ const Navbar = () => {
     },
     {
       text: "Soluções",
-      to: "/Formulario",
+      to: "/Solucao",
     },
     {
       text: "Login",
