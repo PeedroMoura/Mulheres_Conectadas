@@ -18,8 +18,36 @@ import { useEffect } from "react";
 const Formulario = () => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
+  //Dados da organizção
+  const [nomeOrganizacao, setNomeOrganizacao] = useState('');
+  const [enderecoMatriz, setEnderecoMatriz] = useState('');
+  const [cidade, setCidade] = useState('');
+  const [uf, setUf] = useState('');
+  const [cep, setCep] = useState('');
+  const [emailOrganizacao, setEmailDaOrganizacao] = useState('');
+  const [paginaWebOrganização, setPaginaWebOrganizacao] = useState('');
+  //Dados do representante legal da orgaização
+  const [nomeRepresentante, setNomeRepresentante] = useState('');
+  const [cargoRepresentante, setCargoRepresentante] = useState('');
+  const [foneRepresentante, setFoneRepresentante] = useState('');
+  const [emailRepresentante, setEmailRepresentante] = useState('');
+  const [paginaWebRepresentante, setPaginaWebRepresentante] = useState('');
+  //Dados do contato da organizção
+  const [nomeContato, setNomeContato] = useState('');
+  const [cargoContato, setCargoContato] = useState('');
+  const [foneContato, setFoneContato] = useState('');
+  const [emailContato, setEmailContato] = useState('');
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if(nomeOrganizacao === '' || enderecoMatriz === '' || cidade === ''  || uf === '' || cep === '' || emailOrganizacao === '' || paginaWebOrganização === '' ||
+       nomeRepresentante === '' || cargoRepresentante === '' || foneRepresentante === '' || emailRepresentante === '' || paginaWebRepresentante === '' ||
+       nomeContato === '' || cargoContato === '' || foneContato === '' || emailContato === ''
+    ){
+      alert("Preencha todos os campos!")
+      return;
+    }
   };
 
   const handleSnackbarClose = () => {
@@ -98,10 +126,10 @@ const Formulario = () => {
             margin="normal"
             required
             fullWidth
-            id="edereço da matriz/sede social"
+            id="ederecoMatriz"
             label="Endereço da matriz/sede social"
-            name="edereço da matriz/sede social"
-            autoComplete="edereço da matriz/sede social"
+            name="ederecoMatriz"
+            autoComplete="ederecoMatriz"
             autoFocus
           />
           <TextField
@@ -115,7 +143,7 @@ const Formulario = () => {
             autoFocus
           />
           <FormControl fullWidth margin="normal">
-            <InputLabel id="etnia-label">UF</InputLabel>
+            <InputLabel id="UF-label">UF</InputLabel>
             <Select labelId="UF" id="uf-select">
               <MenuItem value="ac">AC</MenuItem>
               <MenuItem value="al">AL</MenuItem>
