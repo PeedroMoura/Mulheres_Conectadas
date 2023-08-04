@@ -33,7 +33,7 @@ const Formulario = () => {
   
 
   return (
-    <div>
+    <form>
       <Stack
         component="section"
         direction="column"
@@ -322,7 +322,7 @@ const Formulario = () => {
           />
         </Box>
       </Stack>
-    </div>
+    </form>
   );
 };
 
