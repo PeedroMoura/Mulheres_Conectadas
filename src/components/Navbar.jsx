@@ -29,7 +29,7 @@ const Navbar = () => {
     },
     {
       text: "Soluções",
-      to: "/Solucao",
+      to: "/solucao",
     },
     {
       text: "Login",
@@ -121,7 +121,7 @@ const Navbar = () => {
             <ListItem key={item.text} sx={{ color: "#ab4f9d" }}>
               <ListItemButton
                 component={Link}
-                onClick={item.to}
+                // onClick={item.to}
                 to={item.to}
                 sx={{
                   color: buttonColor,

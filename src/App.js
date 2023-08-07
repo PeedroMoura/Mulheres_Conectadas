@@ -40,7 +40,7 @@ function App() {
           <Route path='/cadastro' element={<Cadastro />} />
           <Route path='/mensagem' element={<Mensagem />} />
           <Route path='/selos' element={<Selos />} />
-          <Route path='/Formulario' element={<Formulario />} />
+          <Route path='/formulario' element={<Formulario />} />
           <Route path='/solucao' element={<Solucao />} />
           {/* <Route path='/sobre' element={<Sobre />} /> */}
           {/* <Route path='/lgpd' element={<Lgpd />} /> */}

@@ -1,26 +1,16 @@
-import { Typography } from "@mui/material";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 export default function Solucao() {
+  const navigate = useNavigate();
   useEffect(() => {
-    window.location.href =
-      "https://www.mulheresconnectadas.com.br/category/solucao/";
+
+    window.open("https://www.mulheresconnectadas.com.br/category/solucao/");
+    navigate("/");
   }, []);
   return (
     <>
-      <Typography
-        variant="h4"
-        component="h3"
-        sx={{
-          fontWeight: "700",
-          textAlign: "center",
-          marginTop: 40,
-          marginBottom: 40,
-          fontFamily: "-moz-initial",
-        }}
-      >
-        Redirecionando...
-      </Typography>
+      
     </>
   );
 }

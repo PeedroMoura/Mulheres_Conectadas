@@ -77,6 +77,24 @@ const Formulario = () => {
       templateParams,
       "VUjfigMB1Q4qsb3CF"
     );
+
+    setNomeOrganizacao('');
+    setEnderecoMatriz('');
+    setCidade('');
+    setUf('');
+    setCep('');
+    setEmailDaOrganizacao('');
+    setPaginaWebOrganizacao('');
+    setNomeRepresentante('');
+    setCargoRepresentante('');
+    setFoneRepresentante('');
+    setEmailRepresentante('');
+    setPaginaWebRepresentante('');
+    setNomeContato('');
+    setCargoContato('');
+    setFoneContato('');
+    setEmailContato('');
+
     // .then((response) => {
     //   alert('Email enviado com sucesso!');
     //   setNomeOrganizacao('');
