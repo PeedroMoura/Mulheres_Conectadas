@@ -70,27 +70,30 @@ const Admin = () => {
   const updateTelaInicial = async () => {
     const user = getAuth().currentUser; 
 
-    const docTelaInicial = doc(db, "telainical", user.uid)
+    const docTelaInicial = doc(db, "telainicial", user.uid)
+    //busca os as imagens 
+    const dados = (await getDoc(docTelaInicial)).data();
+    //=======================
     
     try{
       await updateDoc(docTelaInicial, {
         tituloesquerdo: tituloEsquerdo,
         subtituloesquerdo:  subtituloEsquerdo,
         titulodireito: tituloDireito,
-        [Date.now()]: {
+        imgs: [ ...dados.imgs, {
           id: Date.now(),
           url: imagemCarrosel,
-        },
+        }]
       });
     }catch(e){
       await setDoc(docTelaInicial, {
         tituloesquerdo: tituloEsquerdo,
         subtituloesquerdo:  subtituloEsquerdo,
         titulodireito: tituloDireito,
-        [Date.now()]: {
+        imgs: [ ...dados.imgs, {
           id: Date.now(),
           url: imagemCarrosel,
-        },
+        }]
       });
     }finally{  
       setTituloEsquerdo('');
@@ -100,8 +103,8 @@ const Admin = () => {
     }
   };
 
+
   const handleSubmitTrilha = async () => {
-    // event.preventDefault();
 
     if (
       nmrTrilha === "" ||

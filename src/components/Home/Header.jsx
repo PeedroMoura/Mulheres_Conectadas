@@ -2,6 +2,10 @@ import React from "react";
 import { Box, Button, styled, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import Carroussel from "../carrousel";
+import { useEffect } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import db from "../../config/firebase";
+import { useState } from "react";
 
 const Header = () => {
   const CustomBox = styled(Box)(({ theme }) => ({
@@ -44,8 +48,33 @@ const Header = () => {
     },
   }));
 
+  const [textoList, setTextoList] = useState([]);
+
+  useEffect(() => {
+    getFirestoreData();
+  }, []);
+
+  const getFirestoreData = async () => {
+    try {
+      //é aqui ne? beleza!
+      const querySnapshot = await getDocs(collection(db, "telainicial"));
+      const retorno = [];
+      console.log()
+      querySnapshot.forEach((item) => {
+        const dados = { ...item.data(), id: item.id };
+        console.log(dados);
+        retorno.push(dados);
+      });
+      setTextoList(retorno);
+    } catch (erro) {
+      alert(erro);
+    }
+  };
+
   return (
+      
     <CustomBox component="header">
+      {textoList.map((texto) => (
       <BoxText component="section">
         <Typography
           variant="h2"
@@ -55,7 +84,7 @@ const Header = () => {
             color: "#fff",
           }}
         >
-          Conheça os nossos cases de sucesso!
+          {texto.tituloesquerdo}
         </Typography>
 
         <Typography
@@ -65,18 +94,11 @@ const Header = () => {
             py: 3,
             lineHeight: 1.6,
             color: "#fff",
-            textAlign:'justify'
+            textAlign: "justify",
           }}
         >
-          A Mulheres Connectadas, uma startup de tecnologia social genuinamente
-          alagoana, tem como compromisso primordial promover a igualdade de
-          gênero e capacitar mulheres para assumirem posições de liderança,
-          contribuindo para a construção de um mundo mais diversos e inclusivo.
-          Nossa abordagem única é baseada em uma metodologia própria,
-          cuidadosamente desenvolvida para estar em sintonia com os princípios
-          do ESG (Ambiental, Social e Governança) e agenda 2030 da ONU.
+          {texto.subtituloesquerdo}
         </Typography>
-
         <Box>
           <Button
             component={Link}
@@ -130,6 +152,7 @@ const Header = () => {
           </Button>
         </Box>
       </BoxText>
+      ))}
       <CarrousselBox>
         <Carroussel />
       </CarrousselBox>
