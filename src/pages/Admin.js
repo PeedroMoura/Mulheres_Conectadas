@@ -24,6 +24,11 @@ const Admin = () => {
   const [subtituloEsquerdo, setSubtituloEsquerdo] = useState("");
   const [tituloDireito, setTituloDireito] = useState("");
   const [imagemCarrosel, setImagemCarrosel] = useState("");
+  //Variaveis da tela de selos
+  const [tituloSeloEsquerdo, setTituloSeloEsquerdo] = useState("");
+  const [subtituloSeloEsquerdo, setSubtituloSeloEsquerdo] = useState("");
+  const [subtituloSelo, setsubtituloSelo] = useState("");
+  const [imagemSelo, setImagemSelo] = useState("");
 
   //Criando uma trilha e salvando um objeto "aulas" com os valores inseridos
   const createTrilha = async (
@@ -35,7 +40,7 @@ const Admin = () => {
     resumoAula
   ) => {
     await setDoc(docCursos, {
-      id: nmrTrilha,  
+      id: nmrTrilha,
       aulas: {
         [nmrAula]: {
           linkpdf,
@@ -68,44 +73,68 @@ const Admin = () => {
   };
 
   const updateTelaInicial = async () => {
-    const user = getAuth().currentUser; 
+    const user = getAuth().currentUser;
 
-    const docTelaInicial = doc(db, "telainicial", user.uid)
-    //busca os as imagens 
+    const docTelaInicial = doc(db, "telainicial", user.uid);
+    //busca as imagens
     const dados = (await getDoc(docTelaInicial)).data();
     //=======================
-    
-    try{
+
+    try {
       await updateDoc(docTelaInicial, {
         tituloesquerdo: tituloEsquerdo,
-        subtituloesquerdo:  subtituloEsquerdo,
+        subtituloesquerdo: subtituloEsquerdo,
         titulodireito: tituloDireito,
-        imgs: [ ...dados.imgs, {
-          id: Date.now(),
-          url: imagemCarrosel,
-        }]
+        imgs: [
+          ...dados.imgs,
+          {
+            id: Date.now(),
+            url: imagemCarrosel,
+          },
+        ],
       });
-    }catch(e){
+    } catch (e) {
       await setDoc(docTelaInicial, {
         tituloesquerdo: tituloEsquerdo,
-        subtituloesquerdo:  subtituloEsquerdo,
+        subtituloesquerdo: subtituloEsquerdo,
         titulodireito: tituloDireito,
-        imgs: [ ...dados.imgs, {
-          id: Date.now(),
-          url: imagemCarrosel,
-        }]
+        imgs: [
+          ...dados.imgs,
+          {
+            id: Date.now(),
+            url: imagemCarrosel,
+          },
+        ],
       });
-    }finally{  
-      setTituloEsquerdo('');
-      setTituloDireito('');
-      setSubtituloEsquerdo('');
-      setImagemCarrosel('');
+    } finally {
+      setTituloEsquerdo("");
+      setTituloDireito("");
+      setSubtituloEsquerdo("");
+      setImagemCarrosel("");
     }
   };
 
+  const updateTelaSelo =async () => {
+      const user = getAuth().currentUser;
+  
+      const docTelaSelo = doc(db, "telaSelo", user.uid);
+  
+      try {
+        await updateDoc(docTelaSelo, {
+          tituloseloesquerdo: tituloSeloEsquerdo,
+          subtituloseloesquerdo: subtituloSeloEsquerdo,
+          seloimg: imagemSelo,
+          subtituloselo: subtituloSelo,
+        });
+      } finally {
+        setTituloSeloEsquerdo("");
+        setsubtituloSelo("");
+        setSubtituloSeloEsquerdo("");
+        setImagemSelo("");
+      }
+  };
 
   const handleSubmitTrilha = async () => {
-
     if (
       nmrTrilha === "" ||
       nmrAula === "" ||
@@ -280,11 +309,9 @@ const Admin = () => {
       <Box sx={{ maxWidth: 600, margin: "0 auto" }}>
         <Card sx={{ p: 2, mt: 2 }}>
           <CardContent>
-            <Typography variant="h6">
-              Alterar o lado esquerdo:
-            </Typography>
+            <Typography variant="h6">Alterar o lado esquerdo:</Typography>
             <TextField
-              label="Título"
+              label="Titulo"
               variant="outlined"
               value={tituloEsquerdo}
               onChange={(e) => setTituloEsquerdo(e.target.value)}
@@ -297,12 +324,9 @@ const Admin = () => {
               value={subtituloEsquerdo}
               onChange={(e) => setSubtituloEsquerdo(e.target.value)}
               fullWidth
-              style={{height:100}}
               margin="normal"
             />
-            <Typography variant="h6">
-              Altererar o lado direito:
-            </Typography>
+            <Typography variant="h6">Altererar o lado direito:</Typography>
             <TextField
               label="Título"
               variant="outlined"
@@ -324,6 +348,59 @@ const Admin = () => {
               type="submit"
               style={{ backgroundColor: "purple" }}
               onClick={() => updateTelaInicial()}
+            >
+              Inserir
+            </Button>
+          </CardContent>
+        </Card>
+      </Box>
+
+      <h2 style={{ marginTop: 50, textAlign: "center", color: "purple" }}>
+        Tela de Selos
+      </h2>
+
+      <Box sx={{ maxWidth: 600, margin: "0 auto" }}>
+        <Card sx={{ p: 2, mt: 2 }}>
+          <CardContent>
+            <Typography variant="h6">Alterar o lado esquerdo:</Typography>
+            <TextField
+              label="Título"
+              variant="outlined"
+              value={tituloSeloEsquerdo}
+              onChange={(e) => setTituloSeloEsquerdo(e.target.value)}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="Sub-Título"
+              variant="outlined"
+              value={subtituloSeloEsquerdo}
+              onChange={(e) => setSubtituloSeloEsquerdo(e.target.value)}
+              fullWidth
+              margin="normal"
+            />
+            <Typography variant="h6">Altererar o lado direito:</Typography>
+            <TextField
+              label="Link da imagem do selo"
+              variant="outlined"
+              value={imagemSelo}
+              onChange={(e) => setImagemSelo(e.target.value)}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="Subtitulo do selo"
+              variant="outlined"
+              value={subtituloSelo}
+              onChange={(e) => setsubtituloSelo(e.target.value)}
+              fullWidth
+              margin="normal"
+            />
+            <Button
+              variant="contained"
+              type="submit"
+              style={{ backgroundColor: "purple" }}
+              onClick={() => updateTelaSelo()}
             >
               Inserir
             </Button>

@@ -2,6 +2,10 @@ import React from "react";
 
 import { Box, styled, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
+import db from "../config/firebase";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const Selos = () => {
   const navigate = useNavigate();
@@ -36,8 +40,33 @@ const Selos = () => {
     },
   }));
 
+  const [textoList, setTextoList] = useState([]);
+
+  useEffect(() => {
+    getFirestoreData();
+  }, []);
+
+  const getFirestoreData = async () => {
+    try {
+      //é aqui ne? beleza!
+      const querySnapshot = await getDocs(collection(db, "telaSelo"));
+      const retorno = [];
+      console.log()
+      querySnapshot.forEach((item) => {
+        const dados = { ...item.data(), id: item.id };
+        console.log(dados);
+        retorno.push(dados);
+      });
+      setTextoList(retorno);
+    } catch (erro) {
+      alert(erro);
+    }
+  };
+
+
   return (
     <>
+    {textoList.map((texto) => (
     <CustomBox component="header">
       <BoxText component="section">
         <Typography
@@ -48,7 +77,7 @@ const Selos = () => {
             color: "#fff",
           }}
         >
-          Selo Mulheres Conectadas
+          {texto.tituloseloesquerdo}
         </Typography>
 
         <Typography
@@ -62,16 +91,7 @@ const Selos = () => {
             textAlign:'justify'
           }}
         >
-          O Selo Mulheres Connectadas simboliza o compromisso da sua organização
-          em adotar práticas alinhadas aos princípios do ESG e os Objetivos de
-          Desenvolvimento Sustentável (ODS) da ONU. Ao obter o Selo de
-          Reconhecimento de Impacto, sua empresa será amplamente reconhecida
-          como uma líder em seu setor de atuação, destacando-se como uma força
-          positiva na busca de um futuro mais sustentável e inclusivo,
-          demonstrando aos seus clientes, parceiros e stakeholders o seu
-          compromisso com valores importantes. O Selo é um testemunho do seu
-          engajamento com a responsabilidade social corporativa, a
-          sustentabilidade ambiental, a diversidade e inclusão.
+          {texto.subtituloseloesquerdo}
         </Typography>
       </BoxText>
       <Box
@@ -97,12 +117,12 @@ const Selos = () => {
         >
           <img
             onClick={()=>navigate("/formulario")}
-            src="https://gifs.eco.br/wp-content/uploads/2023/06/imagens-de-selo-png-0.png"
-            alt="selo"
+            src={texto.seloimg}
+            alt={texto.seloimg}
             style={{ maxHeight: 200, maxWidth: 200, cursor:'pointer' }}
           ></img>
           <Typography variant="h5" sx={{ fontWeight: 200, color: "#fff" }}>
-            Selo de interesse
+            {texto.subtituloselo}
           </Typography>
         </Box>
 
@@ -127,6 +147,7 @@ const Selos = () => {
         </Box> */}
       </Box>
     </CustomBox>
+    ))}
     </>
   );
 };
