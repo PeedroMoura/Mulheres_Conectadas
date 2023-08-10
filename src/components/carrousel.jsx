@@ -11,7 +11,8 @@ import db from "../config/firebase";
 
 const Carroussel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [dataList, setDataList] = useState([]);
+  const [texts, setTexts] = useState();
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     getFirestoreData();
@@ -26,8 +27,9 @@ const Carroussel = () => {
         
         retorno.push(dados);
       });
-      console.log(retorno);
-      setDataList(retorno);
+      // alert(retorno);
+      setImages(Object.values(retorno[0].imgs) || []);
+      setTexts(retorno[0]);
     } catch (erro) {
       alert(erro);
     }
@@ -73,27 +75,28 @@ const Carroussel = () => {
         display: { xs: "flex" },
       }}
     >
-      {dataList.map((text) => (
+      {texts !== undefined && 
         <Box
-          component="section"
+        component="section"
+        sx={{
+          paddingBottom: 3,
+        }}
+      >
+        <Typography
+          variant="h4"
+          component="h3"
           sx={{
-            paddingBottom: 3,
+            fontWeight: "700",
+            textAlign: "center",
+            color: "white",
+            marginTop: 3,
           }}
         >
-          <Typography
-            variant="h4"
-            component="h3"
-            sx={{
-              fontWeight: "700",
-              textAlign: "center",
-              color: "white",
-              marginTop: 3,
-            }}
-          >
-            {text.titulodireito}
-          </Typography>
-        </Box>
-      ))}
+          {texts.titulodireito}
+        </Typography>
+      </Box>      
+      }
+
       <Box sx={{ maxWidth: 700, width: "100%" }}>
         <Carousel
           centerSlidePercentage={0}
@@ -107,15 +110,13 @@ const Carroussel = () => {
           onChange={handleChange}
           className="carousel-container"
         >
-           {/* {dataList.map((doc) => {
-            
-            return doc.imgs.map((img, index) => (
-                <div key={img.id}>
-                  <img src={img.url} alt={img.url} />
-                  <p className="legend">Foto {index+1}</p>
-                </div>
-              ))            
-            })}  */}
+           {images.map((img, index) => (
+              <div key={img.id}>
+                <img src={img.url} alt={img.url} />
+                {/* <p className="legend">Foto {index+1}</p> */}
+              </div>
+           ))
+          }
 
 
         </Carousel>

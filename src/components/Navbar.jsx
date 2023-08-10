@@ -16,6 +16,8 @@ import { useEffect } from "react";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import db from "../config/firebase";
 
 const Navbar = () => {
   const menuInicial = [
@@ -45,7 +47,7 @@ const Navbar = () => {
     const auth = getAuth();
 
     //Garantir que o usuario se mantenha conectado após a pagina ser atualizada
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser != null) {
         let newItemList = lista;
         //Garantir que o butão de logout fique por ultimo
@@ -56,10 +58,20 @@ const Navbar = () => {
           to: "/cursos",
         });
 
-        newItemList.push({
-          text: "Painel Admin",
-          to: "/adminpanel",
-        });
+        try{
+          let dadosUsuario = await getDoc(doc(db, "usuarios", currentUser.uid));
+          if(dadosUsuario.data().admin === true){
+            newItemList.push({
+              text: "Painel Admin",
+              to: "/adminpanel",
+            });
+          }
+        }catch(e){
+          
+        }
+
+
+        
 
         ultimoItem.text = "Sair";
         //Logout, Atualizar a página e enviar para a tela de inicio
@@ -123,6 +135,7 @@ const Navbar = () => {
                 component={Link}
                 // onClick={item.to}
                 to={item.to}
+                onClick={()=>item.to()}
                 sx={{
                   color: buttonColor,
                   "&:hover": {

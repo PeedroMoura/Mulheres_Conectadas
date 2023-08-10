@@ -62,7 +62,6 @@ const Header = () => {
       console.log()
       querySnapshot.forEach((item) => {
         const dados = { ...item.data(), id: item.id };
-        console.log(dados);
         retorno.push(dados);
       });
       setTextoList(retorno);

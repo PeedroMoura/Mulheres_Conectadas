@@ -80,32 +80,44 @@ const Admin = () => {
     const dados = (await getDoc(docTelaInicial)).data();
     //=======================
 
+    let dadosParaEnviar = {};
+
+    if (tituloEsquerdo != "") {
+      dadosParaEnviar = {
+        ...dadosParaEnviar,
+        tituloesquerdo: tituloEsquerdo,
+      };
+    }
+
+    if (subtituloEsquerdo != "") {
+      dadosParaEnviar = {
+        ...dadosParaEnviar,
+        subtituloesquerdo: subtituloEsquerdo,
+      };
+    }
+
+    if (tituloDireito != "") {
+      dadosParaEnviar = {
+        ...dadosParaEnviar,
+        titulodireito: tituloDireito,
+      };
+    }
+
+    if (imagemCarrosel != "") {
+      dadosParaEnviar = {
+        ...dadosParaEnviar,
+        imgs: {
+          [Date.now()]: {
+            id: Date.now(),
+            url: imagemCarrosel,
+          },
+        },
+      };
+    }
+
     try {
-      await updateDoc(docTelaInicial, {
-        tituloesquerdo: tituloEsquerdo,
-        subtituloesquerdo: subtituloEsquerdo,
-        titulodireito: tituloDireito,
-        imgs: [
-          ...dados.imgs,
-          {
-            id: Date.now(),
-            url: imagemCarrosel,
-          },
-        ],
-      });
+      await updateDoc(docTelaInicial, dadosParaEnviar);
     } catch (e) {
-      await setDoc(docTelaInicial, {
-        tituloesquerdo: tituloEsquerdo,
-        subtituloesquerdo: subtituloEsquerdo,
-        titulodireito: tituloDireito,
-        imgs: [
-          ...dados.imgs,
-          {
-            id: Date.now(),
-            url: imagemCarrosel,
-          },
-        ],
-      });
     } finally {
       setTituloEsquerdo("");
       setTituloDireito("");
@@ -114,24 +126,50 @@ const Admin = () => {
     }
   };
 
-  const updateTelaSelo =async () => {
-      const user = getAuth().currentUser;
-  
-      const docTelaSelo = doc(db, "telaSelo", user.uid);
-  
-      try {
-        await updateDoc(docTelaSelo, {
-          tituloseloesquerdo: tituloSeloEsquerdo,
-          subtituloseloesquerdo: subtituloSeloEsquerdo,
-          seloimg: imagemSelo,
-          subtituloselo: subtituloSelo,
-        });
-      } finally {
-        setTituloSeloEsquerdo("");
-        setsubtituloSelo("");
-        setSubtituloSeloEsquerdo("");
-        setImagemSelo("");
-      }
+  const updateTelaSelo = async () => {
+    const user = getAuth().currentUser;
+
+    const docTelaSelo = doc(db, "telaSelo", user.uid);
+
+    let dadosParaEnviarSelo = {};
+
+    if (tituloSeloEsquerdo != "") {
+      dadosParaEnviarSelo = {
+        ...dadosParaEnviarSelo,
+        tituloseloesquerdo: tituloSeloEsquerdo,
+      };
+    }
+
+    if (subtituloSeloEsquerdo != "") {
+      dadosParaEnviarSelo = {
+        ...dadosParaEnviarSelo,
+        subtituloseloesquerdo: subtituloSeloEsquerdo,
+      };
+    }
+
+    if (imagemSelo != "") {
+      dadosParaEnviarSelo = {
+        ...dadosParaEnviarSelo,
+        seloimg: imagemSelo,
+      };
+    }
+
+    if (subtituloSelo != "") {
+      dadosParaEnviarSelo = {
+        ...dadosParaEnviarSelo,
+        subtituloselo: subtituloSelo,
+      };
+    }
+
+    try {
+      await setDoc(docTelaSelo, dadosParaEnviarSelo, { merge: true });
+    } catch (e) {
+    } finally {
+      setTituloSeloEsquerdo("");
+      setsubtituloSelo("");
+      setSubtituloSeloEsquerdo("");
+      setImagemSelo("");
+    }
   };
 
   const handleSubmitTrilha = async () => {
