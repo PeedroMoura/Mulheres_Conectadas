@@ -19,7 +19,6 @@ import Progresso from './pages/progresso'
 import Forgot from './pages/forgot'
 import Selos from './pages/selos';
 import Formulario from './pages/Formulario';
-import Solucao from './components/solucao';
 
 function App() {
   
@@ -41,7 +40,6 @@ function App() {
           <Route path='/mensagem' element={<Mensagem />} />
           <Route path='/selos' element={<Selos />} />
           <Route path='/formulario' element={<Formulario />} />
-          <Route path='/solucao' element={<Solucao />} />
           {/* <Route path='/sobre' element={<Sobre />} /> */}
           {/* <Route path='/lgpd' element={<Lgpd />} /> */}
         </Routes>

@@ -20,10 +20,12 @@ import { doc, getDoc } from "firebase/firestore";
 import db from "../config/firebase";
 
 const Navbar = () => {
-  const menuInicial = [
+  const navigate = useNavigate();
+
+  const rotas = [
     {
       text: "Início",
-      to: "/",
+      to: "/"
     },
     {
       text: "Selos",
@@ -31,16 +33,39 @@ const Navbar = () => {
     },
     {
       text: "Soluções",
-      to: "/solucao",
+      onClick: () => {
+        window.open("https://www.mulheresconnectadas.com.br/category/solucao/");
+        window.location="/";
+      },
+    },
+    {
+      text: "Cursos",
+      to: "/cursos",
+      logged: true
+    },
+    {
+      text: "Painel Admin",
+      to: "/adminpanel",
+      logged: true,
+      admin: true
+    },
+    {
+      text: "Sair",
+      onClick: () => {
+        signOut(getAuth());
+        window.location="/";
+      },
+      logged: true
     },
     {
       text: "Login",
       to: "/contact",
+      logged: false
     },
   ];
 
-  const [lista, setLista] = useState(menuInicial);
-
+  const [loggedUser, setLoggedUser] = useState(false);
+  const [userAdmin, setUserAdmin] = useState(false);
   const { buttonColor } = useContext(ButtonColorContext);
 
   useEffect(() => {
@@ -48,40 +73,17 @@ const Navbar = () => {
 
     //Garantir que o usuario se mantenha conectado após a pagina ser atualizada
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      // Verifica a autenticação do usuário
       if (currentUser != null) {
-        let newItemList = lista;
-        //Garantir que o butão de logout fique por ultimo
-        let ultimoItem = newItemList.pop();
-        //Adicionar um novo elemento na lista para ter um novo botão no Nav
-        newItemList.push({
-          text: "Cursos",
-          to: "/cursos",
-        });
+        setLoggedUser(true);
 
-        try{
-          let dadosUsuario = await getDoc(doc(db, "usuarios", currentUser.uid));
-          if(dadosUsuario.data().admin === true){
-            newItemList.push({
-              text: "Painel Admin",
-              to: "/adminpanel",
-            });
-          }
-        }catch(e){
-          
-        }
-
-
-        
-
-        ultimoItem.text = "Sair";
-        //Logout, Atualizar a página e enviar para a tela de inicio
-        ultimoItem.to = () => {
-          signOut(getAuth());
-          navigate("/");
-          window.location.reload();
-        };
-        newItemList.push(ultimoItem);
-        setLista([...newItemList]);
+        // Verifica se é administrador
+        const snapshotUsuarios = await getDoc(doc(db, "usuarios", currentUser.uid)).catch((erro) => console.log(erro));
+        const dadosUsuario = snapshotUsuarios.data();
+        setUserAdmin(dadosUsuario !== undefined && dadosUsuario.admin === true);
+      }else{
+        setLoggedUser(false);
+        setUserAdmin(false);
       }
     });
 
@@ -89,8 +91,6 @@ const Navbar = () => {
       unsubscribe();
     };
   }, []);
-
-  const navigate = useNavigate();
 
   return (
     <AppBar
@@ -129,25 +129,30 @@ const Navbar = () => {
             marginLeft: "auto",
           }}
         >
-          {lista.map((item) => (
-            <ListItem key={item.text} sx={{ color: "#ab4f9d" }}>
-              <ListItemButton
-                component={Link}
-                // onClick={item.to}
-                to={item.to}
-                onClick={()=>item.to()}
-                sx={{
-                  color: buttonColor,
-                  "&:hover": {
-                    backgroundColor: "transparent",
-                    color: "purple",
-                  },
-                }}
-              >
-                <ListItemText primary={item.text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          {rotas.map((item) => (<>
+            {(item.logged === undefined || (item.logged === true && loggedUser === true && item.admin === undefined) || (item.logged === false && loggedUser === false) ||
+             (item.admin !== undefined && item.admin === true && userAdmin === true))
+            ?
+              <ListItem key={item.text} sx={{ color: "#ab4f9d" }}>
+                <ListItemButton
+                  component={Link}
+                  onClick={() => {item.onClick !== undefined && item.onClick()}}
+                  to={item.to}
+                  sx={{
+                    color: buttonColor,
+                    "&:hover": {
+                      backgroundColor: "transparent",
+                      color: "purple",
+                    },
+                  }}
+                >
+                  <ListItemText primary={item.text} />
+                </ListItemButton>
+              </ListItem>
+            :
+              <></>
+            }
+          </>))}
         </List>
       </Toolbar>
     </AppBar>
