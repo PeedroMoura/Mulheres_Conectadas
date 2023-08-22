@@ -47,15 +47,16 @@ const Footer = () => {
       
       <StackColumn style={{color:'white'}}>
         <FooterTitle style={{color:'white'}} text={'Nossas soluções'} /> 
-        <FooterLink style={{color:'white'}} text={'Trilhas de curso'} />
-        <FooterLink style={{color:'white'}} text={'Prototipação descomplicada'} />
-        <FooterLink style={{color:'white'}} text={'Quiz'} />
+        <FooterLink style={{color:'white'}} text={'Jornadas Inteligentes'} />
+        <FooterLink style={{color:'white'}} text={'Empoderamento em Programação'} />
+        <FooterLink style={{color:'white'}} text={'Quiz - Alfabetização Digital'} />
       </StackColumn>
       <StackColumn>
-        <FooterTitle text={'Visão geral'} />
-        <FooterLink text={'Entre em contato conosco'} />
+        <FooterTitle text={'Selo'} />
+        <FooterLink text={'Formulário de Interesse'} />
+        {/* <FooterLink text={'Entre em contato conosco'} />
         <FooterLink text={'Cadastre-se'} />
-        <FooterLink text={'Conheça as ISGs '} />
+        <FooterLink text={'Conheça as ISGs '} /> */}
       </StackColumn>
 
       <StackColumn>
@@ -102,7 +103,7 @@ const Footer = () => {
         component='p' 
         color='white'
         >
-          &copy; 2023 tst
+          &copy; 2023 
         </Typography>
       </StackColumn>
     </BoxRow>

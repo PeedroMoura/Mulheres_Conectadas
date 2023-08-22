@@ -72,7 +72,7 @@ const Admin = () => {
     });
   };
 
-  const updateTelaInicial = async () => {
+  const updateTelaInicialText = async () => {
     const user = getAuth().currentUser;
 
     const docTelaInicial = doc(db, "telainicial", user.uid);
@@ -80,51 +80,69 @@ const Admin = () => {
     const dados = (await getDoc(docTelaInicial)).data();
     //=======================
 
-    let dadosParaEnviar = {};
+    let dadosParaEnviarTextInicial = {};
 
     if (tituloEsquerdo != "") {
-      dadosParaEnviar = {
-        ...dadosParaEnviar,
+      dadosParaEnviarTextInicial = {
+        ...dadosParaEnviarTextInicial,
         tituloesquerdo: tituloEsquerdo,
       };
     }
 
     if (subtituloEsquerdo != "") {
-      dadosParaEnviar = {
-        ...dadosParaEnviar,
+      dadosParaEnviarTextInicial = {
+        ...dadosParaEnviarTextInicial,
         subtituloesquerdo: subtituloEsquerdo,
       };
     }
 
     if (tituloDireito != "") {
-      dadosParaEnviar = {
-        ...dadosParaEnviar,
+      dadosParaEnviarTextInicial = {
+        ...dadosParaEnviarTextInicial,
         titulodireito: tituloDireito,
       };
     }
 
-    if (imagemCarrosel != "") {
-      dadosParaEnviar = {
-        ...dadosParaEnviar,
-        imgs: {
-          [Date.now()]: {
-            id: Date.now(),
-            url: imagemCarrosel,
-          },
-        },
-      };
-    }
-
     try {
-      await updateDoc(docTelaInicial, dadosParaEnviar);
+      await setDoc(docTelaInicial, dadosParaEnviarTextInicial, { merge: true });
     } catch (e) {
     } finally {
       setTituloEsquerdo("");
       setTituloDireito("");
       setSubtituloEsquerdo("");
-      setImagemCarrosel("");
     }
   };
+
+  // // const updateTelaInicialImg = async () => {
+  // //   const user = getAuth().currentUser;
+
+  // //   const docTelaInicial = doc(db, "telainicial", user.uid);
+  // //   //busca as imagens
+  // //   const dados = (await getDoc(docTelaInicial)).data();
+  // //   //=======================
+
+  // //   let dadosParaEnviarImgInicial = {};
+
+  // //   if (imagemCarrosel != "") {
+  // //     dadosParaEnviarImgInicial = {
+  // //       ...dadosParaEnviarImgInicial,
+  // //       imgs: {
+  // //         [Date.now()]: {
+  // //           id: Date.now(),
+  // //           url: imagemCarrosel,
+  // //         },
+  // //       },
+  // //     };
+  // //   }
+  // //   }
+
+  //   try {
+  //     await setDoc(docTelaInicial, dadosParaEnviarImgInicial, { merge: true });
+  //   } catch (e) {
+  //   } finally {
+  //     setImagemCarrosel("");
+  //   }
+  // };
 
   const updateTelaSelo = async () => {
     const user = getAuth().currentUser;
@@ -373,6 +391,14 @@ const Admin = () => {
               fullWidth
               margin="normal"
             />
+            <Button
+              variant="contained"
+              type="submit"
+              style={{ backgroundColor: "purple" }}
+              onClick={() => updateTelaInicialText()}
+            >
+              Alterar Textos
+            </Button>
             <TextField
               label="Link da imagem que será adicionada"
               variant="outlined"
@@ -385,9 +411,9 @@ const Admin = () => {
               variant="contained"
               type="submit"
               style={{ backgroundColor: "purple" }}
-              onClick={() => updateTelaInicial()}
+              // onClick={() => updateTelaInicialImg()}
             >
-              Inserir
+              Inserir Imagem
             </Button>
           </CardContent>
         </Card>

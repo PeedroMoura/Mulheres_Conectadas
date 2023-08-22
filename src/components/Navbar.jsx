@@ -44,6 +44,11 @@ const Navbar = () => {
       logged: true
     },
     {
+      text: "Ferramentas",
+      // to: "/cursos",
+      logged: true
+    },
+    {
       text: "Painel Admin",
       to: "/adminpanel",
       logged: true,

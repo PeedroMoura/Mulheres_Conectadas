@@ -6,6 +6,7 @@ import { collection, getDocs } from "firebase/firestore";
 import db from "../config/firebase";
 import { useEffect } from "react";
 import { useState } from "react";
+import { purple } from "@mui/material/colors";
 
 const Selos = () => {
   const navigate = useNavigate();
@@ -119,11 +120,11 @@ const Selos = () => {
             onClick={()=>navigate("/formulario")}
             src={texto.seloimg}
             alt={texto.seloimg}
-            style={{ maxHeight: 200, maxWidth: 200, cursor:'pointer' }}
-          ></img>
+            style={{ maxHeight: 300, maxWidth: 300, cursor:'pointer', marginBottom:100, }}
+            ></img>
           <Typography variant="h5" sx={{ fontWeight: 200, color: "#fff" }}>
             {texto.subtituloselo}
-          </Typography>
+          </Typography>  
         </Box>
 
         {/* <Box
