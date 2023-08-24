@@ -25,7 +25,7 @@ const Navbar = () => {
   const rotas = [
     {
       text: "Início",
-      to: "/"
+      to: "/",
     },
     {
       text: "Selos",
@@ -35,37 +35,37 @@ const Navbar = () => {
       text: "Soluções",
       onClick: () => {
         window.open("https://www.mulheresconnectadas.com.br/category/solucao/");
-        window.location="/";
+        window.location = "/";
       },
     },
     {
-      text: "Cursos",
+      text: "Jornadas",
       to: "/cursos",
-      logged: true
+      logged: true,
     },
     {
       text: "Ferramentas",
-      // to: "/cursos",
-      logged: true
+      to: "/ferramentas",
+      logged: true,
     },
     {
       text: "Painel Admin",
       to: "/adminpanel",
       logged: true,
-      admin: true
+      admin: true,
     },
     {
       text: "Sair",
       onClick: () => {
         signOut(getAuth());
-        window.location="/";
+        window.location = "/";
       },
-      logged: true
+      logged: true,
     },
     {
       text: "Login",
       to: "/contact",
-      logged: false
+      logged: false,
     },
   ];
 
@@ -83,10 +83,12 @@ const Navbar = () => {
         setLoggedUser(true);
 
         // Verifica se é administrador
-        const snapshotUsuarios = await getDoc(doc(db, "usuarios", currentUser.uid)).catch((erro) => console.log(erro));
+        const snapshotUsuarios = await getDoc(
+          doc(db, "usuarios", currentUser.uid)
+        ).catch((erro) => console.log(erro));
         const dadosUsuario = snapshotUsuarios.data();
         setUserAdmin(dadosUsuario !== undefined && dadosUsuario.admin === true);
-      }else{
+      } else {
         setLoggedUser(false);
         setUserAdmin(false);
       }
@@ -134,30 +136,39 @@ const Navbar = () => {
             marginLeft: "auto",
           }}
         >
-          {rotas.map((item) => (<>
-            {(item.logged === undefined || (item.logged === true && loggedUser === true && item.admin === undefined) || (item.logged === false && loggedUser === false) ||
-             (item.admin !== undefined && item.admin === true && userAdmin === true))
-            ?
-              <ListItem key={item.text} sx={{ color: "#ab4f9d" }}>
-                <ListItemButton
-                  component={Link}
-                  onClick={() => {item.onClick !== undefined && item.onClick()}}
-                  to={item.to}
-                  sx={{
-                    color: buttonColor,
-                    "&:hover": {
-                      backgroundColor: "transparent",
-                      color: "purple",
-                    },
-                  }}
-                >
-                  <ListItemText primary={item.text} />
-                </ListItemButton>
-              </ListItem>
-            :
-              <></>
-            }
-          </>))}
+          {rotas.map((item) => (
+            <>
+              {item.logged === undefined ||
+              (item.logged === true &&
+                loggedUser === true &&
+                item.admin === undefined) ||
+              (item.logged === false && loggedUser === false) ||
+              (item.admin !== undefined &&
+                item.admin === true &&
+                userAdmin === true) ? (
+                <ListItem key={item.text} sx={{ color: "#ab4f9d" }}>
+                  <ListItemButton
+                    component={Link}
+                    onClick={() => {
+                      item.onClick !== undefined && item.onClick();
+                    }}
+                    to={item.to}
+                    sx={{
+                      color: buttonColor,
+                      "&:hover": {
+                        backgroundColor: "transparent",
+                        color: "purple",
+                      },
+                    }}
+                  >
+                    <ListItemText primary={item.text} />
+                  </ListItemButton>
+                </ListItem>
+              ) : (
+                <></>
+              )}
+            </>
+          ))}
         </List>
       </Toolbar>
     </AppBar>

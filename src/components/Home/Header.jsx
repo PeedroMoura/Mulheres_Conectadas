@@ -99,7 +99,7 @@ const Header = () => {
           {texto.subtituloesquerdo}
         </Typography>
         <Box>
-          <Button
+          {/* <Button
             component={Link}
             to={"/mensagem"}
             variant="outlined"
@@ -123,10 +123,10 @@ const Header = () => {
             }}
           >
             Entre em contato conosco
-          </Button>
+          </Button> */}
           <Button
             component={Link}
-            to={"/about"}
+            to={"/formulario"}
             variant="outlined"
             sx={{
               px: 4,
