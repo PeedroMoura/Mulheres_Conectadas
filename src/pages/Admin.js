@@ -82,21 +82,21 @@ const Admin = () => {
 
     let dadosParaEnviarTextInicial = {};
 
-    if (tituloEsquerdo != "") {
+    if (tituloEsquerdo !== "") {
       dadosParaEnviarTextInicial = {
         ...dadosParaEnviarTextInicial,
         tituloesquerdo: tituloEsquerdo,
       };
     }
 
-    if (subtituloEsquerdo != "") {
+    if (subtituloEsquerdo !== "") {
       dadosParaEnviarTextInicial = {
         ...dadosParaEnviarTextInicial,
         subtituloesquerdo: subtituloEsquerdo,
       };
     }
 
-    if (tituloDireito != "") {
+    if (tituloDireito !== "") {
       dadosParaEnviarTextInicial = {
         ...dadosParaEnviarTextInicial,
         titulodireito: tituloDireito,
@@ -113,36 +113,34 @@ const Admin = () => {
     }
   };
 
-  // // const updateTelaInicialImg = async () => {
-  // //   const user = getAuth().currentUser;
+  const updateTelaInicialImg = async () => {
+    const user = getAuth().currentUser;
 
-  // //   const docTelaInicial = doc(db, "telainicial", user.uid);
-  // //   //busca as imagens
-  // //   const dados = (await getDoc(docTelaInicial)).data();
-  // //   //=======================
+    const docTelaInicial = doc(db, "telainicial", user.uid);
+    //busca as imagens
+    const dados = (await getDoc(docTelaInicial)).data();
+    //=======================
 
-  // //   let dadosParaEnviarImgInicial = {};
+    let dadosParaEnviarImgInicial = {};
 
-  // //   if (imagemCarrosel != "") {
-  // //     dadosParaEnviarImgInicial = {
-  // //       ...dadosParaEnviarImgInicial,
-  // //       imgs: {
-  // //         [Date.now()]: {
-  // //           id: Date.now(),
-  // //           url: imagemCarrosel,
-  // //         },
-  // //       },
-  // //     };
-  // //   }
-  // //   }
-
-  //   try {
-  //     await setDoc(docTelaInicial, dadosParaEnviarImgInicial, { merge: true });
-  //   } catch (e) {
-  //   } finally {
-  //     setImagemCarrosel("");
-  //   }
-  // };
+    if (imagemCarrosel != "") {
+      dadosParaEnviarImgInicial = {
+        ...dadosParaEnviarImgInicial,
+        imgs: {
+          [Date.now()]: {
+            id: Date.now(),
+            url: imagemCarrosel,
+          },
+        },
+      };
+    }
+    try {
+      await setDoc(docTelaInicial, dadosParaEnviarImgInicial, { merge: true });
+    } catch (e) {
+    } finally {
+      setImagemCarrosel("");
+    }
+  };
 
   const updateTelaSelo = async () => {
     const user = getAuth().currentUser;
@@ -151,28 +149,28 @@ const Admin = () => {
 
     let dadosParaEnviarSelo = {};
 
-    if (tituloSeloEsquerdo != "") {
+    if (tituloSeloEsquerdo !== "") {
       dadosParaEnviarSelo = {
         ...dadosParaEnviarSelo,
         tituloseloesquerdo: tituloSeloEsquerdo,
       };
     }
 
-    if (subtituloSeloEsquerdo != "") {
+    if (subtituloSeloEsquerdo !== "") {
       dadosParaEnviarSelo = {
         ...dadosParaEnviarSelo,
         subtituloseloesquerdo: subtituloSeloEsquerdo,
       };
     }
 
-    if (imagemSelo != "") {
+    if (imagemSelo !== "") {
       dadosParaEnviarSelo = {
         ...dadosParaEnviarSelo,
         seloimg: imagemSelo,
       };
     }
 
-    if (subtituloSelo != "") {
+    if (subtituloSelo !== "") {
       dadosParaEnviarSelo = {
         ...dadosParaEnviarSelo,
         subtituloselo: subtituloSelo,
@@ -411,7 +409,7 @@ const Admin = () => {
               variant="contained"
               type="submit"
               style={{ backgroundColor: "purple" }}
-              // onClick={() => updateTelaInicialImg()}
+              onClick={() => updateTelaInicialImg()}
             >
               Inserir Imagem
             </Button>

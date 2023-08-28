@@ -6,7 +6,6 @@ import { collection, getDocs } from "firebase/firestore";
 import db from "../config/firebase";
 import { useEffect } from "react";
 import { useState } from "react";
-import { purple } from "@mui/material/colors";
 
 const Selos = () => {
   const navigate = useNavigate();
@@ -16,7 +15,7 @@ const Selos = () => {
     justifyContent: "center",
     // tamanhos
     gap: theme.spacing(2),
-    paddingTop: theme.spacing(10),
+    paddingTop: theme.spacing(5),
     // cor de fundo
     backgroundColor: "#990099",
     [theme.breakpoints.down("md")]: {
