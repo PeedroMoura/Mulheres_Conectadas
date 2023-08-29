@@ -10,11 +10,11 @@ const Tabuleiro = () => {
   
         <div style={{ backgroundColor: '#990099', flex: 1, display:'flex', flexDirection:'column', padding: 20, height:"70vh" }}>
   
-            <div style={{backgroundColor: 'red', flex:1, marginBottom:10, borderRadius:10}}>
+            <div style={{backgroundColor: '#CCFFFF', flex:1, marginBottom:10, borderRadius:10}}>
 
             </div>
 
-            <div style={{backgroundColor: 'greenyellow', flex: 3,borderRadius:10}}>
+            <div style={{backgroundColor: '#CCFFFF', flex: 3,borderRadius:10}}>
 
             </div>
 
