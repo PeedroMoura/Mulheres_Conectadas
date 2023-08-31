@@ -1,11 +1,12 @@
 import { Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import imgQrCode from "./../assets/ferramentas_qrcode.png";
 
 const styles = {
   caixaFerramenta: {
     maxWidth: "100%",
-    height: 410,
+    // height: 410,
     flex: 5,
     backgroundColor: "whitesmoke",
     margin: 10,
@@ -17,10 +18,13 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    minHeight: 400,
   },
 
   imgCaixaFerramenta: {
     width: "100%",
+    height: 200,
+    minHeight: 200,
     resizeMode: "countain",
     borderTopLeftRadius: 3,
     borderTopRightRadius: 3,
@@ -28,7 +32,7 @@ const styles = {
   },
 
   textoTituloCaixaFerramenta: {
-    fontSize: 30,
+    fontSize: 25,
     color: "black",
     marginTop: 2,
     textAlign: "left",
@@ -49,7 +53,7 @@ const Ferramentas = () => {
       style={{
         backgroundColor: "#990099",
         maxWidth: "100%",
-        height: 620,
+        minHeight: 610,
         padding: 30,
         marginBottom: 100,
         display: "flex",
@@ -78,6 +82,7 @@ const Ferramentas = () => {
           alignSelf: "center",
           padding: 10,
           borderRadius: 10,
+          minHeight: 400,
         }}
       >
         <div
@@ -87,16 +92,17 @@ const Ferramentas = () => {
           }
         >
           <img
-            src="https://imagens.tiespecialistas.com.br/2013/09/qr-code-malware-300x200.jpg"
-            alt="https://imagens.tiespecialistas.com.br/2013/09/qr-code-malware-300x200.jpg"
+            src={imgQrCode}
+            alt="aplicativo de programação com QrCode"
             style={styles.imgCaixaFerramenta}
           ></img>
           <Typography variant="h2" sx={styles.textoTituloCaixaFerramenta}>
-            Programação com QrCode
+            Habilidades em programação tecnológica
           </Typography>
           <Typography variant="h2" sx={styles.textoCaixaFerramenta}>
-            Um plataforma de programação com QrCode que irá alfabetizar as
-            mulheres, tendo como conteudo principalmente a programação.
+            Capacitação em Programação para Iniciantes explorando conceitos
+            essenciais, criando suas primeiras linhas de código de forma
+            acessível.
           </Typography>
         </div>
         <div style={styles.caixaFerramenta}>
@@ -109,8 +115,8 @@ const Ferramentas = () => {
             Quiz
           </Typography>
           <Typography variant="h2" sx={styles.textoCaixaFerramenta}>
-            Um quiz que irá alfabetizar as mulheres, tendo como conteudo
-            principalmente a programação.
+            Um quiz que irá alfabetizar as mulheres, com perguntas que tem como conteúdo
+            principal a programação.
           </Typography>
         </div>
         <div
@@ -126,8 +132,7 @@ const Ferramentas = () => {
             Tabuleiro Digital
           </Typography>
           <Typography variant="h2" sx={styles.textoCaixaFerramenta}>
-            Um jogo de tabuleiro que irá alfabetizar as mulheres, tendo como
-            conteudo principalmente a programação.
+            Um jogo de tabuleiro interativo que irá explorar diversos conceitos do mundo da tecnologia.
           </Typography>
         </div>
       </div>
