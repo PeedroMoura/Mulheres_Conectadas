@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import imgQrCode from "./../assets/ferramentas_qrcode.png";
+import imgQuiz from "./../assets/imgquiz.jpg";
 
 const styles = {
   caixaFerramenta: {
@@ -107,8 +108,8 @@ const Ferramentas = () => {
         </div>
         <div style={styles.caixaFerramenta}>
           <img
-            src="https://img.quizur.com/f/img63c2d4ebed2941.63799570.png?lastEdited=1673712896"
-            alt="https://img.quizur.com/f/img63c2d4ebed2941.63799570.png?lastEdited=1673712896"
+            src={imgQuiz}
+            alt="quiz"
             style={styles.imgCaixaFerramenta}
           ></img>
           <Typography variant="h2" sx={styles.textoTituloCaixaFerramenta}>
