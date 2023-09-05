@@ -5,10 +5,10 @@ import { useState } from "react";
 import { Tabuleiro1 } from "../components/tabuleiro/components/matrizTabuleiro";
 
 const Tabuleiro = () => {
-
   const [diceValue, setDiceValue] = useState(null);
   const [position, setPosition] = useState(0);
 
+  // ====================================================================================================
 
   const rollDice = () => {
     const newValue = Math.floor(Math.random() * 6) + 1;
@@ -16,8 +16,9 @@ const Tabuleiro = () => {
     setDiceValue(newValue);
   };
 
-  return (
+  // ====================================================================================================
 
+  return (
     <div
       style={{
         backgroundColor: "#990099",
@@ -27,7 +28,7 @@ const Tabuleiro = () => {
         height: "80vh",
         justifyContent: "center",
         alignItems: "center",
-        marginBottom:'10%'
+        marginBottom: "10%",
       }}
     >
       <div
@@ -46,7 +47,10 @@ const Tabuleiro = () => {
           alt="https://i.imgur.com/41V4ILb.png"
           style={{ height: "90%", borderRadius: 10 }}
         ></img> */}
-        <Tabuleiro1 posicao={position} trocarCard={(card) => console.log(card) } />
+        <Tabuleiro1
+          posicao={position}
+          trocarCard={(card) => console.log(card)}
+        />
       </div>
 
       <div
@@ -105,7 +109,9 @@ const Tabuleiro = () => {
             <Typography variant="h6" gutterBottom>
               Seu resultado foi:
             </Typography>
-            <Typography variant="h4">{diceValue !== null ? diceValue : "-"}</Typography>
+            <Typography variant="h4">
+              {diceValue !== null ? diceValue : "-"}
+            </Typography>
           </div>
         </div>
 
