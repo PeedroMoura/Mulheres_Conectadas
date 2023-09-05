@@ -2,13 +2,17 @@ import React from "react";
 import imagemCarta from "./../assets/Frame 790.png";
 import { Typography } from "@mui/material";
 import { useState } from "react";
+import { Tabuleiro1 } from "../components/tabuleiro/components/matrizTabuleiro";
 
 const Tabuleiro = () => {
 
   const [diceValue, setDiceValue] = useState(null);
+  const [position, setPosition] = useState(0);
+
 
   const rollDice = () => {
     const newValue = Math.floor(Math.random() * 6) + 1;
+    setPosition(position + newValue);
     setDiceValue(newValue);
   };
 
@@ -37,11 +41,12 @@ const Tabuleiro = () => {
           display: "flex",
         }}
       >
-        <img
+        {/* <img
           src="https://i.imgur.com/41V4ILb.png"
           alt="https://i.imgur.com/41V4ILb.png"
           style={{ height: "90%", borderRadius: 10 }}
-        ></img>
+        ></img> */}
+        <Tabuleiro1 posicao={position} trocarCard={(card) => console.log(card) } />
       </div>
 
       <div
