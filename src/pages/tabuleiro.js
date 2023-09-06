@@ -1,5 +1,4 @@
 import React from "react";
-import imagemCarta from "./../assets/Frame 790.png";
 import { Typography } from "@mui/material";
 import { useState } from "react";
 import { Tabuleiro1 } from "../components/tabuleiro/components/matrizTabuleiro";
@@ -7,6 +6,9 @@ import { Tabuleiro1 } from "../components/tabuleiro/components/matrizTabuleiro";
 const Tabuleiro = () => {
   const [diceValue, setDiceValue] = useState(null);
   const [position, setPosition] = useState(0);
+  const [ imgCard, setImgCard ] = useState(null)
+  const [ buttonCard, setButtonCard ] = useState(false)
+  const [ pinoMovendo, setPinoMovendo ] = useState(false)
 
   // ====================================================================================================
 
@@ -42,14 +44,13 @@ const Tabuleiro = () => {
           display: "flex",
         }}
       >
-        {/* <img
-          src="https://i.imgur.com/41V4ILb.png"
-          alt="https://i.imgur.com/41V4ILb.png"
-          style={{ height: "90%", borderRadius: 10 }}
-        ></img> */}
         <Tabuleiro1
           posicao={position}
-          trocarCard={(card) => console.log(card)}
+          onPinoMovendo={(movendo) => setPinoMovendo(movendo) }
+          trocarCard={(card) => {
+            setImgCard(card.img)
+            setButtonCard(card.button)
+          }}
         />
       </div>
 
@@ -75,7 +76,7 @@ const Tabuleiro = () => {
             alignItems: "center",
           }}
         >
-          <button
+          { !pinoMovendo && <button
             onClick={rollDice}
             style={{
               backgroundColor: "#990099",
@@ -95,7 +96,7 @@ const Tabuleiro = () => {
             onMouseLeave={(e) => (e.target.style.backgroundColor = "#990099")}
           >
             Jogar Dados!
-          </button>
+          </button>}
 
           <div
             style={{
@@ -128,11 +129,14 @@ const Tabuleiro = () => {
             borderRadius: 10,
           }}
         >
-          <img
-            src={imagemCarta}
-            alt={imagemCarta}
+          { imgCard && <img
+            src={`/static/tabuleiro/cards1/${imgCard}`}
+            alt={`/static/tabuleiro/cards1/${imgCard}`}
             style={{ height: "97%", width: "96%", marginTop: -2 }}
-          ></img>
+          ></img>}
+
+          {/* { buttonCard && <button>AAAAAAAAAAAAAAA</button>} */}
+
         </div>
       </div>
     </div>

@@ -3,50 +3,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import imgQrCode from "./../assets/ferramentas_qrcode.png";
 import imgQuiz from "./../assets/imgquiz.jpg";
-
-const styles = {
-  caixaFerramenta: {
-    maxWidth: "100%",
-    // height: 410,
-    flex: 5,
-    backgroundColor: "whitesmoke",
-    margin: 10,
-    padding: 15,
-    borderRadius: 5,
-    borderWdith: 1,
-    borderStyle: "solid",
-    borderColor: "#bbb",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    minHeight: 400,
-  },
-
-  imgCaixaFerramenta: {
-    width: "100%",
-    height: 200,
-    minHeight: 200,
-    resizeMode: "countain",
-    borderTopLeftRadius: 3,
-    borderTopRightRadius: 3,
-    cursor: "pointer",
-  },
-
-  textoTituloCaixaFerramenta: {
-    fontSize: 25,
-    color: "black",
-    marginTop: 2,
-    textAlign: "left",
-  },
-
-  textoCaixaFerramenta: {
-    fontSize: 18,
-    color: "black",
-    marginTop: 2,
-  },
-};
+import imgTabuleiro from "./../assets/tabuleiro.jpg";
+import ToolCard from "../components/Ferramentas/Card";
 
 const Ferramentas = () => {
+  
   const navigate = useNavigate();
 
   return (
@@ -86,56 +47,39 @@ const Ferramentas = () => {
           minHeight: 400,
         }}
       >
-        <div
-          style={styles.caixaFerramenta}
-          onClick={() =>
-            (window.location.href = "https://mulheresconectadasgame.web.app/")
+        <ToolCard
+          image={imgQrCode}
+          title={"Habilidades em programação tecnológica"}
+          description={
+            "Capacitação em Programação para Iniciantes explorando conceitos" +
+            "essenciais, criando suas primeiras linhas de código de forma" +
+            "acessível."
           }
-        >
-          <img
-            src={imgQrCode}
-            alt="aplicativo de programação com QrCode"
-            style={styles.imgCaixaFerramenta}
-          ></img>
-          <Typography variant="h2" sx={styles.textoTituloCaixaFerramenta}>
-            Habilidades em programação tecnológica
-          </Typography>
-          <Typography variant="h2" sx={styles.textoCaixaFerramenta}>
-            Capacitação em Programação para Iniciantes explorando conceitos
-            essenciais, criando suas primeiras linhas de código de forma
-            acessível.
-          </Typography>
-        </div>
-        <div style={styles.caixaFerramenta}>
-          <img
-            src={imgQuiz}
-            alt="quiz"
-            style={styles.imgCaixaFerramenta}
-          ></img>
-          <Typography variant="h2" sx={styles.textoTituloCaixaFerramenta}>
-            Quiz
-          </Typography>
-          <Typography variant="h2" sx={styles.textoCaixaFerramenta}>
-            Um quiz que irá alfabetizar as mulheres, com perguntas que tem como conteúdo
-            principal a programação.
-          </Typography>
-        </div>
-        <div
-          style={styles.caixaFerramenta}
-          onClick={() => navigate("/tabuleiro")}
-        >
-          <img
-            src="https://i.imgur.com/mVYDkjQ.png"
-            alt="https://i.imgur.com/mVYDkjQ.png"
-            style={styles.imgCaixaFerramenta}
-          ></img>
-          <Typography variant="h2" sx={styles.textoTituloCaixaFerramenta}>
-            Tabuleiro Digital
-          </Typography>
-          <Typography variant="h2" sx={styles.textoCaixaFerramenta}>
-            Um jogo de tabuleiro interativo que irá explorar diversos conceitos do mundo da tecnologia.
-          </Typography>
-        </div>
+          onClick={() => {
+            window.location.href = "https://mulheresconectadasgame.web.app/";
+          }}
+        />
+        <ToolCard
+          image={imgQuiz}
+          title={"Quiz"}
+          description={
+            "Um quiz que irá alfabetizar as mulheres, com perguntas que tem como conteúdo" +
+            "principal a programação."
+          }
+          // onClick={() => {
+          //   window.location.href = "https://mulheresconectadasgame.web.app/";
+          // }}
+        />
+        <ToolCard
+          image={imgTabuleiro}
+          title={"Tabuleiro Digital"}
+          description={
+            "Um jogo de tabuleiro interativo que irá explorar diversos conceitos do mundo da tecnologia."
+          }
+          onClick={() => {
+            navigate("/tabuleiro");
+          }}
+        />
       </div>
     </div>
   );
