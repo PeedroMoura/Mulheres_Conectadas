@@ -54,7 +54,7 @@ const SelecaoTabuleiro = () => {
           image={imgTabuleiro}
           title={"Aprenda sobre Portugol"}
           description={
-            "Um jogo de tabuleiro voltado para aprender Portugol"
+            "Um jogo de tabuleiro voltado para aprender Portugol."
           }
         //   onClick={() => {
         //     window.location.href = "https://mulheresconectadasgame.web.app/";
@@ -80,7 +80,7 @@ const SelecaoTabuleiro = () => {
           image={imgTabuleiro}
           title={"Descubra o que são Redes Socias"}
           description={
-            "Um jogo que irá te ensinar um pouco sobre as redes sociais"
+            "Um jogo que irá te ensinar um pouco sobre as redes sociais."
           }
         //   onClick={() => {
         //     navigate("/tabuleiro");
@@ -93,7 +93,7 @@ const SelecaoTabuleiro = () => {
           image={imgTabuleiro}
           title={"Conteúdo diverso - Tecnologia"}
           description={
-            "Tabuleiro com conteúdos diversos para textar seu conhecimento geral " +
+            "Tabuleiro com conteúdos diversos para testar seu conhecimento geral " +
             "sobre tipos de tecnologias."
           }
         //   onClick={() => {
