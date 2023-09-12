@@ -11,6 +11,8 @@ import { setDoc, getDoc, doc, updateDoc } from "firebase/firestore";
 import db from "../config/firebase";
 import { getAuth } from "@firebase/auth";
 
+// ======================================================================================================
+
 const Admin = () => {
   //Variavéis das trilhas e das aulas
   const [nmrTrilha, setNmrTrilha] = useState("");
@@ -30,6 +32,7 @@ const Admin = () => {
   const [subtituloSelo, setsubtituloSelo] = useState("");
   const [imagemSelo, setImagemSelo] = useState("");
 
+// ======================================================================================================
   //Criando uma trilha e salvando um objeto "aulas" com os valores inseridos
   const createTrilha = async (
     docCursos,
@@ -52,6 +55,8 @@ const Admin = () => {
       },
     });
   };
+
+// ======================================================================================================
   //Fazendo upload e adicionando novas trilhas/aulas
   const updateTrilha = async (
     docCursos,
@@ -71,6 +76,8 @@ const Admin = () => {
       },
     });
   };
+
+// ======================================================================================================
 
   const updateTelaInicialText = async () => {
     const user = getAuth().currentUser;
@@ -113,6 +120,8 @@ const Admin = () => {
     }
   };
 
+// ======================================================================================================
+
   const updateTelaInicialImg = async () => {
     const user = getAuth().currentUser;
 
@@ -141,6 +150,8 @@ const Admin = () => {
       setImagemCarrosel("");
     }
   };
+
+  // ======================================================================================================
 
   const updateTelaSelo = async () => {
     const user = getAuth().currentUser;
@@ -187,6 +198,8 @@ const Admin = () => {
       setImagemSelo("");
     }
   };
+
+  // ======================================================================================================
 
   const handleSubmitTrilha = async () => {
     if (
@@ -235,6 +248,8 @@ const Admin = () => {
       alert(erro);
     }
   };
+
+  // ======================================================================================================
 
   return (
     <>
@@ -356,6 +371,8 @@ const Admin = () => {
         </Card>
       </Box>
 
+{/* // ====================================================================================================== */}
+
       <h2 style={{ marginTop: 50, textAlign: "center", color: "purple" }}>
         Tela de início
       </h2>
@@ -416,6 +433,8 @@ const Admin = () => {
           </CardContent>
         </Card>
       </Box>
+
+{/* // ====================================================================================================== */}
 
       <h2 style={{ marginTop: 50, textAlign: "center", color: "purple" }}>
         Tela de Selos

@@ -8,6 +8,8 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { Navigate } from "react-router-dom";
 
+// ====================================================================================================== 
+
 const Footer = () => {
   const StackColumn = styled(Stack)(() => ({
     flexDirection: "column",
@@ -17,6 +19,8 @@ const Footer = () => {
     gap: 8,
     textAlign: "center",
   }));
+
+// ====================================================================================================== 
 
   const BoxRow = styled(Box)(({ theme }) => ({
     display: "flex",
@@ -28,6 +32,8 @@ const Footer = () => {
       gap: 30,
     },
   }));
+
+  // ====================================================================================================== 
 
   return (
     <BoxRow

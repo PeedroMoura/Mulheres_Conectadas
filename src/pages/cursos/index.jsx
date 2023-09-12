@@ -46,12 +46,10 @@ const Cursos = () => {
   };
 
   const handleSubmitRating = () => {
-    // Logic to submit the rating
-    // Replace this logic with your actual implementation
-
-    // Display success message
     setShowSuccessMessage(true);
   };
+
+  // ======================================================================================================
 
   useEffect(() => {
     getFirestoreData();
@@ -71,9 +69,13 @@ const Cursos = () => {
     }
   };
 
+    // ======================================================================================================
+
   const handleSnackbarClose = () => {
     setShowSuccessMessage(false);
   };
+  
+    // ======================================================================================================
 
   return (
     <Grid container spacing={2}>

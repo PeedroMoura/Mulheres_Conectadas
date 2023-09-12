@@ -6,7 +6,7 @@ import imgQuiz from "./../assets/imgquiz.jpg";
 import imgTabuleiro from "./../assets/tabuleiro.jpg";
 import ToolCard from "../components/Ferramentas/Card";
 
-const Ferramentas = () => {
+const SelecaoTabuleiro = () => {
   
   const navigate = useNavigate();
 
@@ -24,14 +24,14 @@ const Ferramentas = () => {
     >
       <div style={{ marginBottom: 30 }}>
         <Typography
-          variant="h2"
+          variant="h3"
           component="h1"
           sx={{ fontWeight: 700, color: "#fff" }}
         >
-          Ferramentas
+          Tabuleiros Digitais 
         </Typography>
         <div
-          style={{ backgroundColor: "whitesmoke", height: 1.5, width: 345 }}
+          style={{ backgroundColor: "whitesmoke", height: 1.5, width: 425, marginTop: 10 }}
         ></div>
       </div>
 
@@ -51,46 +51,61 @@ const Ferramentas = () => {
 {/* // ====================================================================================================== */}
 
         <ToolCard
-          image={imgQrCode}
-          title={"Habilidades em programação tecnológica"}
+          image={imgTabuleiro}
+          title={"Aprenda sobre Portugol"}
           description={
-            "Capacitação em Programação para Iniciantes explorando conceitos" +
-            "essenciais, criando suas primeiras linhas de código de forma" +
-            "acessível."
+            "Um jogo de tabuleiro voltado para aprender Portugol"
           }
-          onClick={() => {
-            window.location.href = "https://mulheresconectadasgame.web.app/";
-          }}
-        />
-
-{/* // ====================================================================================================== */}
-
-        <ToolCard
-          image={imgQuiz}
-          title={"Quiz"}
-          description={
-            "Um quiz que irá alfabetizar as mulheres, com perguntas que tem como conteúdo" +
-            "principal a programação."
-          }
-          // onClick={() => {
-          //   window.location.href = "https://mulheresconectadasgame.web.app/";
-          // }}
+        //   onClick={() => {
+        //     window.location.href = "https://mulheresconectadasgame.web.app/";
+        //   }}
         />
 
 {/* // ====================================================================================================== */}
 
         <ToolCard
           image={imgTabuleiro}
-          title={"Tabuleiro Digital"}
+          title={"Conheça mais sobre Html/Css"}
           description={
-            "Um jogo de tabuleiro interativo que irá explorar diversos conceitos do mundo da tecnologia."
+            "Aprenda sobre como funciona a criação de sites com Html e Css."
           }
           onClick={() => {
-            navigate("/Selecaotabuleiro");
+            navigate("/tabuleiro");
           }}
         />
+
+{/* // ====================================================================================================== */}
+
+        <ToolCard
+          image={imgTabuleiro}
+          title={"Descubra o que são Redes Socias"}
+          description={
+            "Um jogo que irá te ensinar um pouco sobre as redes sociais"
+          }
+        //   onClick={() => {
+        //     navigate("/tabuleiro");
+        //   }}
+        />
+
+{/* // ====================================================================================================== */}
+
+        <ToolCard
+          image={imgTabuleiro}
+          title={"Conteúdo diverso - Tecnologia"}
+          description={
+            "Tabuleiro com conteúdos diversos para textar seu conhecimento geral " +
+            "sobre tipos de tecnologias."
+          }
+        //   onClick={() => {
+        //     window.location.href = "https://mulheresconectadasgame.web.app/";
+        //   }}
+        />
+
+{/* // ====================================================================================================== */}
       </div>
     </div>
+
+    
   );
 };
-export default Ferramentas;
+export default SelecaoTabuleiro;

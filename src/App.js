@@ -21,6 +21,7 @@ import Selos from './pages/selos';
 import Formulario from './pages/Formulario';
 import Ferramentas from './pages/ferramentas';
 import Tabuleiro from './pages/tabuleiro';
+import SelecaoTabuleiro from './pages/selecaoTabuleiro';
 
 function App() {
   
@@ -44,6 +45,7 @@ function App() {
           <Route path='/formulario' element={<Formulario />} />
           <Route path='/ferramentas' element={<Ferramentas />} />
           <Route path='/tabuleiro' element={<Tabuleiro />} />
+          <Route path='/selecaoTabuleiro' element={<SelecaoTabuleiro />} />
           {/* <Route path='/sobre' element={<Sobre />} /> */}
           {/* <Route path='/lgpd' element={<Lgpd />} /> */}
         </Routes>

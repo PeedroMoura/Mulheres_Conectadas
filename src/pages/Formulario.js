@@ -50,6 +50,8 @@ const Formulario = () => {
       return;
     }
 
+// ======================================================================================================
+    // Configuração do emailjs
     const templateParams = {
       nome_organizacao: nomeOrganizacao,
       endereco_matriz: enderecoMatriz,
@@ -104,9 +106,13 @@ const Formulario = () => {
     // })
   };
 
+// ======================================================================================================
+
   const handleSnackbarClose = () => {
     setShowSuccessMessage(false);
   };
+
+// ======================================================================================================
 
   useEffect(() => {
     carregarPagina();
@@ -116,6 +122,8 @@ const Formulario = () => {
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
   };
+
+// ======================================================================================================
 
   return (
     <form>
@@ -143,6 +151,8 @@ const Formulario = () => {
         >
           Formulário de interesse para aquisição do Selo Mulheres Connectadas
         </Typography>
+
+{/* // ======================================================================================================   */}
 
         <Box
           component="form"
@@ -272,6 +282,8 @@ const Formulario = () => {
             autoFocus
           />
 
+{/* // ======================================================================================================  */}
+
           <Typography
             variant="h5"
             component="h6"
@@ -345,6 +357,8 @@ const Formulario = () => {
             value={paginaWebRepresentante}
             autoFocus
           />
+  
+  {/* // ======================================================================================================  */}
 
           <Typography
             variant="h5"
@@ -407,6 +421,8 @@ const Formulario = () => {
             value={emailContato}
             autoFocus
           />
+
+{/* // ======================================================================================================  */}
 
           <Button
             variant="contained"

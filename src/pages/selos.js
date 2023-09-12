@@ -8,7 +8,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 const Selos = () => {
+
   const navigate = useNavigate();
+
+// ====================================================================================================== 
+
   const CustomBox = styled(Box)(({ theme }) => ({
     minHeight: "40vh",
     display: "flex",
@@ -26,6 +30,8 @@ const Selos = () => {
     marginBottom: 90,
   }));
 
+// ====================================================================================================== 
+
   const BoxText = styled(Box)(({ theme }) => ({
     flex: "1",
     paddingLeft: theme.spacing(8),
@@ -40,7 +46,11 @@ const Selos = () => {
     },
   }));
 
+// ======================================================================================================
+
   const [textoList, setTextoList] = useState([]);
+
+// ====================================================================================================== 
 
   useEffect(() => {
     getFirestoreData();
@@ -48,7 +58,6 @@ const Selos = () => {
 
   const getFirestoreData = async () => {
     try {
-      //é aqui ne? beleza!
       const querySnapshot = await getDocs(collection(db, "telaSelo"));
       const retorno = [];
       console.log()
@@ -62,6 +71,8 @@ const Selos = () => {
       alert(erro);
     }
   };
+
+// ====================================================================================================== 
 
 
   return (
