@@ -1,8 +1,6 @@
 import { Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import imgQrCode from "./../assets/ferramentas_qrcode.png";
-import imgQuiz from "./../assets/imgquiz.jpg";
 import imgTabuleiro from "./../assets/tabuleiro.jpg";
 import ToolCard from "../components/Ferramentas/Card";
 

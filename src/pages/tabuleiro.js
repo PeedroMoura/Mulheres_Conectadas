@@ -6,9 +6,9 @@ import { Tabuleiro1 } from "../components/tabuleiro/components/matrizTabuleiro";
 const Tabuleiro = () => {
   const [diceValue, setDiceValue] = useState(null);
   const [position, setPosition] = useState(0);
-  const [ imgCard, setImgCard ] = useState(null)
-  const [ buttonCard, setButtonCard ] = useState(false)
-  const [ pinoMovendo, setPinoMovendo ] = useState(false)
+  const [imgCard, setImgCard] = useState(null);
+  const [buttonCard, setButtonCard] = useState(false);
+  const [pinoMovendo, setPinoMovendo] = useState(false);
 
   // ====================================================================================================
 
@@ -18,7 +18,7 @@ const Tabuleiro = () => {
     setDiceValue(newValue);
   };
 
-// ====================================================================================================
+  // ====================================================================================================
 
   return (
     <div
@@ -33,8 +33,7 @@ const Tabuleiro = () => {
         marginBottom: "10%",
       }}
     >
-
-{/* // ======================================================================================================       */}
+      {/* // ======================================================================================================       */}
 
       <div
         style={{
@@ -49,15 +48,33 @@ const Tabuleiro = () => {
       >
         <Tabuleiro1
           posicao={position}
-          onPinoMovendo={(movendo) => setPinoMovendo(movendo) }
+          onPinoMovendo={(movendo) => setPinoMovendo(movendo)}
           trocarCard={(card) => {
-            setImgCard(card.img)
-            setButtonCard(card.button)
+            setImgCard(card.img);
+            setButtonCard(card.button);
           }}
         />
+
+        {/* <Tabuleiro2
+          posicao={position}
+          onPinoMovendo={(movendo) => setPinoMovendo(movendo)}
+          trocarCard={(card) => {
+            setImgCard(card.img);
+            setButtonCard(card.button);
+          }}
+        />
+
+        <Tabuleiro3
+          posicao={position}
+          onPinoMovendo={(movendo) => setPinoMovendo(movendo)}
+          trocarCard={(card) => {
+            setImgCard(card.img);
+            setButtonCard(card.button);
+          }}
+        /> */}
       </div>
 
-{/* // ======================================================================================================  */}
+      {/* // ======================================================================================================  */}
 
       <div
         style={{
@@ -68,9 +85,8 @@ const Tabuleiro = () => {
           height: "100%",
         }}
       >
+        {/* // ======================================================================================================  */}
 
-{/* // ======================================================================================================  */}
-  
         <div
           style={{
             backgroundColor: "#cff8f3",
@@ -84,27 +100,29 @@ const Tabuleiro = () => {
             alignItems: "center",
           }}
         >
-          { !pinoMovendo && <button
-            onClick={rollDice}
-            style={{
-              backgroundColor: "#990099",
-              color: "white",
-              marginTop: "5%",
-              height: "30%",
-              width: "60%",
-              border: "none",
-              borderRadius: "25px",
-              fontSize: "15px",
-              fontWeight: "bold",
-              boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-              cursor: "pointer",
-              transition: "background-color 0.3s, transform 0.3s",
-            }}
-            onMouseOver={(e) => (e.target.style.backgroundColor = "#660066")}
-            onMouseLeave={(e) => (e.target.style.backgroundColor = "#990099")}
-          >
-            Jogar Dados!
-          </button>}
+          {!pinoMovendo && (
+            <button
+              onClick={rollDice}
+              style={{
+                backgroundColor: "#990099",
+                color: "white",
+                marginTop: "5%",
+                height: "30%",
+                width: "60%",
+                border: "none",
+                borderRadius: "25px",
+                fontSize: "15px",
+                fontWeight: "bold",
+                boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+                cursor: "pointer",
+                transition: "background-color 0.3s, transform 0.3s",
+              }}
+              onMouseOver={(e) => (e.target.style.backgroundColor = "#660066")}
+              onMouseLeave={(e) => (e.target.style.backgroundColor = "#990099")}
+            >
+              Jogar Dados!
+            </button>
+          )}
 
           <div
             style={{
@@ -124,7 +142,7 @@ const Tabuleiro = () => {
           </div>
         </div>
 
-{/* // ======================================================================================================  */}
+        {/* // ======================================================================================================  */}
 
         <div
           style={{
@@ -139,18 +157,18 @@ const Tabuleiro = () => {
             borderRadius: 10,
           }}
         >
-          { imgCard && <img
-            src={`/static/tabuleiro/cards1/${imgCard}`}
-            alt={`/static/tabuleiro/cards1/${imgCard}`}
-            style={{ height: "97%", width: "96%", marginTop: -2 }}
-          ></img>}
+          {imgCard && (
+            <img
+              src={`/static/tabuleiro/cards1/${imgCard}`}
+              alt={`/static/tabuleiro/cards1/${imgCard}`}
+              style={{ height: "97%", width: "96%", marginTop: -2 }}
+            ></img>
+          )}
 
           {/* { buttonCard && <button>AAAAAAAAAAAAAAA</button>} */}
-
         </div>
 
-{/* // ======================================================================================================  */}
-
+        {/* // ======================================================================================================  */}
       </div>
     </div>
   );
