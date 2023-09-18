@@ -1,9 +1,9 @@
 import React from "react";
 import { Typography } from "@mui/material";
 import { useState } from "react";
-import { Tabuleiro1 } from "../components/tabuleiro/components/matrizTabuleiro";
+import { Tabuleiro3 } from "../../components/tabuleiro/components/matrizTabuleiro3";
 
-const Tabuleiro = () => {
+const TabuleiroTela3 = () => {
   const [diceValue, setDiceValue] = useState(null);
   const [position, setPosition] = useState(0);
   const [imgCard, setImgCard] = useState(null);
@@ -46,7 +46,7 @@ const Tabuleiro = () => {
           display: "flex",
         }}
       >
-        <Tabuleiro1
+        <Tabuleiro3
           posicao={position}
           onPinoMovendo={(movendo) => setPinoMovendo(movendo)}
           trocarCard={(card) => {
@@ -173,4 +173,4 @@ const Tabuleiro = () => {
     </div>
   );
 };
-export default Tabuleiro;
+export default TabuleiroTela3;

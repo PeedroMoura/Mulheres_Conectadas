@@ -132,7 +132,7 @@ const Admin = () => {
 
     let dadosParaEnviarImgInicial = {};
 
-    if (imagemCarrosel != "") {
+    if (imagemCarrosel !== "") {
       dadosParaEnviarImgInicial = {
         ...dadosParaEnviarImgInicial,
         imgs: {

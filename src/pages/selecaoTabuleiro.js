@@ -54,9 +54,9 @@ const SelecaoTabuleiro = () => {
           description={
             "Um jogo de tabuleiro voltado para aprender Portugol."
           }
-        //   onClick={() => {
-        //     window.location.href = "https://mulheresconectadasgame.web.app/";
-        //   }}
+          onClick={() => {
+            navigate("/tabuleiro2");
+          }}
         />
 
 {/* // ====================================================================================================== */}
@@ -80,14 +80,14 @@ const SelecaoTabuleiro = () => {
           description={
             "Um jogo que irá te ensinar um pouco sobre as redes sociais."
           }
-        //   onClick={() => {
-        //     navigate("/tabuleiro");
-        //   }}
+          onClick={() => {
+            navigate("/tabuleiro3");
+          }}
         />
 
 {/* // ====================================================================================================== */}
 
-        <ToolCard
+        {/* <ToolCard
           image={imgTabuleiro}
           title={"Conteúdo diverso - Tecnologia"}
           description={
@@ -97,7 +97,7 @@ const SelecaoTabuleiro = () => {
         //   onClick={() => {
         //     window.location.href = "https://mulheresconectadasgame.web.app/";
         //   }}
-        />
+        /> */}
 
 {/* // ====================================================================================================== */}
       </div>
