@@ -85,8 +85,8 @@ const Cursos = () => {
             <ListItemButton onClick={handleExpand} style={{ display: "flex" }}>
               <ListItemIcon style={{ color: "purple" }}>
                 <ClassIcon />
-              </ListItemIcon>
-              {"Trilha " + trilha.id}
+              </ListItemIcon >
+              {"Jornada " + trilha.id}
             </ListItemButton>
             <Collapse in={expanded}>
               <List component="ul" disablePadding>
