@@ -52,7 +52,7 @@ const Ferramentas = () => {
 
         <ToolCard
           image={imgQrCode}
-          title={"Habilidades em programação tecnológica"}
+          title={"Alfabetização em programação tecnológica"}
           description={
             "Capacitação em Programação para Iniciantes explorando conceitos" +
             "essenciais, criando suas primeiras linhas de código de forma" +
