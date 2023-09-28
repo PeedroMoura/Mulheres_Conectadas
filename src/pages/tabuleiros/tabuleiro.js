@@ -55,23 +55,6 @@ const TabuleiroTela = () => {
           }}
         />
 
-        {/* <Tabuleiro2
-          posicao={position}
-          onPinoMovendo={(movendo) => setPinoMovendo(movendo)}
-          trocarCard={(card) => {
-            setImgCard(card.img);
-            setButtonCard(card.button);
-          }}
-        />
-
-        <Tabuleiro3
-          posicao={position}
-          onPinoMovendo={(movendo) => setPinoMovendo(movendo)}
-          trocarCard={(card) => {
-            setImgCard(card.img);
-            setButtonCard(card.button);
-          }}
-        /> */}
       </div>
 
       {/* // ======================================================================================================  */}

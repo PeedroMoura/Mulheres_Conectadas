@@ -136,26 +136,6 @@ const Selos = () => {
             {texto.subtituloselo}
           </Typography>  
         </Box>
-
-        {/* <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            marginLeft: "auto",
-            flexDirection: "column",
-          }}
-          component="section"
-        >
-          <img
-            src="https://gifs.eco.br/wp-content/uploads/2023/06/imagens-de-selo-png-0.png"
-            alt="selo"
-            style={{ maxHeight: 200, maxWidth: 200 }}
-          ></img>
-          <Typography variant="h5" sx={{ fontWeight: 200, color: "#fff" }}>
-            Selo 2
-          </Typography>
-        </Box> */}
       </Box>
     </CustomBox>
     ))}

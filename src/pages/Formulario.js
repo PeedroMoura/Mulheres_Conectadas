@@ -96,14 +96,6 @@ const Formulario = () => {
     setCargoContato('');
     setFoneContato('');
     setEmailContato('');
-
-    // .then((response) => {
-    //   alert('Email enviado com sucesso!');
-    //   setNomeOrganizacao('');
-    //   set
-    // }, (erro) => {
-    //   alert(erro);
-    // })
   };
 
 // ======================================================================================================
