@@ -15,7 +15,6 @@ import Cadastro from './pages/cadastro';
 import Cursos from './pages/cursos'
 import Contact from './pages/contact'
 import Mensagem from './pages/mensagem'
-import Progresso from './pages/progresso'
 import Forgot from './pages/forgot'
 import Selos from './pages/selos';
 import Formulario from './pages/Formulario';
@@ -39,7 +38,6 @@ function App() {
           <Route path='/cursos' element={<Cursos />} />
           <Route path='/quiz' element={<Quiz />} />
           <Route path='/forgot' element={<Forgot />} />
-          <Route path='/progresso' element={<Progresso />} />
           <Route path='/adminpanel' element={<Admin />} />
           <Route path='/cadastro' element={<Cadastro />} />
           <Route path='/mensagem' element={<Mensagem />} />
