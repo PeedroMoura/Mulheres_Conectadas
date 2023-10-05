@@ -2,6 +2,7 @@ import React from "react";
 import { Typography } from "@mui/material";
 import { useState } from "react";
 import { Tabuleiro1 } from "../../components/tabuleiro/components/matrizTabuleiro";
+import Lottie from "lottie-react";
 
 const TabuleiroTela = () => {
   const [diceValue, setDiceValue] = useState(null);
@@ -9,6 +10,7 @@ const TabuleiroTela = () => {
   const [imgCard, setImgCard] = useState(null);
   const [buttonCard, setButtonCard] = useState(false);
   const [pinoMovendo, setPinoMovendo] = useState(false);
+  const [confetti, setConfetti] = useState(false);
 
   // ====================================================================================================
 
@@ -16,7 +18,17 @@ const TabuleiroTela = () => {
     const newValue = Math.floor(Math.random() * 6) + 1;
     setPosition(position + newValue);
     setDiceValue(newValue);
+    if(position + newValue >= 34){
+      finalizar()
+    }
   };
+
+  const finalizar = async()=>{
+    await new Promise((resolve)=>setTimeout(resolve, 1500));
+    setConfetti(true)
+    await new Promise((resolve)=>setTimeout(resolve, 4000));
+    setConfetti(false)
+  }
 
   // ====================================================================================================
 
@@ -33,6 +45,10 @@ const TabuleiroTela = () => {
         marginBottom: "10%",
       }}
     >
+      {confetti == true &&
+        <Lottie style={{position: "absolute", zIndex: 999, width: "80%"}} onAnimationEnd={()=>alert("final")} loop={false} animationData={require("../../assets/Animation - 1696450388299.json")} loop={true} />
+      }
+      
       {/* // ======================================================================================================       */}
 
       <div
