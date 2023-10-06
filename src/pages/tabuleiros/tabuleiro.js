@@ -2,6 +2,13 @@ import React from "react";
 import { Typography } from "@mui/material";
 import { useState } from "react";
 import { Tabuleiro1 } from "../../components/tabuleiro/components/matrizTabuleiro";
+import dice1 from './../../assets/dice/dice1.png'
+import dice2 from './../../assets/dice/dice2.png'
+import dice3 from './../../assets/dice/dice3.png'
+import dice4 from './../../assets/dice/dice4.png'
+import dice5 from './../../assets/dice/dice5.png'
+import dice6 from './../../assets/dice/dice6.png'
+import diceroll from './../../assets/dice/diceroll.gif'
 import Lottie from "lottie-react";
 
 const TabuleiroTela = () => {
@@ -10,18 +17,47 @@ const TabuleiroTela = () => {
   const [imgCard, setImgCard] = useState(null);
   const [buttonCard, setButtonCard] = useState(false);
   const [pinoMovendo, setPinoMovendo] = useState(false);
+
   const [confetti, setConfetti] = useState(false);
+
+  const [rolling, setRolling] = useState(false);
+  const [dice, setDice] = useState("dice6.png");
 
   // ====================================================================================================
 
-  const rollDice = () => {
-    const newValue = Math.floor(Math.random() * 6) + 1;
-    setPosition(position + newValue);
-    setDiceValue(newValue);
-    if(position + newValue >= 34){
-      finalizar()
-    }
-  };
+  // const rollDice = () => {
+  //   const newValue = Math.floor(Math.random() * 6) + 1;
+  //   setPosition(position + newValue);
+  //   setDiceValue(newValue);
+  //   if(position + newValue >= 34){
+  //     finalizar()
+  //   }
+  // };
+
+  const rollTheDice = () => {
+    if (rolling) return;
+
+    setRolling(true);
+
+    setDice("diceroll.gif");
+
+    setTimeout(() => {
+      const newValue = Math.floor(Math.random() * 6) + 1;
+      
+      setPosition(position + newValue);
+
+      setDiceValue(newValue);
+
+      setDice(`dice${newValue}.png`);
+
+      setRolling(false);
+      
+      if(position + newValue >= 34){
+        finalizar()
+      }
+
+    }, 2500);
+  }
 
   const finalizar = async()=>{
     await new Promise((resolve)=>setTimeout(resolve, 1500));
@@ -101,7 +137,7 @@ const TabuleiroTela = () => {
         >
           {!pinoMovendo && (
             <button
-              onClick={rollDice}
+              onClick={rollTheDice}
               style={{
                 backgroundColor: "#990099",
                 color: "white",
@@ -132,12 +168,20 @@ const TabuleiroTela = () => {
               marginTop: "2%",
             }}
           >
-            <Typography variant="h6" gutterBottom>
+
+          {rolling ? ( // Se 'rolling' é verdadeiro
+              <img style={{ maxWidth: '80%', marginBottom: 5 }} src={diceroll} alt="diceroll" />
+            ) : ( // Caso contrário
+              <img style={{ maxWidth: '80%', marginBottom: 5 }} src={dice1} alt={dice1} />
+            )}
+          
+            {/* <Typography variant="h6" gutterBottom>
               Seu resultado foi:
             </Typography>
             <Typography variant="h4">
               {diceValue !== null ? diceValue : "-"}
-            </Typography>
+            </Typography> */}
+            
           </div>
         </div>
 
