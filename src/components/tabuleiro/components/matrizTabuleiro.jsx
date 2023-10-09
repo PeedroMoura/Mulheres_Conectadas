@@ -72,7 +72,7 @@ export function Tabuleiro1(props) {
     { left: 62 * 10, top: 60 * 4, numero: 30, card: { img: card[6] } },
     { left: 62 * 10, top: 60 * 3, numero: 31, card: { img: null } },
     { left: 62 * 10, top: 60 * 2, numero: 32, card: { img: card[10] } },
-    { left: 62 * 10, top: 60, numero: 33, card: { img: "fim"} },
+    { left: 62 * 10, top: 60, numero: 33, card: { img: card[2]} },
     {
       left: 62 * 10,
       top: 60 * 0,

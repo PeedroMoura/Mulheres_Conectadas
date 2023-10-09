@@ -170,9 +170,16 @@ const TabuleiroTela = () => {
           >
 
           {rolling ? ( // Se 'rolling' é verdadeiro
-              <img style={{ maxWidth: '80%', marginBottom: 5 }} src={diceroll} alt="diceroll" />
+              <img style={{ maxWidth: '130%', marginBottom: 5 }} src={diceroll} alt="diceroll" />
             ) : ( // Caso contrário
-              <img style={{ maxWidth: '80%', marginBottom: 5 }} src={dice1} alt={dice1} />
+              <>
+                {diceValue === 1 && <img style={{ maxWidth: '60%', marginBottom: 5 }} src={dice1} alt="dice1" />}
+                {diceValue === 2 && <img style={{ maxWidth: '60%', marginBottom: 5 }} src={dice2} alt="dice2" />}
+                {diceValue === 3 && <img style={{ maxWidth: '60%', marginBottom: 5 }} src={dice3} alt="dice3" />}
+                {diceValue === 4 && <img style={{ maxWidth: '60%', marginBottom: 5 }} src={dice4} alt="dice4" />}
+                {diceValue === 5 && <img style={{ maxWidth: '60%', marginBottom: 5 }} src={dice5} alt="dice5" />}
+                {diceValue === 6 && <img style={{ maxWidth: '60%', marginBottom: 5 }} src={dice6} alt="dice6" />}
+              </>
             )}
           
             {/* <Typography variant="h6" gutterBottom>

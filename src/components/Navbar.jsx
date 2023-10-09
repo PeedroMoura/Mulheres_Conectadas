@@ -105,7 +105,7 @@ const Navbar = () => {
       position="sticky"
       sx={{ backgroundColor: "white" }}
       elevation={0}
-      style={{ width: "100%", height: "80px" }}
+      style={{ width: "100%", height: "80px", zIndex:998 }}
     >
       <Toolbar>
         <Box sx={{ display: "flex", alignItems: "center" }}>
