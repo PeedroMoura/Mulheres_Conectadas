@@ -82,7 +82,8 @@ const TabuleiroTela = () => {
       }}
     >
       {confetti == true &&
-        <Lottie style={{position: "absolute", zIndex: 999, width: "80%"}} onAnimationEnd={()=>alert("final")} loop={false} animationData={require("../../assets/Animation - 1696450388299.json")}/>
+        <Lottie style={{position: "absolute", zIndex: 999, width: "80%"}} onAnimationEnd={()=>alert("final")}
+         loop={false} animationData={require("../../assets/Animation - 1696450388299.json")}/>
       }
       
       {/* // ======================================================================================================       */}

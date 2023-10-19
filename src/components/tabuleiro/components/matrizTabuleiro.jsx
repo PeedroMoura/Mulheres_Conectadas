@@ -39,7 +39,7 @@ export function Tabuleiro1(props) {
   //====================================================================
 
   const [posicoes, setPosicoes] = useState([
-    { left: 62 * 0, top: 0, numero: 0, card: { img: null } },
+    { left: 62 * 0, top: 0, numero: 0, card: { img: "card0.png" } },
     { left: 62 * 0, top: 60, numero: 1, card: { img: card[0] } },
     { left: 62 * 0, top: 60 * 2, numero: 2, card: { img: card[1] } },
     { left: 62 * 0, top: 60 * 3, numero: 3, card: { img: null } },
@@ -77,7 +77,7 @@ export function Tabuleiro1(props) {
       left: 62 * 10,
       top: 60 * 0,
       numero: 34,
-      card: { img: null, button: true },
+      card: { img: "card0.png", button: true },
     },
   ]);
 
