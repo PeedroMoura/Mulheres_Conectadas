@@ -10,12 +10,14 @@ import dice5 from './../../assets/dice/dice5.png'
 import dice6 from './../../assets/dice/dice6.png'
 import diceroll from './../../assets/dice/diceroll.gif'
 import Lottie from "lottie-react";
+import { Modal } from '@mui/material';
+import tabuleiroModal from './../../components/tabuleiro/components/tabuleiroModal';
+import TrueFalseModal from "./../../components/tabuleiro/components/tabuleiroModal";
 
 const TabuleiroTela = () => {
   const [diceValue, setDiceValue] = useState(null);
   const [position, setPosition] = useState(0);
   const [imgCard, setImgCard] = useState(null);
-  const [buttonCard, setButtonCard] = useState(false);
   const [pinoMovendo, setPinoMovendo] = useState(false);
 
   const [confetti, setConfetti] = useState(false);
@@ -25,14 +27,17 @@ const TabuleiroTela = () => {
 
   // ====================================================================================================
 
-  // const rollDice = () => {
-  //   const newValue = Math.floor(Math.random() * 6) + 1;
-  //   setPosition(position + newValue);
-  //   setDiceValue(newValue);
-  //   if(position + newValue >= 34){
-  //     finalizar()
-  //   }
-  // };
+  const [showModal, setShowModal] = useState(false);
+  const [cardModal, setCardModal] = useState(null);
+
+  const abrirModal = (card) => {
+    if(card !== null && card.pergunta !== null){
+      setCardModal(card);
+      setShowModal(true);
+    }else if(card !== null){
+      setImgCard(card.url);
+    }
+  }
 
   const rollTheDice = () => {
     if (rolling) return;
@@ -102,10 +107,7 @@ const TabuleiroTela = () => {
         <Tabuleiro1
           posicao={position}
           onPinoMovendo={(movendo) => setPinoMovendo(movendo)}
-          trocarCard={(card) => {
-            setImgCard(card.img);
-            setButtonCard(card.button);
-          }}
+          abrirModalPergunta={(card) => abrirModal(card)}
         />
 
       </div>
@@ -190,6 +192,8 @@ const TabuleiroTela = () => {
               {diceValue !== null ? diceValue : "-"}
             </Typography> */}
             
+            <TrueFalseModal card={cardModal} showModal={showModal} trocarImgCard={(card) => { setImgCard(card.url); setShowModal(false); }} />
+
           </div>
         </div>
 
@@ -216,12 +220,12 @@ const TabuleiroTela = () => {
             ></img>
           )}
 
-          {/* { buttonCard && <button>AAAAAAAAAAAAAAA</button>} */}
         </div>
 
         {/* // ======================================================================================================  */}
       </div>
     </div>
   );
+
 };
 export default TabuleiroTela;

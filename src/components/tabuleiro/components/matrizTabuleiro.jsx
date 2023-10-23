@@ -11,8 +11,27 @@ export function Tabuleiro1(props) {
 
  //====================================================================
 
-    const card = shuffleArray(["card1.png", "card2.png", "card3.png", "card4.png", "card5.png", "card6.png", "card7.png", "card8.png", "card9.png",
-     "card10.png", "card11.png", "card12.png", "card13.png", "card14.png", "card15.png", "card16.png", "card17.png", "card18.png", "card19.png", "card20.png"  
+    const card = shuffleArray([
+        {url: "card1.png", pergunta: "abc", resposta: true},   
+        {url: "card2.png", pergunta: "abc", resposta: true},   
+        {url: "card3.png", pergunta: "abc", resposta: true},   
+        {url: "card4.png", pergunta: "abc", resposta: true},   
+        {url: "card5.png", pergunta: "abc", resposta: true},   
+        {url: "card6.png", pergunta: "abc", resposta: true},   
+        {url: "card7.png", pergunta: "abc", resposta: true},   
+        {url: "card8.png", pergunta: "abc", resposta: true},   
+        {url: "card9.png", pergunta: "abc", resposta: true},   
+        {url: "card10.png", pergunta: "abc", resposta: true},   
+        {url: "card11.png", pergunta: "abc", resposta: true},   
+        {url: "card12.png", pergunta: "abc", resposta: true},   
+        {url: "card13.png", pergunta: "abc", resposta: true},   
+        {url: "card14.png", pergunta: "abc", resposta: true},   
+        {url: "card15.png", pergunta: "abc", resposta: true},   
+        {url: "card16.png", pergunta: "abc", resposta: true},   
+        {url: "card17.png", pergunta: "abc", resposta: true},   
+        {url: "card18.png", pergunta: "abc", resposta: true},   
+        {url: "card19.png", pergunta: "abc", resposta: true},   
+        {url: "card20.png", pergunta: "abc", resposta: true},   
     ])
 
     function shuffleArray(array) {
@@ -25,59 +44,48 @@ export function Tabuleiro1(props) {
       }
       
 
-    // const getCard = () => {
-        
-    //     let indexCard = Math.floor(Math.random() * card.length);
-    //     let cardSelecionado = card[indexCard];
-    //     let cards = card;
-    //     cards.splice(indexCard, 1);
-    //     setCard(cards);
-    //     return cardSelecionado;
-
-    // }
-
   //====================================================================
 
   const [posicoes, setPosicoes] = useState([
-    { left: 62 * 0, top: 0, numero: 0, card: { img: "card0.png" } },
-    { left: 62 * 0, top: 60, numero: 1, card: { img: card[0] } },
-    { left: 62 * 0, top: 60 * 2, numero: 2, card: { img: card[1] } },
-    { left: 62 * 0, top: 60 * 3, numero: 3, card: { img: null } },
-    { left: 62 * 0, top: 60 * 4, numero: 4, card: { img: card[2] } },
-    { left: 62 * 0, top: 60 * 5, numero: 5, card: { img: card[3] } },
-    { left: 62 * 1, top: 60 * 5, numero: 6, card: { img: null } },
-    { left: 62 * 2, top: 60 * 5, numero: 7, card: { img: card[4] } },
-    { left: 62 * 2, top: 60 * 4, numero: 8, card: { img: card[5] } },
-    { left: 62 * 2, top: 60 * 3, numero: 9, card: { img: null } },
-    { left: 62 * 2, top: 60 * 2, numero: 10, card: { img: card[6] } },
-    { left: 62 * 2, top: 60, numero: 11, card: { img: card[7] } },
-    { left: 62 * 3, top: 60, numero: 12, card: { img: card[8] } },
-    { left: 62 * 4, top: 60, numero: 13, card: { img: null } },
-    { left: 62 * 4, top: 60 * 2, numero: 14, card: { img: card[9] } },
-    { left: 62 * 4, top: 60 * 3, numero: 15, card: { img: card[10] } },
-    { left: 62 * 4, top: 60 * 4, numero: 16, card: { img: card[11] } },
-    { left: 62 * 4, top: 60 * 5, numero: 17, card: { img: null } },
-    { left: 62 * 5, top: 60 * 5, numero: 18, card: { img: card[12] } },
-    { left: 62 * 6, top: 60 * 5, numero: 19, card: { img: card[13] } },
-    { left: 62 * 6, top: 60 * 4, numero: 20, card: { img: null } },
-    { left: 62 * 6, top: 60 * 3, numero: 21, card: { img: card[14] } },
-    { left: 62 * 6, top: 60 * 2, numero: 22, card: { img: card[15] } },
-    { left: 62 * 6, top: 60, numero: 23, card: { img: null } },
-    { left: 62 * 7, top: 60, numero: 24, card: { img: card[16] } },
-    { left: 62 * 8, top: 60, numero: 25, card: { img: card[17] } },
-    { left: 62 * 8, top: 60 * 2, numero: 26, card: { img: card[18] } },
-    { left: 62 * 8, top: 60 * 3, numero: 27, card: { img: null } },
-    { left: 62 * 8, top: 60 * 4, numero: 28, card: { img: card[19] } },
-    { left: 62 * 9, top: 60 * 4, numero: 29, card: { img: card[1] } },
-    { left: 62 * 10, top: 60 * 4, numero: 30, card: { img: card[6] } },
-    { left: 62 * 10, top: 60 * 3, numero: 31, card: { img: null } },
-    { left: 62 * 10, top: 60 * 2, numero: 32, card: { img: card[10] } },
-    { left: 62 * 10, top: 60, numero: 33, card: { img: card[2]} },
+    { left: 62 * 0, top: 0, numero: 0, card: {url: "card0.png", pergunta: null, resposta: false} },
+    { left: 62 * 0, top: 60, numero: 1, card: card[0] },
+    { left: 62 * 0, top: 60 * 2, numero: 2, card: card[1] },
+    { left: 62 * 0, top: 60 * 3, numero: 3, card: null },
+    { left: 62 * 0, top: 60 * 4, numero: 4, card: card[2] },
+    { left: 62 * 0, top: 60 * 5, numero: 5, card: card[3] },
+    { left: 62 * 1, top: 60 * 5, numero: 6, card: null },
+    { left: 62 * 2, top: 60 * 5, numero: 7, card: card[4] },
+    { left: 62 * 2, top: 60 * 4, numero: 8, card: card[5] },
+    { left: 62 * 2, top: 60 * 3, numero: 9, card: null },
+    { left: 62 * 2, top: 60 * 2, numero: 10, card: card[6]},
+    { left: 62 * 2, top: 60, numero: 11, card: card[7] },
+    { left: 62 * 3, top: 60, numero: 12, card: card[8] },
+    { left: 62 * 4, top: 60, numero: 13, card: null },
+    { left: 62 * 4, top: 60 * 2, numero: 14, card: card[9] },
+    { left: 62 * 4, top: 60 * 3, numero: 15, card: card[10] },
+    { left: 62 * 4, top: 60 * 4, numero: 16, card: card[11] },
+    { left: 62 * 4, top: 60 * 5, numero: 17, card: null },
+    { left: 62 * 5, top: 60 * 5, numero: 18, card: card[12] },
+    { left: 62 * 6, top: 60 * 5, numero: 19, card: card[13] },
+    { left: 62 * 6, top: 60 * 4, numero: 20, card: null },
+    { left: 62 * 6, top: 60 * 3, numero: 21, card: card[14] },
+    { left: 62 * 6, top: 60 * 2, numero: 22, card: card[15] },
+    { left: 62 * 6, top: 60, numero: 23, card: null },
+    { left: 62 * 7, top: 60, numero: 24, card: card[16] },
+    { left: 62 * 8, top: 60, numero: 25, card: card[17] },
+    { left: 62 * 8, top: 60 * 2, numero: 26, card: card[18] },
+    { left: 62 * 8, top: 60 * 3, numero: 27, card: null },
+    { left: 62 * 8, top: 60 * 4, numero: 28, card: card[19] },
+    { left: 62 * 9, top: 60 * 4, numero: 29, card: card[1] },
+    { left: 62 * 10, top: 60 * 4, numero: 30, card: card[6] },
+    { left: 62 * 10, top: 60 * 3, numero: 31, card: null },
+    { left: 62 * 10, top: 60 * 2, numero: 32, card: card[10] },
+    { left: 62 * 10, top: 60, numero: 33, card: card[2] },
     {
       left: 62 * 10,
       top: 60 * 0,
       numero: 34,
-      card: { img: "card0.png", button: true },
+      card: {url: "card0.png", pergunta: null, resposta: false},
     },
   ]);
 
@@ -105,7 +113,7 @@ export function Tabuleiro1(props) {
       calcularLeft()
       calcularTop()
       if (posicao == props.posicao)
-          props.trocarCard(posicoes[posicao >= posicoes.length? 34 :  posicao].card)
+          props.abrirModalPergunta(posicoes[posicao >= posicoes.length ? (posicoes.length - 1) : posicao].card)
       else {
           if (!movendo) {
               setMovendo(true)
@@ -117,7 +125,7 @@ export function Tabuleiro1(props) {
               calcularTop()
           }
       }
-  }, [props, posicao])
+  }, [props.posicao, posicao])
 
   // ======================================================
   return (
