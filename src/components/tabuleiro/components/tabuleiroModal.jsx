@@ -1,16 +1,10 @@
 import React from 'react';
 import { Modal, Button, Box, Typography } from '@mui/material';
 
-const TrueFalseModal = ({ card, showModal, trocarImgCard, onClose }) => {
+const TrueFalseModal = ({ card, showModal, onResponder, onClose }) => {
 
   const responder = (resposta) => {
-    if(card.resposta === resposta){
-        // Se resposta correta
-    }else{
-        // Se resposta incorreta
-    }
-
-    trocarImgCard(card);
+    onResponder(card.resposta === resposta);
   }
 
   return (

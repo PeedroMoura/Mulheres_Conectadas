@@ -95,15 +95,17 @@ export function Tabuleiro1(props) {
   const calcularLeft = () => setPinoLeft(37+posicoes[posicao >= posicoes.length? 34 :  posicao].left)
 
   const pinoPassoAPasso = async (posicao) => {
-      posicao++
-      setPosicao(posicao)
-      await new Promise(resolve => setTimeout(resolve, 500))
-      if (posicao < props.posicao) 
-          pinoPassoAPasso(posicao)
-      else {
-          setMovendo(false)
-          props.onPinoMovendo(false)
-      }
+        //avança ou retrocede o pino
+        (posicao < props.posicao ? posicao++ : posicao--) 
+      
+        setPosicao(posicao)
+        await new Promise(resolve => setTimeout(resolve, 500))
+        if (posicao != props.posicao) 
+            pinoPassoAPasso(posicao)
+        else {
+            setMovendo(false)
+            props.onPinoMovendo(false)
+        }
       
           
   }

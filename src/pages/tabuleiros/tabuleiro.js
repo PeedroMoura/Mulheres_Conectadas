@@ -18,6 +18,7 @@ const TabuleiroTela = () => {
   const [diceValue, setDiceValue] = useState(null);
   const [position, setPosition] = useState(0);
   const [imgCard, setImgCard] = useState(null);
+  const [errou, setErrou] = useState(false);
   const [pinoMovendo, setPinoMovendo] = useState(false);
 
   const [confetti, setConfetti] = useState(false);
@@ -31,7 +32,7 @@ const TabuleiroTela = () => {
   const [cardModal, setCardModal] = useState(null);
 
   const abrirModal = (card) => {
-    if(card !== null && card.pergunta !== null){
+    if(!errou && card !== null && card.pergunta !== null){
       setCardModal(card);
       setShowModal(true);
     }else if(card !== null){
@@ -43,6 +44,7 @@ const TabuleiroTela = () => {
     if (rolling) return;
 
     setRolling(true);
+    setErrou(false);
 
     setDice("diceroll.gif");
 
@@ -192,7 +194,16 @@ const TabuleiroTela = () => {
               {diceValue !== null ? diceValue : "-"}
             </Typography> */}
             
-            <TrueFalseModal card={cardModal} showModal={showModal} trocarImgCard={(card) => { setImgCard(card.url); setShowModal(false); }} />
+            <TrueFalseModal  card={cardModal} showModal={showModal} onResponder={(resposta) => { 
+              if (resposta) {
+                setImgCard(cardModal.url);
+              } else {
+                setImgCard(null);
+                setErrou(true);
+                setPosition(position - diceValue);
+              }
+              setShowModal(false); 
+            }} />
 
           </div>
         </div>
