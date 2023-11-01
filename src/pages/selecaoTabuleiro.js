@@ -1,7 +1,9 @@
 import { Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import imgTabuleiro from "./../assets/tabuleiro.jpg";
+import conectaBanner from "./../assets/bannersTabuleiro/jornadabanner.jpg";
+import startBanner from "./../assets/bannersTabuleiro/startbanner.jpg";
+import alfabetizacaoBanner from "./../assets/bannersTabuleiro/alfabetizacaobanner.jpg";
 import ToolCard from "../components/Ferramentas/Card";
 
 const SelecaoTabuleiro = () => {
@@ -49,8 +51,8 @@ const SelecaoTabuleiro = () => {
 {/* // ====================================================================================================== */}
 
         <ToolCard
-          image={imgTabuleiro}
-          title={"Jornada Start"}
+          image={startBanner}
+          // title={"Jornada Start"}
           description={
             "Um jogo de tabuleiro voltado para aprender Portugol."
           }
@@ -62,8 +64,8 @@ const SelecaoTabuleiro = () => {
 {/* // ====================================================================================================== */}
 
         <ToolCard
-          image={imgTabuleiro}
-          title={"Jornada Conecta"}
+          image={conectaBanner}
+          // title={"Jornada Conecta"}
           description={
             "Aprenda sobre como funciona a criação de sites com Html e Css."
           }
@@ -75,8 +77,8 @@ const SelecaoTabuleiro = () => {
 {/* // ====================================================================================================== */}
 
         <ToolCard
-          image={imgTabuleiro}
-          title={"Alfabetização Digital"}
+          image={alfabetizacaoBanner}
+          // title={"Alfabetização Digital"}
           description={
             "Um jogo que irá te ensinar um pouco sobre as redes sociais."
           }
