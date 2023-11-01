@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useState } from "react";
 
 export function Tabuleiro3(props) {
@@ -8,113 +7,186 @@ export function Tabuleiro3(props) {
     const [ posicao, setPosicao ] = useState(0);
     const [ movendo, setMovendo ] = useState(false);
     const [ posicaoFinal, setPosicaoFinal ] = useState(props.posicao)
-    const [ posicoes, setPosicoes ] = useState([
-        {left: 62*0, top: 0, numero: 0, card: {img: null}  },
-        {left: 62*0, top: 60, numero: 1, card: {img: 'card1.png'} },
-        {left: 62*0, top: 60*2, numero: 2, card: {img: 'card2.png'}  },
-        {left: 62*0, top: 60*3, numero: 3, card: {img: null} },
-        {left: 62*0, top: 60*4, numero: 4, card: {img: 'card3.png'}  },
-        {left: 62*0, top: 60*5, numero: 5, card: {img: 'card4.png'}  },
-        {left: 62*1, top: 60*5, numero: 6, card: {img: null}  },
-        {left: 62*2, top: 60*5, numero: 7, card: {img: 'card5.png'}  },
-        {left: 62*2, top: 60*4, numero: 8, card: {img: 'card6.png'}  },
-        {left: 62*2, top: 60*3, numero: 9, card: {img: null}  },
-        {left: 62*2, top: 60*2, numero: 10, card: {img: 'card7.png'}  },
-        {left: 62*2, top: 60, numero: 11, card: {img: 'card8.png'}  },
-        {left: 62*3, top: 60, numero: 12, card: {img: 'card9.png'}  },
-        {left: 62*4, top: 60, numero: 13, card: {img: null}  },
-        {left: 62*4, top: 60*2, numero: 14, card: {img: 'card10.png'}  },
-        {left: 62*4, top: 60*3, numero: 15, card: {img: 'card11.png'}  },
-        {left: 62*4, top: 60*4, numero: 16, card: {img: 'card12.png'}  },
-        {left: 62*4, top: 60*5, numero: 17, card: {img: null}  },
-        {left: 62*5, top: 60*5, numero: 18, card: {img: 'card13.png'}  },
-        {left: 62*6, top: 60*5, numero: 19, card: {img: 'card14.png'}  },
-        {left: 62*6, top: 60*4, numero: 20, card: {img: null}  },
-        {left: 62*6, top: 60*3, numero: 21, card: {img: 'card15.png'}  },
-        {left: 62*6, top: 60*2, numero: 22, card: {img: 'card16.png'}  },
-        {left: 62*6, top: 60, numero: 23, card: {img: null}  },
-        {left: 62*7, top: 60, numero: 24, card: {img: 'card17.png'}  },
-        {left: 62*8, top: 60, numero: 25, card: {img: 'card18.png'}  },
-        {left: 62*8, top: 60*2, numero: 26, card: {img: 'card19.png'}  },
-        {left: 62*8, top: 60*3, numero: 27, card: {img: null}  },
-        {left: 62*8, top: 60*4, numero: 28, card: {img: 'card20.png'}  },
-        {left: 62*9, top: 60*4, numero: 29, card: {img: 'card1.png'}  },
-        {left: 62*10, top: 60*4, numero: 30, card: {img: 'card2.png'}  },
-        {left: 62*10, top: 60*3, numero: 31, card: {img: null}  },
-        {left: 62*10, top: 60*2, numero: 32, card: {img: 'card3.png'}  },
-        {left: 62*10, top: 60, numero: 33, card: {img: 'card6.png'}  },
-        {left: 62*10, top: 60*0, numero: 34, card: {img: null, button: true}  },
-    ])
-    //====================================================================
-    const calcularTop = () => setPinoTop(40+posicoes[posicao >= posicoes.length? 34 :  posicao].top)
-    const calcularLeft = () => setPinoLeft(37+posicoes[posicao >= posicoes.length? 34 :  posicao].left)
 
-    const pinoPassoAPasso = async (posicao) => {
-        posicao++
+ //====================================================================
+
+    const card = shuffleArray([
+        {url: "cardAlfabetizacaoDigital1.png", pergunta: "O twitter é uma rede social", resposta: true},    
+        {url: "cardAlfabetizacaoDigital9.png", pergunta: "O app Kwai é uma plataforma criada para postar fotos", resposta: false},    
+        {url: "cardAlfabetizacaoDigital11.png", pergunta: "O twitter é uma rede social que permite usuários enviar e ler mensagens curtas", resposta: true},   
+        {url: "cardAlfabetizacaoDigital19.png", pergunta: "Para usar o kwai é necessário ter uma conta no aplicativo", resposta: true},   
+        {url: "cardAlfabetizacaoDigital20.png", pergunta: "A Marca para uma start-up não tem tanta importância", resposta: false},  
+        {url: "cardAlfabetizacaoDigital21.png", pergunta: "O twitter tem como objetivo permitir que os usuários compartilhem informações em tempor real", resposta: true},   
+        {url: "cardAlfabetizacaoDigital22.png", pergunta: "Todos os perfis do Facebook são privados", resposta: false},  
+        {url: "cardAlfabetizacaoDigital23.png", pergunta: "Existem anúncios pagos no Facebook", resposta: true},   
+        {url: "cardAlfabetizacaoDigital24.png", pergunta: "No Facebook existem páginas de organizações ou figuras públicas", resposta: true},  
+        {url: "cardAlfabetizacaoDigital25.png", pergunta: "O chat GPT não consegue fornecer nenhuma informação útil", resposta: false},   
+        {url: "cardAlfabetizacaoDigital26.png", pergunta: "O chat Gpt se adéqua a necessidade específica das aplicações", resposta: true},  
+        {url: "cardAlfabetizacaoDigital27.png", pergunta: "O chat Gpt é igual a todos os outros chatbots", resposta: false},   
+        {url: "cardAlfabetizacaoDigital28.png", pergunta: "No Kwai existem várias categorias de conteúdo, como por exemplo dança, comédia, musica...", resposta: true},  
+        {url: "cardAlfabetizacaoDigital29.png", pergunta: "Manter frequência de postagem e interação com outros usuários são boas práticas no Kwai", resposta: true},   
+        {url: "cardAlfabetizacaoDigital30.png", pergunta: "As melhores práticas no twitter são: Postar pouco, não utilizar Hashtags e evitar interagir com outros usuários", resposta: false},  
+        {url: "cardAlfabetizacaoDigital31.png", pergunta: "O Facebook mensenger permite os usuários enviar mensagens de texto, vídeo ou voz", resposta: true},   
+        {url: "cardAlfabetizacaoDigital32.png", pergunta: "Clicando em no botão de joinha, você compartilha uma postagem no Faceook", resposta: false},  
+        {url: "cardAlfabetizacaoDigital33.png", pergunta: "Enviando solicitações de amizades para as pessoas, faz com que você obtenha mais amigos", resposta: true},   
+        {url: "cardAlfabetizacaoDigital34.png", pergunta: "O chatgpt foi desenvolvido pela Google", resposta: false},  
+        {url: "cardAlfabetizacaoDigital35.png", pergunta: "O chat Gpt é utilizado para diversas aplicações, como atendimento ao cliente e assistentes virtuais", resposta: true},   
+        {url: "cardAlfabetizacaoDigital36.png", pergunta: "O chat Gpt não pode ser personalizado", resposta: false},  
+        {url: "cardAlfabetizacaoDigital37.png", pergunta: "É possivel ganhar dinheiro através do Kwai", resposta: true},   
+        {url: "cardAlfabetizacaoDigital38.png", pergunta: "Um dos benefícios do Kwai é conectar pessoas de todo o mundo e aumentar a visibilidade dos criadores do conteúdo", resposta: true},  
+        {url: "cardAlfabetizacaoDigital39.png", pergunta: "O metaverso é um conceito de mundo virtual em 3D", resposta: true},    
+        {url: "cardAlfabetizacaoDigital42.png", pergunta: "Hashtags nas postagens do Facebook podem aumentar sua visibilidade", resposta: true},  
+        {url: "cardAlfabetizacaoDigital43.png", pergunta: "Stories do Instagram são postagem que duram 24hrs", resposta: true},   
+        {url: "cardAlfabetizacaoDigital44.png", pergunta: "O Instagram não podem ser utilizado para negócios", resposta: false},  
+        {url: "cardAlfabetizacaoDigital45.png", pergunta: "É possivel ganhar monetização no Instagram através de parcerias", resposta: true},   
+        {url: "cardAlfabetizacaoDigital46.png", pergunta: "O TikTok não pode ser monetizado", resposta: false},  
+        {url: "cardAlfabetizacaoDigital47.png", pergunta: "Vários talentos são descobertos através do Tiktok", resposta: true},   
+        {url: "cardAlfabetizacaoDigital48.png", pergunta: "No TikTok o usuário tem acesso a ferramentas de edição de vídeos para adicionar efeitos, filtros e música aos seus vídeos", resposta: true},  
+        {url: "cardAlfabetizacaoDigital49.png", pergunta: "O metaverso é um espaço em constante evolução, sempre avançando tecnologicamente", resposta: true},   
+        {url: "cardAlfabetizacaoDigital52.png", pergunta: "O Facebook é uma Rede Social", resposta: true},  
+        {url: "cardAlfabetizacaoDigital53.png", pergunta: "O instagram é utilizado por empresas para alcançar audiência engajada", resposta: true},   
+        {url: "cardAlfabetizacaoDigital54.png", pergunta: "O instagram é uma rede social que só é utilizada por pessoas e não empresas", resposta: false},  
+        {url: "cardAlfabetizacaoDigital56.png", pergunta: "O TikTok tem como objetivo permitir que seus usuários se divirtam através de conteúdos diversos", resposta: true},  
+        {url: "cardAlfabetizacaoDigital59.png", pergunta: "As empresas não estão investindo no metaverso", resposta: false},    
+        {url: "cardAlfabetizacaoDigital63.png", pergunta: "É possivel criar uma conta no Instagram através do app", resposta: true},   
+        {url: "cardAlfabetizacaoDigital65.png", pergunta: "Kwai é um aplicativo que serve para pedir comida", resposta: false},   
+        {url: "cardAlfabetizacaoDigital68.png", pergunta: "O metaverso pode ser usado tanto para o entretenimento quanto para a educação", resposta: true},   
+        {url: "cardAlfabetizacaoDigital69.png", pergunta: "O metaverso é 100% acessível", resposta: false},  
+        {url: "cardAlfabetizacaoDigital70.png", pergunta: "Rede social é uma plataforma online que permite pessoas se conectarem a outras", resposta: true},     
+        {url: "cardAlfabetizacaoDigital76.png", pergunta: "Equidade de gênero é a ideia de que todos os generos devem ter acesso igualitário", resposta: true},  
+        {url: "cardAlfabetizacaoDigital77.png", pergunta: "A lei de igualdade de remuneração é garantir que homens e mulheres recebam salários iguais pelo mesmo trabalho", resposta: true},   
+        {url: "cardAlfabetizacaoDigital78.png", pergunta: "Lei maria da penha foi criada em 1985", resposta: false},  
+    ])
+
+    function shuffleArray(array) {
+        const newArray = [...array];
+        for (let i = newArray.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+        }
+        return newArray;
+      }
+      
+
+  //====================================================================
+
+  const [posicoes, setPosicoes] = useState([
+    { left: 62 * 0, top: 0, numero: 0, card: {url: "card0.png", pergunta: null, resposta: false} },
+    { left: 62 * 0, top: 60, numero: 1, card: card[0] },
+    { left: 62 * 0, top: 60 * 2, numero: 2, card: card[1] },
+    { left: 62 * 0, top: 60 * 3, numero: 3, card: null },
+    { left: 62 * 0, top: 60 * 4, numero: 4, card: card[2] },
+    { left: 62 * 0, top: 60 * 5, numero: 5, card: card[3] },
+    { left: 62 * 1, top: 60 * 5, numero: 6, card: null },
+    { left: 62 * 2, top: 60 * 5, numero: 7, card: card[4] },
+    { left: 62 * 2, top: 60 * 4, numero: 8, card: card[5] },
+    { left: 62 * 2, top: 60 * 3, numero: 9, card: null },
+    { left: 62 * 2, top: 60 * 2, numero: 10, card: card[6]},
+    { left: 62 * 2, top: 60, numero: 11, card: card[7] },
+    { left: 62 * 3, top: 60, numero: 12, card: card[8] },
+    { left: 62 * 4, top: 60, numero: 13, card: null },
+    { left: 62 * 4, top: 60 * 2, numero: 14, card: card[9] },
+    { left: 62 * 4, top: 60 * 3, numero: 15, card: card[10] },
+    { left: 62 * 4, top: 60 * 4, numero: 16, card: card[11] },
+    { left: 62 * 4, top: 60 * 5, numero: 17, card: null },
+    { left: 62 * 5, top: 60 * 5, numero: 18, card: card[12] },
+    { left: 62 * 6, top: 60 * 5, numero: 19, card: card[13] },
+    { left: 62 * 6, top: 60 * 4, numero: 20, card: null },
+    { left: 62 * 6, top: 60 * 3, numero: 21, card: card[14] },
+    { left: 62 * 6, top: 60 * 2, numero: 22, card: card[15] },
+    { left: 62 * 6, top: 60, numero: 23, card: null },
+    { left: 62 * 7, top: 60, numero: 24, card: card[16] },
+    { left: 62 * 8, top: 60, numero: 25, card: card[17] },
+    { left: 62 * 8, top: 60 * 2, numero: 26, card: card[18] },
+    { left: 62 * 8, top: 60 * 3, numero: 27, card: null },
+    { left: 62 * 8, top: 60 * 4, numero: 28, card: card[19] },
+    { left: 62 * 9, top: 60 * 4, numero: 29, card: card[20] },
+    { left: 62 * 10, top: 60 * 4, numero: 30, card: card[21] },
+    { left: 62 * 10, top: 60 * 3, numero: 31, card: null },
+    { left: 62 * 10, top: 60 * 2, numero: 32, card: card[22] },
+    { left: 62 * 10, top: 60, numero: 33, card: card[23] },
+    {
+      left: 62 * 10,
+      top: 60 * 0,
+      numero: 34,
+      card: {url: "card0.png", pergunta: null, resposta: false},
+    },
+  ]);
+
+  //====================================================================
+
+  const calcularTop = () => setPinoTop(40+posicoes[posicao >= posicoes.length? 34 :  posicao].top)
+  const calcularLeft = () => setPinoLeft(37+posicoes[posicao >= posicoes.length? 34 :  posicao].left)
+
+  const pinoPassoAPasso = async (posicao) => {
+        //avança ou retrocede o pino
+        (posicao < props.posicao ? posicao++ : posicao--) 
+      
         setPosicao(posicao)
         await new Promise(resolve => setTimeout(resolve, 500))
-        if (posicao < props.posicao) 
+        if (posicao != props.posicao) 
             pinoPassoAPasso(posicao)
         else {
             setMovendo(false)
             props.onPinoMovendo(false)
         }
-            
-    }
+      
+          
+  }
 
-    //======================================================================
-    useEffect(() => {
-        calcularLeft()
-        calcularTop()
-        if (posicao == props.posicao)
-            props.trocarCard(posicoes[posicao >= posicoes.length? 34 :  posicao].card)
-        else {
-            if (!movendo) {
-                setMovendo(true)
-                props.onPinoMovendo(true)
+  //======================================================================
+  useEffect(() => {
+      calcularLeft()
+      calcularTop()
+      if (posicao == props.posicao)
+          props.abrirModalPergunta(posicoes[posicao >= posicoes.length ? (posicoes.length - 1) : posicao].card)
+      else {
+          if (!movendo) {
+              setMovendo(true)
+              props.onPinoMovendo(true)
 
-                pinoPassoAPasso(posicao)
-            } else {
-                calcularLeft()
-                calcularTop()
-            }
-        }
-    }, [props, posicao])
+              pinoPassoAPasso(posicao)
+          } else {
+              calcularLeft()
+              calcularTop()
+          }
+      }
+  }, [props.posicao, posicao])
 
-    // ======================================================
-    return (
-        <div style={{position: 'relative'}}>
-             {/* PINO */}
-             <img
-                style={
-                    {
-                        
-                        position: 'relative',
-                        width: 60,
-                        top: pinoTop,
-                        left: pinoLeft,
-                        height: 90,
-                        position: 'absolute'
-                    }
-                }
-                src="/static/tabuleiro/pino.png"
-            /> 
-            {/* TABULEIRO */}
-            <img
-                style={styles.tabuleiro}
-                src='/static/tabuleiro/tabuleiro.jpg'
+  // ======================================================
+  return (
+      <div style={{position: 'relative'}}>
+           {/* PINO */}
+           <img
+              style={
+                  {
+                      
+                      position: 'relative',
+                      width: 60,
+                      top: pinoTop,
+                      left: pinoLeft,
+                      height: 90,
+                      position: 'absolute'
+                  }
+              }
+              src="/static/tabuleiro/pino.png"
+          /> 
+          {/* TABULEIRO */}
+          <img
+              style={styles.tabuleiro}
+              src='/static/tabuleiro/tabuleiroAlfabetizacaoDigital.png'
 
-            />
+          />
 
-           
-        </div>
-    )
+         
+      </div>
+  )
 
 }
 
 const styles = {
-    tabuleiro: {
-        width:747, 
-        height: 532,
-    }
+  tabuleiro: {
+      width:747, 
+      height: 532,
+  }
 }

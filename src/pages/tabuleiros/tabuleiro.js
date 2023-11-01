@@ -225,8 +225,8 @@ const TabuleiroTela = () => {
         >
           {imgCard && (
             <img
-              src={`/static/tabuleiro/cards1/${imgCard}`}
-              alt={`/static/tabuleiro/cards1/${imgCard}`}
+              src={`/static/tabuleiro/cardsJornadaStart/${imgCard}`}
+              alt={`/static/tabuleiro/cardsJornadaStart/${imgCard}`}
               style={{ height: "97%", width: "96%", marginTop: -2 }}
             ></img>
           )}

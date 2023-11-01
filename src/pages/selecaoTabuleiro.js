@@ -50,22 +50,9 @@ const SelecaoTabuleiro = () => {
 
         <ToolCard
           image={imgTabuleiro}
-          title={"Aprenda sobre Portugol"}
+          title={"Jornada Start"}
           description={
             "Um jogo de tabuleiro voltado para aprender Portugol."
-          }
-          onClick={() => {
-            navigate("/tabuleiro2");
-          }}
-        />
-
-{/* // ====================================================================================================== */}
-
-        <ToolCard
-          image={imgTabuleiro}
-          title={"Conheça mais sobre Html/Css"}
-          description={
-            "Aprenda sobre como funciona a criação de sites com Html e Css."
           }
           onClick={() => {
             navigate("/tabuleiro");
@@ -76,7 +63,20 @@ const SelecaoTabuleiro = () => {
 
         <ToolCard
           image={imgTabuleiro}
-          title={"Descubra o que são Redes Socias"}
+          title={"Jornada Conecta"}
+          description={
+            "Aprenda sobre como funciona a criação de sites com Html e Css."
+          }
+          onClick={() => {
+            navigate("/tabuleiro2");
+          }}
+        />
+
+{/* // ====================================================================================================== */}
+
+        <ToolCard
+          image={imgTabuleiro}
+          title={"Alfabetização Digital"}
           description={
             "Um jogo que irá te ensinar um pouco sobre as redes sociais."
           }

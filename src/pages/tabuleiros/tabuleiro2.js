@@ -2,21 +2,76 @@ import React from "react";
 import { Typography } from "@mui/material";
 import { useState } from "react";
 import { Tabuleiro2 } from "../../components/tabuleiro/components/matrizTabuleiro2";
+import dice1 from './../../assets/dice/dice1.png'
+import dice2 from './../../assets/dice/dice2.png'
+import dice3 from './../../assets/dice/dice3.png'
+import dice4 from './../../assets/dice/dice4.png'
+import dice5 from './../../assets/dice/dice5.png'
+import dice6 from './../../assets/dice/dice6.png'
+import diceroll from './../../assets/dice/diceroll.gif'
+import Lottie from "lottie-react";
+import { Modal } from '@mui/material';
+import tabuleiroModal from './../../components/tabuleiro/components/tabuleiroModal';
+import TrueFalseModal from "./../../components/tabuleiro/components/tabuleiroModal";
 
 const TabuleiroTela2 = () => {
   const [diceValue, setDiceValue] = useState(null);
   const [position, setPosition] = useState(0);
   const [imgCard, setImgCard] = useState(null);
-  const [buttonCard, setButtonCard] = useState(false);
+  const [errou, setErrou] = useState(false);
   const [pinoMovendo, setPinoMovendo] = useState(false);
+
+  const [confetti, setConfetti] = useState(false);
+
+  const [rolling, setRolling] = useState(false);
+  const [dice, setDice] = useState("dice6.png");
 
   // ====================================================================================================
 
-  const rollDice = () => {
-    const newValue = Math.floor(Math.random() * 6) + 1;
-    setPosition(position + newValue);
-    setDiceValue(newValue);
-  };
+  const [showModal, setShowModal] = useState(false);
+  const [cardModal, setCardModal] = useState(null);
+
+  const abrirModal = (card) => {
+    if(!errou && card !== null && card.pergunta !== null){
+      setCardModal(card);
+      setShowModal(true);
+    }else if(card !== null){
+      setImgCard(card.url);
+    }
+  }
+
+  const rollTheDice = () => {
+    if (rolling) return;
+
+    setRolling(true);
+    setErrou(false);
+
+    setDice("diceroll.gif");
+
+    setTimeout(() => {
+      const newValue = Math.floor(Math.random() * 6) + 1;
+      
+      setPosition(position + newValue);
+
+      setDiceValue(newValue);
+
+      setDice(`dice${newValue}.png`);
+
+      setRolling(false);
+      
+      if(position + newValue >= 34){
+        finalizar()
+      }
+
+    }, 2500);
+  }
+
+  const finalizar = async()=>{
+    await new Promise((resolve)=>setTimeout(resolve, 1500));
+    setConfetti(true)
+    await new Promise((resolve)=>setTimeout(resolve, 4000));
+    setConfetti(false)
+  }
 
   // ====================================================================================================
 
@@ -33,6 +88,11 @@ const TabuleiroTela2 = () => {
         marginBottom: "10%",
       }}
     >
+      {confetti == true &&
+        <Lottie style={{position: "absolute", zIndex: 999, width: "80%"}} onAnimationEnd={()=>alert("final")}
+         loop={false} animationData={require("../../assets/Animation - 1696450388299.json")}/>
+      }
+      
       {/* // ======================================================================================================       */}
 
       <div
@@ -49,10 +109,7 @@ const TabuleiroTela2 = () => {
         <Tabuleiro2
           posicao={position}
           onPinoMovendo={(movendo) => setPinoMovendo(movendo)}
-          trocarCard={(card) => {
-            setImgCard(card.img);
-            setButtonCard(card.button);
-          }}
+          abrirModalPergunta={(card) => abrirModal(card)}
         />
 
       </div>
@@ -85,7 +142,7 @@ const TabuleiroTela2 = () => {
         >
           {!pinoMovendo && (
             <button
-              onClick={rollDice}
+              onClick={rollTheDice}
               style={{
                 backgroundColor: "#990099",
                 color: "white",
@@ -116,12 +173,38 @@ const TabuleiroTela2 = () => {
               marginTop: "2%",
             }}
           >
-            <Typography variant="h6" gutterBottom>
+
+          {rolling ? ( // Se 'rolling' é verdadeiro
+              <img style={{ maxWidth: '130%', marginBottom: 5 }} src={diceroll} alt="diceroll" />
+            ) : ( // Caso contrário
+              <>
+                {diceValue === 1 && <img style={{ maxWidth: '60%', marginBottom: 5 }} src={dice1} alt="dice1" />}
+                {diceValue === 2 && <img style={{ maxWidth: '60%', marginBottom: 5 }} src={dice2} alt="dice2" />}
+                {diceValue === 3 && <img style={{ maxWidth: '60%', marginBottom: 5 }} src={dice3} alt="dice3" />}
+                {diceValue === 4 && <img style={{ maxWidth: '60%', marginBottom: 5 }} src={dice4} alt="dice4" />}
+                {diceValue === 5 && <img style={{ maxWidth: '60%', marginBottom: 5 }} src={dice5} alt="dice5" />}
+                {diceValue === 6 && <img style={{ maxWidth: '60%', marginBottom: 5 }} src={dice6} alt="dice6" />}
+              </>
+            )}
+          
+            {/* <Typography variant="h6" gutterBottom>
               Seu resultado foi:
             </Typography>
             <Typography variant="h4">
               {diceValue !== null ? diceValue : "-"}
-            </Typography>
+            </Typography> */}
+            
+            <TrueFalseModal  card={cardModal} showModal={showModal} onResponder={(resposta) => { 
+              if (resposta) {
+                setImgCard(cardModal.url);
+              } else {
+                setImgCard(null);
+                setErrou(true);
+                setPosition(position - diceValue);
+              }
+              setShowModal(false); 
+            }} />
+
           </div>
         </div>
 
@@ -142,18 +225,18 @@ const TabuleiroTela2 = () => {
         >
           {imgCard && (
             <img
-              src={`/static/tabuleiro/cards1/${imgCard}`}
-              alt={`/static/tabuleiro/cards1/${imgCard}`}
+              src={`/static/tabuleiro/cardsJornadaConecta/${imgCard}`}
+              alt={`/static/tabuleiro/cardsJornadaConecta/${imgCard}`}
               style={{ height: "97%", width: "96%", marginTop: -2 }}
             ></img>
           )}
 
-          {/* { buttonCard && <button>AAAAAAAAAAAAAAA</button>} */}
         </div>
 
         {/* // ======================================================================================================  */}
       </div>
     </div>
   );
+
 };
 export default TabuleiroTela2;
