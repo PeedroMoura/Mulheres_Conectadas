@@ -15,6 +15,7 @@ const TrueFalseModal = ({ card, showModal, onResponder, onClose }) => {
           left: "50%",
           transform: "translate(-50%, -50%)",
           backgroundColor: "#a352a0",
+          maxWidth: "400px",
           borderRadius: "16px",
           padding: "16px",
         }}

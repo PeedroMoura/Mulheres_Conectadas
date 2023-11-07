@@ -13,6 +13,7 @@ import Lottie from "lottie-react";
 import { Modal } from '@mui/material';
 import tabuleiroModal from './../../components/tabuleiro/components/tabuleiroModal';
 import TrueFalseModal from "./../../components/tabuleiro/components/tabuleiroModal";
+import RespostaModal from "../../components/tabuleiro/components/respostaModal";
 
 const TabuleiroTela = () => {
   const [diceValue, setDiceValue] = useState(null);
@@ -27,10 +28,14 @@ const TabuleiroTela = () => {
   const [dice, setDice] = useState("dice6.png");
 
   // ====================================================================================================
-
+  //== MODAL PERGUNTA
   const [showModal, setShowModal] = useState(false);
   const [cardModal, setCardModal] = useState(null);
-
+  //== MODAL RESULTADO
+  const [showModalResult, setShowModalResult] = useState(false);
+  const [ isRespostaCorreta, setIsRespostaCorreta ] = useState(false);
+ 
+  // ================
   const abrirModal = (card) => {
     if(!errou && card !== null && card.pergunta !== null){
       setCardModal(card);
@@ -201,9 +206,18 @@ const TabuleiroTela = () => {
                 setImgCard(null);
                 setErrou(true);
                 setPosition(position - diceValue);
+                setImgCard("card0.png");
               }
+              setIsRespostaCorreta(resposta);
               setShowModal(false); 
+              setShowModalResult(true);
             }} />
+
+            <RespostaModal card={cardModal} showModalResult={showModalResult} respostaCorreta={isRespostaCorreta}
+                onClose={() => setShowModalResult(false)}
+            />
+              
+ 
 
           </div>
         </div>

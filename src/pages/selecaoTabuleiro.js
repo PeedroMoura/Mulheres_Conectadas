@@ -54,7 +54,7 @@ const SelecaoTabuleiro = () => {
           image={startBanner}
           // title={"Jornada Start"}
           description={
-            "Um jogo de tabuleiro voltado para aprender Portugol."
+            "É hora de decolar! Na Jornada Start, você se encontrará no caminho para se tornar uma líder inspiradora. Através de nossos cursos dinâmicos e  você desenvolverá habilidades de liderança essenciais, aprenderá a se destacar."
           }
           onClick={() => {
             navigate("/tabuleiro");
@@ -67,7 +67,7 @@ const SelecaoTabuleiro = () => {
           image={conectaBanner}
           // title={"Jornada Conecta"}
           description={
-            "Aprenda sobre como funciona a criação de sites com Html e Css."
+            "Preparada para empreender? A Jornada Conecta é a sua passagem para o mundo do empreendedorismo. Descubra como transformar suas ideias em negócios com orientação especializada e recursos que o ajudarão a trilhar o caminho ."
           }
           onClick={() => {
             navigate("/tabuleiro2");
@@ -80,7 +80,7 @@ const SelecaoTabuleiro = () => {
           image={alfabetizacaoBanner}
           // title={"Alfabetização Digital"}
           description={
-            "Um jogo que irá te ensinar um pouco sobre as redes sociais."
+            "No mundo digital de hoje, a alfabetização digital é essencial. Nossa jornada de Alfabetização Digital oferece atividades práticas para fortalecer suas habilidades tecnológicas essenciais para o mercado de trabalho."
           }
           onClick={() => {
             navigate("/tabuleiro3");

@@ -11,7 +11,7 @@ export function Tabuleiro1(props) {
  //====================================================================
 
     const card = shuffleArray([
-        {url: "cardJornadaStart1.png", pergunta: "A angenda 2030 é uma ação global que estabelece os objetivos de desenvolvimento", resposta: true},
+        {url: "cardJornadaStart1.png", pergunta: "A agenda 2030 é uma ação global que estabelece os objetivos de desenvolvimento", resposta: true},
         {url: "cardJornadaStart2.png", pergunta: "O pacto global é uma iniciativa da onu para mobilizar empresas a adotarem práticas sustentáveis", resposta: true},   
         {url: "cardJornadaStart3.png", pergunta: "ODS são 15 objetivos de desenvolvimento sustentável", resposta: false},   
         {url: "cardJornadaStart4.png", pergunta: "Políticas públicas são projetos e programas desenvolvidos pelos municípios", resposta: false},   
@@ -155,7 +155,7 @@ export function Tabuleiro1(props) {
           {/* TABULEIRO */}
           <img
               style={styles.tabuleiro}
-              src='/static/tabuleiro/tabuleiroJornadaStart.jpg'
+              src='/static/tabuleiro/tabuleiroJornadaStart.png'
 
           />
 
