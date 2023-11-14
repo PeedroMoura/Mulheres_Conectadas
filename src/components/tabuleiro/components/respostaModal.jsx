@@ -18,7 +18,9 @@ const RespostaModal = ({
       >
         Resposta correta!
       </Typography>
-      { card && <img src={`/static/tabuleiro/cardsJornadaStart/${card.url}`} height="300" alt={card.titulo} />}
+      { card && <img src={`/static/tabuleiro/cardsJornadaStart/${card.url}`} height="550" alt={card.titulo} />}
+      { card && <img src={`/static/tabuleiro/cardsJornadaConecta/${card.url}`} height="550" alt={card.titulo} />}
+      { card && <img src={`/static/tabuleiro/cardsJornadaAlfabetizacaoDigital/${card.url}`} height="550" alt={card.titulo} />}
     </>
   ) : (
     <>
