@@ -11,12 +11,12 @@ export function Tabuleiro1(props) {
  //====================================================================
 
     const card = shuffleArray([
-        {url: "cardJornadaStart1.png", pergunta: "A agenda 2030 é uma ação global que estabelece os objetivos de desenvolvimento", resposta: true},
-        {url: "cardJornadaStart2.png", pergunta: "O pacto global é uma iniciativa da onu para mobilizar empresas a adotarem práticas sustentáveis", resposta: true},   
-        {url: "cardJornadaStart3.png", pergunta: "ODS são 15 objetivos de desenvolvimento sustentável", resposta: false},   
-        {url: "cardJornadaStart4.png", pergunta: "Políticas públicas são projetos e programas desenvolvidos pelos municípios", resposta: false},   
-        {url: "cardJornadaStart5.png", pergunta: "Os 3 pilares da sustentabilidades são: Ambiental, Social e Econômico", resposta: true},
-        {url: "cardJornadaStart6.png", pergunta: "ESG significa Ambiental, Social e Governança", resposta: true},         
+        {url: "cardsJornadaStart/cardJornadaStart1.png", pergunta: "A agenda 2030 é uma ação global que estabelece os objetivos de desenvolvimento", resposta: true},
+        {url: "cardsJornadaStart/cardJornadaStart2.png", pergunta: "O pacto global é uma iniciativa da onu para mobilizar empresas a adotarem práticas sustentáveis", resposta: true},   
+        {url: "cardsJornadaStart/cardJornadaStart3.png", pergunta: "ODS são 15 objetivos de desenvolvimento sustentável", resposta: false},   
+        {url: "cardsJornadaStart/cardJornadaStart4.png", pergunta: "Políticas públicas são projetos e programas desenvolvidos pelos municípios", resposta: false},   
+        {url: "cardsJornadaStart/cardJornadaStart5.png", pergunta: "Os 3 pilares da sustentabilidades são: Ambiental, Social e Econômico", resposta: true},
+        {url: "cardsJornadaStart/cardJornadaStart6.png", pergunta: "ESG significa Ambiental, Social e Governança", resposta: true},         
         // {url: "card1.png", pergunta: "HTML siguinifica: HyperText Markup Lenguage", resposta: true},   
         // {url: "card2.png", pergunta: "As tags HTML são colocadas entre ()", resposta: false},   
         // {url: "card3.png", pergunta: "Para se criar um titulo principal em HTML utiliza a tag <h1>", resposta: true},   
@@ -52,7 +52,7 @@ export function Tabuleiro1(props) {
   //====================================================================
 
   const [posicoes, setPosicoes] = useState([
-    { left: 62 * 0, top: 0, numero: 0, card: {url: "card0.png", pergunta: null, resposta: false} },
+    { left: 62 * 0, top: 0, numero: 0, card: {url: "cardsJornadaStart/card0.png", pergunta: null, resposta: false} },
     { left: 62 * 0, top: 60, numero: 1, card: card[0] },
     { left: 62 * 0, top: 60 * 2, numero: 2, card: card[1] },
     { left: 62 * 0, top: 60 * 3, numero: 3, card: null },
@@ -90,7 +90,7 @@ export function Tabuleiro1(props) {
       left: 62 * 10,
       top: 60 * 0,
       numero: 34,
-      card: {url: "card0.png", pergunta: null, resposta: false},
+      card: {url: "cardsJornadaStart/card0.png", pergunta: null, resposta: false},
     },
   ]);
 

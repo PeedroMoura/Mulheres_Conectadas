@@ -2,17 +2,18 @@ import React from "react";
 import { Typography } from "@mui/material";
 import { useState } from "react";
 import { Tabuleiro3 } from "../../components/tabuleiro/components/matrizTabuleiro3";
-import dice1 from './../../assets/dice/dice1.png'
-import dice2 from './../../assets/dice/dice2.png'
-import dice3 from './../../assets/dice/dice3.png'
-import dice4 from './../../assets/dice/dice4.png'
-import dice5 from './../../assets/dice/dice5.png'
-import dice6 from './../../assets/dice/dice6.png'
-import diceroll from './../../assets/dice/diceroll.gif'
+import dice1 from "./../../assets/dice/dice1.png";
+import dice2 from "./../../assets/dice/dice2.png";
+import dice3 from "./../../assets/dice/dice3.png";
+import dice4 from "./../../assets/dice/dice4.png";
+import dice5 from "./../../assets/dice/dice5.png";
+import dice6 from "./../../assets/dice/dice6.png";
+import diceroll from "./../../assets/dice/diceroll.gif";
 import Lottie from "lottie-react";
-import { Modal } from '@mui/material';
-import tabuleiroModal from './../../components/tabuleiro/components/tabuleiroModal';
+import { Modal } from "@mui/material";
+import tabuleiroModal from "./../../components/tabuleiro/components/tabuleiroModal";
 import TrueFalseModal from "./../../components/tabuleiro/components/tabuleiroModal";
+import RespostaModal from "../../components/tabuleiro/components/respostaModal";
 
 const TabuleiroTela3 = () => {
   const [diceValue, setDiceValue] = useState(null);
@@ -27,18 +28,23 @@ const TabuleiroTela3 = () => {
   const [dice, setDice] = useState("dice6.png");
 
   // ====================================================================================================
-
+  //== MODAL PERGUNTA
   const [showModal, setShowModal] = useState(false);
   const [cardModal, setCardModal] = useState(null);
+  //== MODAL RESULTADO
+  const [showModalResult, setShowModalResult] = useState(false);
+  const [isRespostaCorreta, setIsRespostaCorreta] = useState(false);
+
+  // ================
 
   const abrirModal = (card) => {
-    if(!errou && card !== null && card.pergunta !== null){
+    if (!errou && card !== null && card.pergunta !== null) {
       setCardModal(card);
       setShowModal(true);
-    }else if(card !== null){
+    } else if (card !== null) {
       setImgCard(card.url);
     }
-  }
+  };
 
   const rollTheDice = () => {
     if (rolling) return;
@@ -50,7 +56,7 @@ const TabuleiroTela3 = () => {
 
     setTimeout(() => {
       const newValue = Math.floor(Math.random() * 6) + 1;
-      
+
       setPosition(position + newValue);
 
       setDiceValue(newValue);
@@ -58,20 +64,19 @@ const TabuleiroTela3 = () => {
       setDice(`dice${newValue}.png`);
 
       setRolling(false);
-      
-      if(position + newValue >= 34){
-        finalizar()
+
+      if (position + newValue >= 34) {
+        finalizar();
       }
-
     }, 2500);
-  }
+  };
 
-  const finalizar = async()=>{
-    await new Promise((resolve)=>setTimeout(resolve, 1500));
-    setConfetti(true)
-    await new Promise((resolve)=>setTimeout(resolve, 4000));
-    setConfetti(false)
-  }
+  const finalizar = async () => {
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    setConfetti(true);
+    await new Promise((resolve) => setTimeout(resolve, 4000));
+    setConfetti(false);
+  };
 
   // ====================================================================================================
 
@@ -88,11 +93,15 @@ const TabuleiroTela3 = () => {
         marginBottom: "10%",
       }}
     >
-      {confetti == true &&
-        <Lottie style={{position: "absolute", zIndex: 999, width: "80%"}} onAnimationEnd={()=>alert("final")}
-         loop={false} animationData={require("../../assets/Animation - 1696450388299.json")}/>
-      }
-      
+      {confetti == true && (
+        <Lottie
+          style={{ position: "absolute", zIndex: 999, width: "80%" }}
+          onAnimationEnd={() => alert("final")}
+          loop={false}
+          animationData={require("../../assets/Animation - 1696450388299.json")}
+        />
+      )}
+
       {/* // ======================================================================================================       */}
 
       <div
@@ -111,7 +120,6 @@ const TabuleiroTela3 = () => {
           onPinoMovendo={(movendo) => setPinoMovendo(movendo)}
           abrirModalPergunta={(card) => abrirModal(card)}
         />
-
       </div>
 
       {/* // ======================================================================================================  */}
@@ -173,38 +181,91 @@ const TabuleiroTela3 = () => {
               marginTop: "2%",
             }}
           >
-
-          {rolling ? ( // Se 'rolling' é verdadeiro
-              <img style={{ maxWidth: '130%', marginBottom: 5 }} src={diceroll} alt="diceroll" />
-            ) : ( // Caso contrário
+            {rolling ? ( // Se 'rolling' é verdadeiro
+              <img
+                style={{ maxWidth: "130%", marginBottom: 5 }}
+                src={diceroll}
+                alt="diceroll"
+              />
+            ) : (
+              // Caso contrário
               <>
-                {diceValue === 1 && <img style={{ maxWidth: '60%', marginBottom: 5 }} src={dice1} alt="dice1" />}
-                {diceValue === 2 && <img style={{ maxWidth: '60%', marginBottom: 5 }} src={dice2} alt="dice2" />}
-                {diceValue === 3 && <img style={{ maxWidth: '60%', marginBottom: 5 }} src={dice3} alt="dice3" />}
-                {diceValue === 4 && <img style={{ maxWidth: '60%', marginBottom: 5 }} src={dice4} alt="dice4" />}
-                {diceValue === 5 && <img style={{ maxWidth: '60%', marginBottom: 5 }} src={dice5} alt="dice5" />}
-                {diceValue === 6 && <img style={{ maxWidth: '60%', marginBottom: 5 }} src={dice6} alt="dice6" />}
+                {diceValue === 1 && (
+                  <img
+                    style={{ maxWidth: "60%", marginBottom: 5 }}
+                    src={dice1}
+                    alt="dice1"
+                  />
+                )}
+                {diceValue === 2 && (
+                  <img
+                    style={{ maxWidth: "60%", marginBottom: 5 }}
+                    src={dice2}
+                    alt="dice2"
+                  />
+                )}
+                {diceValue === 3 && (
+                  <img
+                    style={{ maxWidth: "60%", marginBottom: 5 }}
+                    src={dice3}
+                    alt="dice3"
+                  />
+                )}
+                {diceValue === 4 && (
+                  <img
+                    style={{ maxWidth: "60%", marginBottom: 5 }}
+                    src={dice4}
+                    alt="dice4"
+                  />
+                )}
+                {diceValue === 5 && (
+                  <img
+                    style={{ maxWidth: "60%", marginBottom: 5 }}
+                    src={dice5}
+                    alt="dice5"
+                  />
+                )}
+                {diceValue === 6 && (
+                  <img
+                    style={{ maxWidth: "60%", marginBottom: 5 }}
+                    src={dice6}
+                    alt="dice6"
+                  />
+                )}
               </>
             )}
-          
+
             {/* <Typography variant="h6" gutterBottom>
               Seu resultado foi:
             </Typography>
             <Typography variant="h4">
               {diceValue !== null ? diceValue : "-"}
             </Typography> */}
-            
-            <TrueFalseModal  card={cardModal} showModal={showModal} onResponder={(resposta) => { 
-              if (resposta) {
-                setImgCard(cardModal.url);
-              } else {
-                setImgCard(null);
-                setErrou(true);
-                setPosition(position - diceValue);
-              }
-              setShowModal(false); 
-            }} />
 
+            <TrueFalseModal
+              card={cardModal}
+              showModal={showModal}
+              onResponder={(resposta) => {
+                if (resposta) {
+                  setImgCard(cardModal.url);
+                } else {
+                  setImgCard(null);
+                  setErrou(true);
+                  setPosition(position - diceValue);
+                  setImgCard("cardsJornadaAlfabetizacaoDigital/card0.png");
+                }
+                setIsRespostaCorreta(resposta);
+                setShowModal(false);
+                setShowModalResult(true);
+              }}
+            />
+
+            <RespostaModal
+              card={cardModal}
+              showModalResult={showModalResult}
+              respostaCorreta={isRespostaCorreta}
+              onClose={() => setShowModalResult(false)}
+            />
           </div>
         </div>
 
@@ -225,18 +286,16 @@ const TabuleiroTela3 = () => {
         >
           {imgCard && (
             <img
-              src={`/static/tabuleiro/cardsJornadaAlfabetizacaoDigital/${imgCard}`}
-              alt={`/static/tabuleiro/cardsJornadaAlfabetizacaoDigital/${imgCard}`}
+              src={`/static/tabuleiro/${imgCard}`}
+              alt={`/static/tabuleiro/${imgCard}`}
               style={{ height: "97%", width: "96%", marginTop: -2 }}
             ></img>
           )}
-
         </div>
 
         {/* // ======================================================================================================  */}
       </div>
     </div>
   );
-
 };
 export default TabuleiroTela3;

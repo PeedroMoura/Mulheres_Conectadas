@@ -8,14 +8,14 @@ export function Tabuleiro2(props) {
     const [ movendo, setMovendo ] = useState(false);
     const [ posicaoFinal, setPosicaoFinal ] = useState(props.posicao)
 
- //====================================================================
+ //============================ ========================================
 
     const card = shuffleArray([
-        {url: "cardJornadaConecta1.png", pergunta: "Plataforma promove interações e transações entre seus usuários", resposta: true},   
-        {url: "cardJornadaConecta2.png", pergunta: "MarketPlace é um espaço epenas de compras, não de vendas", resposta: false},   
-        {url: "cardJornadaConecta3.png", pergunta: "Um navegador permite acessar e vizualizar páginas da web", resposta: true},   
-        {url: "cardJornadaConecta4.png", pergunta: "LandPage não é uma página estática", resposta: false},   
-        {url: "cardJornadaConecta5.png", pergunta: "App é um software desenvolvido para dispositivos móveis", resposta: true},   
+        {url: "cardsJornadaConecta/cardJornadaConecta1.png", pergunta: "Plataforma promove interações e transações entre seus usuários", resposta: true},   
+        {url: "cardsJornadaConecta/cardJornadaConecta2.png", pergunta: "MarketPlace é um espaço epenas de compras, não de vendas", resposta: false},   
+        {url: "cardsJornadaConecta/cardJornadaConecta3.png", pergunta: "Um navegador permite acessar e vizualizar páginas da web", resposta: true},   
+        {url: "cardsJornadaConecta/cardJornadaConecta4.png", pergunta: "LandPage não é uma página estática", resposta: false},   
+        {url: "cardsJornadaConecta/cardJornadaConecta5.png", pergunta: "App é um software desenvolvido para dispositivos móveis", resposta: true},   
     ])
 
     function shuffleArray(array) {
@@ -31,7 +31,7 @@ export function Tabuleiro2(props) {
   //====================================================================
 
   const [posicoes, setPosicoes] = useState([
-    { left: 62 * 0, top: 0, numero: 0, card: {url: "card0.png", pergunta: null, resposta: false} },
+    { left: 62 * 0, top: 0, numero: 0, card: {url: "cardsJornadaConecta/card0.png", pergunta: null, resposta: false} },
     { left: 62 * 0, top: 60, numero: 1, card: card[0] },
     { left: 62 * 0, top: 60 * 2, numero: 2, card: card[1] },
     { left: 62 * 0, top: 60 * 3, numero: 3, card: null },
@@ -69,7 +69,7 @@ export function Tabuleiro2(props) {
       left: 62 * 10,
       top: 60 * 0,
       numero: 34,
-      card: {url: "card0.png", pergunta: null, resposta: false},
+      card: {url: "cardsJornadaConecta/card0.png", pergunta: null, resposta: false},
     },
   ]);
 
