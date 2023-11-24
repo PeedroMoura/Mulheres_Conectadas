@@ -18,7 +18,13 @@ const RespostaModal = ({
       >
         Resposta correta!
       </Typography>
+<<<<<<< HEAD
       { card && <img src={`/static/tabuleiro/${card.url}`} height="550" alt={card.titulo} />}
+=======
+      { card && <img src={`/static/tabuleiro/cardsJornadaStart/${card.url}`} height="550" alt={card.titulo} />}
+      { card && <img src={`/static/tabuleiro/cardsJornadaConecta/${card.url}`} height="550" alt={card.titulo} />}
+      { card && <img src={`/static/tabuleiro/cardsJornadaAlfabetizacaoDigital/${card.url}`} height="550" alt={card.titulo} />}
+>>>>>>> 296b508737b3f0e8d8996095c226ca5f8ddf7294
     </>
   ) : (
     <>
