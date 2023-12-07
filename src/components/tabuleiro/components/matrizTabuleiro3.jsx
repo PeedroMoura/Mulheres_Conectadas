@@ -58,6 +58,19 @@ export function Tabuleiro3(props) {
         {url: "cardsJornadaAlfabetizacaoDigital/cardAlfabetizacaoDigital78.png", pergunta: "Lei maria da penha foi criada em 1985", resposta: false},  
     ])
 
+    const banner = [
+        { url: "cardsJornadaAlfabetizacaoDigital/banner1.jpg" },
+        { url: "cardsJornadaStart/banner2.png" },
+        { url: "cardsJornadaStart/banner3.png" },
+        { url: "cardsJornadaStart/banner4.png" },
+        { url: "cardsJornadaStart/banner5.png" },
+        { url: "cardsJornadaStart/banner6.png" },
+        { url: "cardsJornadaStart/banner7.png" },
+        { url: "cardsJornadaStart/banner8.png" },
+        { url: "cardsJornadaStart/banner9.png" },
+        { url: "cardsJornadaStart/banner10.png" },
+      ];
+
     function shuffleArray(array) {
         const newArray = [...array];
         for (let i = newArray.length - 1; i > 0; i--) {
@@ -74,35 +87,35 @@ export function Tabuleiro3(props) {
     { left: 62 * 0, top: 0, numero: 0, card: {url: "cardsJornadaAlfabetizacaoDigital/card0.png", pergunta: null, resposta: false} },
     { left: 62 * 0, top: 60, numero: 1, card: card[0] },
     { left: 62 * 0, top: 60 * 2, numero: 2, card: card[1] },
-    { left: 62 * 0, top: 60 * 3, numero: 3, card: null },
+    { left: 62 * 0, top: 60 * 3, numero: 3, card: null, banner: banner[0] },
     { left: 62 * 0, top: 60 * 4, numero: 4, card: card[2] },
     { left: 62 * 0, top: 60 * 5, numero: 5, card: card[3] },
-    { left: 62 * 1, top: 60 * 5, numero: 6, card: null },
+    { left: 62 * 1, top: 60 * 5, numero: 6, card: null, banner: banner[0] },
     { left: 62 * 2, top: 60 * 5, numero: 7, card: card[4] },
     { left: 62 * 2, top: 60 * 4, numero: 8, card: card[5] },
-    { left: 62 * 2, top: 60 * 3, numero: 9, card: null },
+    { left: 62 * 2, top: 60 * 3, numero: 9, card: null, banner: banner[0] },
     { left: 62 * 2, top: 60 * 2, numero: 10, card: card[6]},
     { left: 62 * 2, top: 60, numero: 11, card: card[7] },
     { left: 62 * 3, top: 60, numero: 12, card: card[8] },
-    { left: 62 * 4, top: 60, numero: 13, card: null },
+    { left: 62 * 4, top: 60, numero: 13, card: null, banner: banner[0] },
     { left: 62 * 4, top: 60 * 2, numero: 14, card: card[9] },
     { left: 62 * 4, top: 60 * 3, numero: 15, card: card[10] },
     { left: 62 * 4, top: 60 * 4, numero: 16, card: card[11] },
-    { left: 62 * 4, top: 60 * 5, numero: 17, card: null },
+    { left: 62 * 4, top: 60 * 5, numero: 17, card: null, banner: banner[0] },
     { left: 62 * 5, top: 60 * 5, numero: 18, card: card[12] },
     { left: 62 * 6, top: 60 * 5, numero: 19, card: card[13] },
-    { left: 62 * 6, top: 60 * 4, numero: 20, card: null },
+    { left: 62 * 6, top: 60 * 4, numero: 20, card: null, banner: banner[0] },
     { left: 62 * 6, top: 60 * 3, numero: 21, card: card[14] },
     { left: 62 * 6, top: 60 * 2, numero: 22, card: card[15] },
-    { left: 62 * 6, top: 60, numero: 23, card: null },
+    { left: 62 * 6, top: 60, numero: 23, card: null, banner: banner[0] },
     { left: 62 * 7, top: 60, numero: 24, card: card[16] },
     { left: 62 * 8, top: 60, numero: 25, card: card[17] },
     { left: 62 * 8, top: 60 * 2, numero: 26, card: card[18] },
-    { left: 62 * 8, top: 60 * 3, numero: 27, card: null },
+    { left: 62 * 8, top: 60 * 3, numero: 27, card: null, banner: banner[0] },
     { left: 62 * 8, top: 60 * 4, numero: 28, card: card[19] },
     { left: 62 * 9, top: 60 * 4, numero: 29, card: card[20] },
     { left: 62 * 10, top: 60 * 4, numero: 30, card: card[21] },
-    { left: 62 * 10, top: 60 * 3, numero: 31, card: null },
+    { left: 62 * 10, top: 60 * 3, numero: 31, card: null, banner: banner[0] },
     { left: 62 * 10, top: 60 * 2, numero: 32, card: card[22] },
     { left: 62 * 10, top: 60, numero: 33, card: card[23] },
     {
@@ -136,22 +149,25 @@ export function Tabuleiro3(props) {
 
   //======================================================================
   useEffect(() => {
-      calcularLeft()
-      calcularTop()
-      if (posicao == props.posicao)
-          props.abrirModalPergunta(posicoes[posicao >= posicoes.length ? (posicoes.length - 1) : posicao].card)
-      else {
-          if (!movendo) {
-              setMovendo(true)
-              props.onPinoMovendo(true)
+    calcularLeft();
+    calcularTop();
+    if (posicao == props.posicao) {
+      // Passa os dados da casa do tabuleiro pra abrir o modal de acordo com as condições
+      props.abrirModal(
+        posicoes[posicao >= posicoes.length ? posicoes.length - 1 : posicao]
+      );
+    } else {
+      if (!movendo) {
+        setMovendo(true);
+        props.onPinoMovendo(true);
 
-              pinoPassoAPasso(posicao)
-          } else {
-              calcularLeft()
-              calcularTop()
-          }
+        pinoPassoAPasso(posicao);
+      } else {
+        calcularLeft();
+        calcularTop();
       }
-  }, [props.posicao, posicao])
+    }
+  }, [props.posicao, posicao]);
 
   // ======================================================
   return (

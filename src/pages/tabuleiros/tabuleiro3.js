@@ -14,11 +14,13 @@ import { Modal } from "@mui/material";
 import tabuleiroModal from "./../../components/tabuleiro/components/tabuleiroModal";
 import TrueFalseModal from "./../../components/tabuleiro/components/tabuleiroModal";
 import RespostaModal from "../../components/tabuleiro/components/respostaModal";
+import BannerModal from "../../components/tabuleiro/components/bannerModal";
 
 const TabuleiroTela3 = () => {
   const [diceValue, setDiceValue] = useState(null);
   const [position, setPosition] = useState(0);
   const [imgCard, setImgCard] = useState(null);
+  const [imgBanner, setImgBanner] = useState(undefined);
   const [errou, setErrou] = useState(false);
   const [pinoMovendo, setPinoMovendo] = useState(false);
 
@@ -36,13 +38,21 @@ const TabuleiroTela3 = () => {
   const [isRespostaCorreta, setIsRespostaCorreta] = useState(false);
 
   // ================
-
-  const abrirModal = (card) => {
-    if (!errou && card !== null && card.pergunta !== null) {
-      setCardModal(card);
+  const abrirModal = (dadosCasaTabuleiro) => {
+    if (
+      !errou &&
+      dadosCasaTabuleiro.card !== null &&
+      dadosCasaTabuleiro.card.pergunta !== null
+    ) {
+      // Se tiver uma pergunta
+      setCardModal(dadosCasaTabuleiro.card);
       setShowModal(true);
-    } else if (card !== null) {
-      setImgCard(card.url);
+    } else if (errou == false && dadosCasaTabuleiro.banner !== undefined) {
+      // Se não tiver uma pergunta, mas tiver um banner e não tiver errado na última jogada
+      setImgBanner(dadosCasaTabuleiro.banner.url);
+    } else if (dadosCasaTabuleiro.card !== null) {
+      // Se não tiver nada
+      setImgCard(dadosCasaTabuleiro.card.url);
     }
   };
 
@@ -118,7 +128,7 @@ const TabuleiroTela3 = () => {
         <Tabuleiro3
           posicao={position}
           onPinoMovendo={(movendo) => setPinoMovendo(movendo)}
-          abrirModalPergunta={(card) => abrirModal(card)}
+          abrirModal={(dadosCasaTabuleiro) => abrirModal(dadosCasaTabuleiro)}
         />
       </div>
 
@@ -266,6 +276,12 @@ const TabuleiroTela3 = () => {
               respostaCorreta={isRespostaCorreta}
               onClose={() => setShowModalResult(false)}
             />
+
+            <BannerModal
+              bannerURL={imgBanner !== undefined ? imgBanner : ""}
+              showModalBanner={imgBanner !== undefined}
+              onClose={() => setImgBanner(undefined)}
+            />
           </div>
         </div>
 
@@ -294,6 +310,37 @@ const TabuleiroTela3 = () => {
         </div>
 
         {/* // ======================================================================================================  */}
+      </div>
+      <div
+        style={{
+          position: "fixed",
+          bottom: 20,
+          right: 50,
+          backgroundColor: "#990099",
+          borderRadius: "90%",
+          width: "3%",
+          height: "5%",
+          padding: 10,
+          cursor: "pointer",
+          boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+          zIndex: 1000,
+          flex: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        onClick={() => window.open("https://mulheres-ai.web.app/", "_blank")}
+      >
+        <Typography
+          variant="h4"
+          style={{
+            color: "white",
+            fontWeight: "bold",
+            fontSize: "50px",
+          }}
+        >
+          ?
+        </Typography>
       </div>
     </div>
   );
