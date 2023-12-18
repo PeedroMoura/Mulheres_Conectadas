@@ -7,6 +7,9 @@ import { collection, getDocs } from "firebase/firestore";
 import db from "../../config/firebase";
 import { useState } from "react";
 
+import Sidebar from "../SideBar/index";
+import { FaBars } from 'react-icons/fa'
+
 const Header = () => {
   const CustomBox = styled(Box)(({ theme }) => ({
     minHeight: "80vh",
@@ -70,9 +73,15 @@ const Header = () => {
     }
   };
 
+  const [sidebar, setSidebar] = useState(false)
+
+  const showSiderbar = () => setSidebar(!sidebar)
+
   return (
       
     <CustomBox component="header">
+          <FaBars onClick={showSiderbar} />
+      {sidebar && <Sidebar active={setSidebar} />}
       {textoList.map((texto) => (
       <BoxText component="section">
         <Typography
