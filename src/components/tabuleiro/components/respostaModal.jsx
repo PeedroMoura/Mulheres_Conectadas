@@ -2,7 +2,6 @@ import React from "react";
 import { Modal, Box, Typography, Button } from "@mui/material";
 
 const RespostaModal = ({ card, respostaCorreta, showModalResult, onClose }) => {
-  console.log("AAAAAAA");
   const modalContent = respostaCorreta ? (
     <>
       <Typography

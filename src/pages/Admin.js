@@ -18,6 +18,7 @@ const Admin = () => {
   const [nmrTrilha, setNmrTrilha] = useState("");
   const [linkpdf, setLinkPdf] = useState("");
   const [nmrAula, setNmrAula] = useState("");
+  const [imgAula, setImgAula] = useState("");
   const [titulo, setTitulo] = useState("");
   const [resumoAula, setResumoAula] = useState("");
   const [videoUrl, setVideoUrl] = useState("");
@@ -51,6 +52,7 @@ const Admin = () => {
           titulo,
           videoUrl,
           resumoAula,
+          imgAula,
         },
       },
     });
@@ -73,6 +75,7 @@ const Admin = () => {
         titulo,
         videoUrl,
         resumoAula,
+        imgAula
       },
     });
   };
@@ -224,7 +227,8 @@ const Admin = () => {
           linkpdf,
           titulo,
           videoUrl,
-          resumoAula
+          resumoAula,
+          imgAula
         );
       } else {
         await createTrilha(
@@ -233,7 +237,8 @@ const Admin = () => {
           linkpdf,
           titulo,
           videoUrl,
-          resumoAula
+          resumoAula,
+          imgAula
         );
       }
 
@@ -243,6 +248,7 @@ const Admin = () => {
       setVideoUrl("");
       setTitulo("");
       setResumoAula("");
+      setImgAula("");
     } catch (erro) {
       console.error("Error updating/creating document: ", erro);
       alert(erro);
@@ -341,6 +347,14 @@ const Admin = () => {
               variant="outlined"
               value={videoUrl}
               onChange={(e) => setVideoUrl(e.target.value)}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="URL da Imagem"
+              variant="outlined"
+              value={imgAula}
+              onChange={(e) => setImgAula(e.target.value)}
               fullWidth
               margin="normal"
             />
