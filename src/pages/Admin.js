@@ -10,6 +10,7 @@ import {
 import { setDoc, getDoc, doc, updateDoc } from "firebase/firestore";
 import db from "../config/firebase";
 import { getAuth } from "@firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 // ======================================================================================================
 
@@ -33,7 +34,7 @@ const Admin = () => {
   const [subtituloSelo, setsubtituloSelo] = useState("");
   const [imagemSelo, setImagemSelo] = useState("");
 
-// ======================================================================================================
+  // ======================================================================================================
   //Criando uma trilha e salvando um objeto "aulas" com os valores inseridos
   const createTrilha = async (
     docCursos,
@@ -58,7 +59,7 @@ const Admin = () => {
     });
   };
 
-// ======================================================================================================
+  // ======================================================================================================
   //Fazendo upload e adicionando novas trilhas/aulas
   const updateTrilha = async (
     docCursos,
@@ -75,12 +76,14 @@ const Admin = () => {
         titulo,
         videoUrl,
         resumoAula,
-        imgAula
+        imgAula,
       },
     });
   };
 
-// ======================================================================================================
+  // ======================================================================================================
+
+  const navigate = useNavigate();
 
   const updateTelaInicialText = async () => {
     const user = getAuth().currentUser;
@@ -123,7 +126,7 @@ const Admin = () => {
     }
   };
 
-// ======================================================================================================
+  // ======================================================================================================
 
   const updateTelaInicialImg = async () => {
     const user = getAuth().currentUser;
@@ -259,6 +262,17 @@ const Admin = () => {
 
   return (
     <>
+      <Button
+        onClick={() => navigate("/Relatorio")}
+        style={{
+          backgroundColor: "purple",
+          color: "white",
+          padding: "10px",
+          borderRadius: "5px",
+        }}
+      >
+        Relatório
+      </Button>
       <h1
         style={{
           marginTop: 20,
@@ -385,7 +399,7 @@ const Admin = () => {
         </Card>
       </Box>
 
-{/* // ====================================================================================================== */}
+      {/* // ====================================================================================================== */}
 
       <h2 style={{ marginTop: 50, textAlign: "center", color: "purple" }}>
         Tela de início
@@ -448,7 +462,7 @@ const Admin = () => {
         </Card>
       </Box>
 
-{/* // ====================================================================================================== */}
+      {/* // ====================================================================================================== */}
 
       <h2 style={{ marginTop: 50, textAlign: "center", color: "purple" }}>
         Tela de Selos

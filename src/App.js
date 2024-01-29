@@ -23,6 +23,7 @@ import TabuleiroTela from './pages/tabuleiros/tabuleiro';
 import TabuleiroTela2 from './pages/tabuleiros/tabuleiro2';
 import TabuleiroTela3 from './pages/tabuleiros/tabuleiro3';
 import SelecaoTabuleiro from './pages/selecaoTabuleiro';
+import ChartPage from './pages/Relatorio';
 
 function App() {
   
@@ -48,6 +49,7 @@ function App() {
           <Route path='/tabuleiro2' element={<TabuleiroTela2 />} />
           <Route path='/tabuleiro3' element={<TabuleiroTela3 />} />
           <Route path='/selecaoTabuleiro' element={<SelecaoTabuleiro />} />
+          <Route path='/Relatorio' element={<ChartPage />} />
           {/* <Route path='/sobre' element={<Sobre />} /> */}
           {/* <Route path='/lgpd' element={<Lgpd />} /> */}
         </Routes>
